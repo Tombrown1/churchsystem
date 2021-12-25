@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCoulmnsToPostingsTable extends Migration
+class AddColunmToUserDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class AddCoulmnsToPostingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('postings', function (Blueprint $table) 
-        {
+        Schema::table('user_details', function (Blueprint $table) {
             $table->after('id', function($table){
                 $table->foreignId('user_id');
-                $table->foreignId('unit_id');
+                $table->foreignId('created_by');
             });
-
-            // $table->after('duration', function($table){
-            //     $table->timestamps('time_posted');
-            //     $table->timestamps('end_time');
-            // });
         });
     }
 
@@ -34,8 +28,8 @@ class AddCoulmnsToPostingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('postings', function (Blueprint $table) {
-            //
+        Schema::table('user_details', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 }

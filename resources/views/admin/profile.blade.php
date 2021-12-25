@@ -4,6 +4,19 @@
         
         @include('includes.navbar')
 
+         <!-- Display Error Message When not created -->
+
+         @if($errors->any())
+         <div class="alert alert-danger">
+            <p><strong>Opps Something went wrong</strong></p>
+            <ul>
+            @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+         </div>
+         @endif
+
             <!-- dashboard inner -->
             <div class="midde_cont">
                   <div class="container-fluid">
@@ -11,10 +24,31 @@
                         <div class="col-md-12">
                            <div class="page_title">
                               <h2>User Profile</h2>
-                              {{ $user->id }}
+                               <!-- Display Success Message after created -->
+                                @if(Session::has('message'))
+                                <div class="alert alert-success {{ Session::get('alert-class', 'alert-success')}} alert-dismissible fade show">
+                                        {{ Session::get('message') }}
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hiddden="true">&times;</span>
+                                        </button>
+                                </div>               
+                                @endif
+
                            </div>
                         </div>
                      </div>
+
+                      <!-- Display Success Message after created -->
+                    <!-- @if(Session::has('message'))
+                    <div class="alert alert-success {{ Session::get('alert-class', 'alert-success')}} alert-dismissible fade show">
+                            {{ Session::get('message') }}
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hiddden="true">&times;</span>
+                            </button>
+                    </div>               
+                    @endif -->
 
                      <div class="row column1">
                         <div class="col-md-2">
@@ -25,7 +59,7 @@
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>User profile</h2>
+                                    <h2>Personal Information</h2>
                                  </div>
                               </div>
                               <div class="full price_table padding_infor_info">
@@ -37,10 +71,10 @@
                                           <div class="profile_img"><img width="180" class="rounded-circle" src="images/layout_img/user_img.jpg" alt="#"></div>
                                           <div class="profile_contant">
                                              <div class="contact_inner">
-                                                <h3>John Smith</h3>
+                                                <h3>{{ $user->name }}</h3>
                                                 <p><strong>About: </strong>Frontend Developer</p>
                                                 <ul class="list-unstyled">
-                                                   <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
+                                                   <li><i class="fa fa-envelope-o"></i> : {{ $user->email }}</li>
                                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
                                                 </ul>
                                              </div>
@@ -77,9 +111,9 @@
                                              <div class="tabbar">
                                                 <nav>
                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                      <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#recent_activity" role="tab" aria-selected="false">Recent Activity</a>
-                                                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#project_worked" role="tab" aria-selected="false">Projects Worked on</a>
-                                                      <a class="nav-item nav-link active show" id="nav-contact-tab" data-toggle="tab" href="#profile_section" role="tab" aria-selected="true">Profile</a>
+                                                      <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#recent_activity" role="tab" aria-selected="false">Next of Kin Info</a>
+                                                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#project_worked" role="tab" aria-selected="false">Work and Profession</a>
+                                                      <a class="nav-item nav-link active show" id="nav-contact-tab" data-toggle="tab" href="#profile_section" role="tab" aria-selected="true">Church Membership Info</a>
                                                    </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
@@ -168,16 +202,17 @@
                                              </div>
                                              <div class="tab-content" id="v-pills-tabContent">
                                                 <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                                   <form action="{{route('create.user')}}" method="POST" enctype="multipart/form-data">
+                                                   <form action="{{route('personal.detail')}}" method="POST" enctype="multipart/form-data">
                                                         @csrf 
-                                                        <div class="input-group mb-3">                            
-
-                                                                <div class="input-group mb-3">
+                                                        <div class="input-group mb-3">  
+                                                                                          
+                                                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                                <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">First Name</span>
-                                                                </div>
-                                                                <input type="text" name="firstname" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
+                                                                </div> -->
+                                                                <input type="hidden" name="firstname" value="{{ $user->name }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <!-- </div> -->
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -186,12 +221,12 @@
                                                                 <input type="text" name="lastname" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
-                                                                <div class="input-group mb-3">
+                                                                <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Email</span>
-                                                                </div>
-                                                                <input type="email" name="email" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
+                                                                </div> -->
+                                                                <input type="hidden" name="email" value="{{ $user->email }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <!-- </div> -->
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -221,7 +256,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Date of Birth</span>
                                                                 </div>
-                                                                <input type="text" name="dob" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="date" name="dob" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
@@ -235,7 +270,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Marital Status</span>
                                                                 </div>
-                                                                <select name="gender" id="" class="form-control">
+                                                                <select name="marital_status" id="" class="form-control">
                                                                     <option value="">Select Marital Status</option>
                                                                     <option value="male">Single</option>
                                                                     <option value="female">Married</option>
@@ -250,15 +285,7 @@
                                                                 </div>
                                                                 <input type="file" name="passport" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
-
-                                                                <!-- <label for="basic-url">Message Description</label>
-                                                                <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">Message Description</span>
-                                                                </div>
-                                                                <textarea class="form-control" aria-label="With textarea"></textarea>
-                                                                </div> -->
-                                                                    </div>                     
+                                                            </div>                     
                                                                 <!-- Modal footer -->
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-info" >Save</button>
@@ -330,7 +357,7 @@
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                 <form action="{{route('create.user')}}" method="POST">
                                                         @csrf 
-                                                        <div class="input-group mb-3">                            
+                                                        <div class="input-group mb-3"> 
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
