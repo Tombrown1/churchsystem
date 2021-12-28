@@ -23,24 +23,14 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>User Profile</h2>
-                               <!-- Display Success Message after created -->
-                                @if(Session::has('message'))
-                                <div class="alert alert-success {{ Session::get('alert-class', 'alert-success')}} alert-dismissible fade show">
-                                        {{ Session::get('message') }}
-
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hiddden="true">&times;</span>
-                                        </button>
-                                </div>               
-                                @endif
+                              <h2>User Profile</h2>                              
 
                            </div>
                         </div>
                      </div>
-
+               
                       <!-- Display Success Message after created -->
-                    <!-- @if(Session::has('message'))
+                    @if(Session::has('message'))
                     <div class="alert alert-success {{ Session::get('alert-class', 'alert-success')}} alert-dismissible fade show">
                             {{ Session::get('message') }}
 
@@ -48,13 +38,15 @@
                                 <span aria-hiddden="true">&times;</span>
                             </button>
                     </div>               
-                    @endif -->
+                    @endif
 
                      <div class="row column1">
                         <div class="col-md-2">
-                        <div class="float-right">                              
-                                <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Update User Details</button>                                                         </div>
-                        </div>
+                            <div class="float-right ml-4">
+                        <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Update User Details</button>                                                         </div>
+
+                            </div>
+                        
                         <div class="col-md-8">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
@@ -66,9 +58,11 @@
                                  <div class="row">
                                     <!-- user profile section --> 
                                     <!-- profile image -->
+                           
                                     <div class="col-lg-12">
-                                       <div class="full dis_flex center_text">
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="images/layout_img/user_img.jpg" alt="#"></div>
+                                       <div class="full dis_flex center_text">                                          
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src="#" alt="User Passport"></div>
+                                          
                                           <div class="profile_contant">
                                              <div class="contact_inner">
                                                 <h3>{{ $user->name }}</h3>
@@ -113,10 +107,10 @@
                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                       <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#recent_activity" role="tab" aria-selected="false">Next of Kin Info</a>
                                                       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#project_worked" role="tab" aria-selected="false">Work and Profession</a>
-                                                      <a class="nav-item nav-link active show" id="nav-contact-tab" data-toggle="tab" href="#profile_section" role="tab" aria-selected="true">Church Membership Info</a>
+                                                      <a class="nav-item nav-link active show" id="nav-contact-tab" data-toggle="tab" href="#profile_section" role="tab" aria-selected="true">Church  Info</a>
                                                    </div>
                                                 </nav>
-                                                <div class="tab-content" id="nav-tabContent">
+                                                <div class="tab-content" id="nav-tabContent">   
                                                    <div class="tab-pane fade" id="recent_activity" role="tabpanel" aria-labelledby="nav-home-tab">
                                                       <div class="msg_list_main">
                                                          <ul class="msg_list">
@@ -160,10 +154,11 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-md-2">
-                           
-                           </div>
                         </div>
+                        <div class="col-md-2">
+                        
+                        </div>
+                        
                         <!-- end row -->
                      </div>
 
@@ -272,10 +267,10 @@
                                                                 </div>
                                                                 <select name="marital_status" id="" class="form-control">
                                                                     <option value="">Select Marital Status</option>
-                                                                    <option value="male">Single</option>
-                                                                    <option value="female">Married</option>
-                                                                    <option value="female">Divorced</option>
-                                                                    <option value="female">Widowed</option>
+                                                                    <option value="single">Single</option>
+                                                                    <option value="married">Married</option>
+                                                                    <option value="divorced">Divorced</option>
+                                                                    <option value="widowed">Widowed</option>
                                                                 </select>
                                                                 </div>
 
@@ -295,228 +290,16 @@
                                                 </div>
                                                 <!-- Form to update member Next of Kin Info -->
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                <form action="{{route('create.user')}}" method="POST">
-                                                        @csrf 
-                                                        <div class="input-group mb-3">                            
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">First Name</span>
-                                                                </div>
-                                                                <input type="text" name="fname_next_of_kin" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Last Name</span>
-                                                                </div>
-                                                                <input type="text" name="lname_next_of_kin" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>                                       
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Gender</span>
-                                                                </div>
-                                                                <select name="gender_next_of_kin" id="" class="form-control">
-                                                                    <option value="">Select Gender</option>
-                                                                    <option value="male">Male</option>
-                                                                    <option value="female">Female</option>
-                                                                </select>
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Phone Number</span>
-                                                                </div>
-                                                                <input type="text" name="phone_next_of_kin" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-                                                                
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Relationship</span>
-                                                                </div>
-                                                                <input type="text" name="relate_next_of_kin" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                 
-                                                                <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">Next of Kin Address</span>
-                                                                </div>
-                                                                <textarea class="form-control" name="address_next_of_kin" aria-label="With textarea"></textarea>
-                                                                </div>
-
-                                                                </div>                     
-                                                                <!-- Modal footer -->
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-info" >Save</button>
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
-                                                                </div> 
-                                                    </form>
+                                                        @includeif('includes.userdetails', [$user->userdetail->id => id])
+                                               
                                                 </div>
                                                     <!-- Form to Update Member Work Profession -->
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <form action="{{route('create.user')}}" method="POST">
-                                                        @csrf 
-                                                        <div class="input-group mb-3"> 
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Employment Status</span>
-                                                                </div>
-                                                                <input type="text" name="employment_status" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Profession</span>
-                                                                </div>
-                                                                <input type="text" name="profession" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Area of Specialization</span>
-                                                                </div>
-                                                                <input type="email" name="area_of_specialization" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>                                                                
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Nationality</span>
-                                                                </div>
-                                                                <input type="text" name="nationality" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-                                                                
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">State of Origin</span>
-                                                                </div>
-                                                                <input type="text" name="state_origin" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">L G A</span>
-                                                                </div>
-                                                                <input type="text" name="lga" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Home Town</span>
-                                                                </div>
-                                                                <input type="text" name="town" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>                                                                
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Maiden Name</span>
-                                                                </div>
-                                                                <input type="text" name="maiden_name" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">Residential Address</span>
-                                                                </div>
-                                                                <textarea class="form-control" name="resident_address" aria-label="With textarea"></textarea>
-                                                                </div>
-                                                                    </div>                     
-                                                                <!-- Modal footer -->
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-info" >Save</button>
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
-                                                                </div> 
-                                                    </form>
+                                                
                                                 </div>
                                                     <!-- Form that update Church Membership Record -->
                                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                                <form action="{{route('create.user')}}" method="POST">
-                                                        @csrf 
-                                                        <div class="input-group mb-3">                            
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Are You Born Again</span>
-                                                                </div>
-                                                                <input type="text" name="born_again" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Church Membership Date</span>
-                                                                </div>
-                                                                <input type="text" name="church_join_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Unit Join Date</span>
-                                                                </div>
-                                                                <input type="email" name="unit_join_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-                                                               
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Membership Class</span>
-                                                                </div>
-                                                                <input type="text" name="membership_class" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-                                                                
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Water Baptizm</span>
-                                                                </div>
-                                                                <input type="text" name="water_baptism" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Holy Ghost Baptizm</span>
-                                                                </div>
-                                                                <input type="text" name="holyghost_baptism" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Are you a Tither</span>
-                                                                </div>
-                                                                <input type="text" name="tither" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">WOFBI CLASS</span>
-                                                                </div>
-                                                                <select name="wofbi" id="" class="form-control">
-                                                                    <option value="">Select WOFBI</option>
-                                                                    <option value="bcc">BCC</option>
-                                                                    <option value="lcc">LCC</option>
-                                                                    <option value="ldc">LDC</option>
-                                                                </select>
-                                                                </div>
-
-                                                                <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="basic-addon3">Homecell</span>
-                                                                </div>
-                                                                <input type="text" name="homecell_id" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                </div>
-
-                                                                
-                                                                <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"> Hobbies</span>
-                                                                </div>
-                                                                <textarea class="form-control" name="hobbies" aria-label="With textarea"></textarea>
-                                                                </div>
-                                                                    </div>                     
-                                                                <!-- Modal footer -->
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-info" >Save</button>
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
-                                                                </div> 
-                                                    </form>
+                                               
                                                 </div>
                                              </div>
                                           </div>

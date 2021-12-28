@@ -33,8 +33,9 @@ class UserDetailController extends Controller
                 'passport' => 'required',
                 'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
             ]);
-            $file = $request->file('passport');
-            $path = Storage::disk('public')->putFile('images', $file);
+            $passport = $request->file('passport');            
+            $passport_name = $passport->getClientOriginalName();
+            $path = Storage::disk('public')->putFile('images', $passport_name);
         }
 
         $created_by = Auth::user()->id;
@@ -53,12 +54,13 @@ class UserDetailController extends Controller
         $userdetail->home_phone = $request->home_phone;
         $userdetail->dob = $request->dob;
         $userdetail->pob = $request->pob;
-        $userdetail->passport = $file;
+        $userdetail->passport = $passport_name;
         $userdetail->marital_status = $request->marital_status;
 
         // return $userdetail;
         if($userdetail->save())
         {
+            session(['last_id' => $userdetail->id]);
             return back()->with('message', 'User Personal Details is added, please proceed and update Next of Kin Record');
         }
     }
@@ -66,7 +68,7 @@ class UserDetailController extends Controller
         
 
 
-    public function nextofkin(Request $request)
+    public function nextofkin(Request $request, $id)
     {
         $this->validate($request,[
             'fname_next_of_kin' => ['required'],
@@ -77,9 +79,28 @@ class UserDetailController extends Controller
             'address_next_of_kin' => ['required'],
             'gender_next_of_kin' => ['required'],
         ]);
+
+       
+
+        // $userdetail_id = session()->get('last_id');
+        $nextofkin = Userdetail::find($id);
+        // return $nextofkin->id;
+
+        $nextofkin->fname_next_of_kin = $request->fname_next_of_kin;
+        $nextofkin->lname_next_of_kin = $request->lname_next_of_kin;
+        $nextofkin->phone_next_of_kin = $request->phone_next_of_kin;
+        $nextofkin->relate_next_of_kin = $request->relate_next_of_kin;
+        $nextofkin->gender_next_of_kin = $request->gender_next_of_kin;
+        $nextofkin->address_next_of_kin = $request->address_next_of_kin;
+        $nextofkin->gender_next_of_kin = $request->gender_next_of_kin;
+        
+        if($nextofkin->save())
+        {
+            return back()->with('message', 'Next of Kin Record saved, please proceed with other form so as to keep your record updated');
+        }
     }
 
-    public function workprofession(Request $request)
+    public function workprofession(Request $request, $id)
         {
             $this->validate($request, [
             'employment_status' => ['required'],
@@ -91,11 +112,32 @@ class UserDetailController extends Controller
             'town' => ['required'],
             'maiden_name' => ['required'],
             'resident_address' => ['required'],
-            'category' => ['required'],
+            // 'category' => ['required'],
             ]);
+
+            // $workpro_id = session()->get('last_id');
+            $workpro = UserDetail::find($id);
+
+            $workpro->employment_status = $request->employment_status;
+            $workpro->profession = $request->profession;
+            $workpro->area_of_specialization = $request->area_of_specialization;
+            $workpro->nationality = $request->nationality;
+            $workpro->state_origin = $request->state_origin;
+            $workpro->lga = $request->lga;
+            $workpro->town = $request->town;
+            $workpro->maiden_name = $request->maiden_name;
+            $workpro->resident_address = $request->resident_address;
+
+
+            if($workpro->save())
+        {
+            return back()->with('message', 'Work Profession Record saved, please proceed with other form so as to keep your record updated');
         }
 
-    public function churchmember(Request $request)
+        }   
+
+        
+    public function churchmember(Request $request, $id)
         {
             $this->validate($request, [
             'born_again' => ['required'],
@@ -108,9 +150,29 @@ class UserDetailController extends Controller
             'tither' => ['required'],
             'homecell_id' => ['required'],
             'hobbies' => ['required'],
-            'hobbies' => ['required'],
-            'hobbies' => ['required'],
             ]);
+
+            // $church_id = session()->get('last_id');
+            $churchmember = UserDetail::find($id);
+
+            // return $churchmember;
+
+            $churchmember->born_again = $request->born_again;
+            $churchmember->church_join_date = $request->church_join_date;
+            $churchmember->unit_join_date = $request->unit_join_date;
+            $churchmember->membership_class = $request->membership_class;
+            $churchmember->water_baptism = $request->water_baptism;
+            $churchmember->holyghost_baptism = $request->holyghost_baptism;
+            $churchmember->wofbi_id = $request->wofbi_id;
+            $churchmember->tither = $request->tither;
+            $churchmember->homecell_id = $request->homecell_id;
+            $churchmember->hobbies = $request->hobbies;
+
+
+            if($churchmember->save())
+            {
+                return back()->with('message', 'Member record is fully updated, Congratulation!');
+            }
         }
 
     public function userProfile($id)

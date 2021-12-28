@@ -48,6 +48,9 @@ require __DIR__.'/auth.php';
 
     Route::get('/profile/{id}',[UserDetailController::class, 'userProfile'])->name('admin.profile');
     Route::post('/personal-detail',[UserDetailController::class, 'personaldetail'])->name('personal.detail');
+    Route::post('/nextofkin/{id}',[UserDetailController::class, 'nextofkin'])->name('nextofkin.detail');
+    Route::post('/workpro/{id}',[UserDetailController::class, 'workprofession'])->name('workpro.detail');
+    Route::post('/churchmembership/{id}',[UserDetailController::class, 'churchmember'])->name('churchmember.detail');
     Route::post('/create-user',[ManageUserController::class, 'createUser'])->name('create.user');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/manage-user', [ManageUserController::class, 'ManageUser'])->name('manage.user');

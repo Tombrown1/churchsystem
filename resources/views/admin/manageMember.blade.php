@@ -35,26 +35,26 @@
                                              <th><strong>S/N</strong></th>
                                              <th><strong>Name</strong></th>
                                              <th><strong>Username</strong></th>
-                                             <th><strong>Member Status</strong></th>
                                              <th><strong>Email</strong></th>
+                                             <th><strong>Member Status</strong></th>                                             
                                              <th><strong>Posted By</strong></th>
-                                             <th><strong>Date Posted</strong></th>                                         
-                                             <th><strong>Subunit</strong></th>                                         
+                                             <th><strong>Date Posted</strong></th>                                    
                                              <th><strong>Posting Status</strong></th>
                                              <th><strong>Action</strong></th>                                        
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach( $users as $user)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
+                                             <td>{{$loop->index +1}}</td>
+                                             <td>{{$user->userdetail->firstname ." ". $user->userdetail->lastname }}</td>
+                                             <td>{{$user->username}}</td>
+                                             <td>{{$user->userdetail->email}}</td>
+                                             <td>{{$user->name}}</td>
+                                             <td>{{$user->name}}</td>
                                              <td>Pitt</td>
-                                             <td>35</td>
                                              <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>                                             
-                                             <td>Female</td>                                             
-                                             <td>Female</td>                                             
+                                                                                    
                                              <td class="">
                                                    <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                       <div class="dropdown-menu arrow" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(912px, 198px, 0px);">
@@ -72,6 +72,7 @@
                                                 </td>                                             
                                              
                                           </tr>
+                                          @endforeach
                                        </tbody>
                                     </table>
                                  </div>
