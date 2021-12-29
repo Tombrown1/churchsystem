@@ -45,11 +45,19 @@ require __DIR__.'/auth.php';
     {
 
     // Route::get('/profile/{id}',[DemoController::class, 'show'])->name('profile');
-
-    Route::get('/profile/{id}',[UserDetailController::class, 'userProfile'])->name('admin.profile');
+        // route that helps in inserting user details records
     Route::post('/personal-detail',[UserDetailController::class, 'personaldetail'])->name('personal.detail');
+    Route::get('/profile/{id}',[UserDetailController::class, 'userProfile'])->name('admin.profile');    
     Route::post('/nextofkin/{id}',[UserDetailController::class, 'nextofkin'])->name('nextofkin.detail');
     Route::post('/workpro/{id}',[UserDetailController::class, 'workprofession'])->name('workpro.detail');
+        // route that helps in editing user details records
+
+    Route::get('/edit-user-personal-detail/{id}', [UserDetailController::class, 'edit_user_personal_detail'])->name('edit.personal.detail');
+    Route::put('/update-personal-detail/{id}', [UserDetailController::class, 'update_personal_detail'])->name('update.personal.detail');
+    Route::put('/update-nextofkin/{id}', [UserDetailController::class, 'update_nextofkin'])->name('update.nextofkin');
+    Route::put('/update-workpro/{id}', [UserDetailController::class, 'updateworkpro'])->name('update.workpro');
+    Route::put('/update-churchmember/{id}', [UserDetailController::class, 'updatechurchmember'])->name('update.churchmember');
+
     Route::post('/churchmembership/{id}',[UserDetailController::class, 'churchmember'])->name('churchmember.detail');
     Route::post('/create-user',[ManageUserController::class, 'createUser'])->name('create.user');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');

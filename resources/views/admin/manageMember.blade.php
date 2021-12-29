@@ -57,12 +57,12 @@
                                                                                     
                                              <td class="">
                                                    <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                                                      <div class="dropdown-menu arrow" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(912px, 198px, 0px);">
-                                                            <a class="dropdown-item modal_activity" href="#" data-toggle="modal" url="?page=edit-user-profile" activity_name="Edit Tombrown Godwin Account" activity_name_set="modal_title" property_a="51" property_b="" property_c="" property_d="" property_e="" progress_name="modal_result" progress_image="<div align=&quot;center&quot; class=&quot;ball-rotate loader-danger&quot;><div></div></div>" data-target="#rollIn" result="modal_result">
-                                                               <i class="fa fa-calendar-check mr-1"></i> Profile
+                                                      <div class="dropdown-menu arrow">
+                                                            <a class="dropdown-item" href="{{route('edit.personal.detail', ['id' => $user->userdetail->id])}}">
+                                                               <i class="fa fa-calendar-check mr-1"></i>Edit
                                                             </a>
-                                                            <a class="dropdown-item " href="?page=all-users&amp;type=approve&amp;act=51&amp;state=1"> <i class="fa fa-cog mr-1"></i>Suspend</a>                            
-                                                            <a class="dropdown-item modal_activity" href="#" data-toggle="modal" url="?page=new-loan" activity_name="Add New Loan to Tombrown Godwin" activity_name_set="modal_title" property_a="51" property_b="" property_c="" property_d="" property_e="" progress_name="modal_result" progress_image="<div align=&quot;center&quot; class=&quot;ball-rotate loader-danger&quot;><div></div></div>" data-target="#rollIn" result="modal_result">
+                                                            <a class="dropdown-item " href="#"> <i class="fa fa-cog mr-1"></i>Suspend</a>                            
+                                                            <a class="dropdown-item" href="#">
                                                                <i class="fa fa-calendar-check mr-1"></i> Block
                                                             </a>
                                                             
