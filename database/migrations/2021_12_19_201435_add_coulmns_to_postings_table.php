@@ -16,7 +16,7 @@ class AddCoulmnsToPostingsTable extends Migration
         Schema::table('postings', function (Blueprint $table) 
         {
             $table->after('id', function($table){
-                $table->foreignId('user_id');
+                $table->foreignId('posted_by');
                 $table->foreignId('unit_id');
             });
 
@@ -35,7 +35,7 @@ class AddCoulmnsToPostingsTable extends Migration
     public function down()
     {
         Schema::table('postings', function (Blueprint $table) {
-            //
+            $table->dropColumn('user_id');
         });
     }
 }

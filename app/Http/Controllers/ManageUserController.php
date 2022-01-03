@@ -39,6 +39,8 @@ class ManageUserController extends Controller
         $password = $request->name;
         $username = $request->name.rand(2,100);
         // $password = Hash::make('yourPa$$w0rd');
+        // Role Definitions : 1 = root_admin, 2 = super_admin, 3 = admin, 4 = user
+       
 
         $user = new User;
 
@@ -50,16 +52,23 @@ class ManageUserController extends Controller
         $user->role = 0;
         $user->banned_id = 0;
         $user->suspension_id = 0;
-        $user->badge = 0;
+        $user->badge = 4;
 
         // return $user;
 
         if($user->save())
         {
-            return back()->with('message', 'User is Created Successfully!');
+            $redirect = 'admin/profile/'. $user->id;
+            return redirect($redirect)->with('message', 'User is Created Successfully!, complete the user registration');
         }
 
         
+    }
+
+    public function deluser($id)
+    {
+        $user = User::destroy($id);
+        return back()->with('message', 'User Deleted Successfully!');
     }
 
 }

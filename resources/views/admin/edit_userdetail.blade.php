@@ -62,9 +62,11 @@
                            
                                     <div class="col-lg-12">
                                        <div class="full dis_flex center_text">
-     
+                                            @if($user->userdetail->passport == NULL)
                                           <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/'.$user->userdetail->passport)}}" alt="User Passport"></div>
-                                      
+                                            @else
+                                                
+                                            @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
                                                 <h3>{{$user->name . ' '. $user->userdetail->lastname}}</h3>

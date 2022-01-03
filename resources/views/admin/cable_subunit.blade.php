@@ -1,5 +1,6 @@
 
-@include('includes.header')
+         @section('title', 'Manage Member')         
+         @include('includes.header')
         @include('includes.sidebar')
         
         @include('includes.navbar')

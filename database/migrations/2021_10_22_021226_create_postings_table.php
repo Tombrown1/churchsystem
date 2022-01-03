@@ -33,5 +33,6 @@ class CreatePostingsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('postings');
+        
     }
 }

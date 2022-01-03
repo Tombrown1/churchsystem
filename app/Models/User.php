@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserDetail::class);
     }
+
+    public function posting()
+    {
+        return $this->hasOne(Posting::class, 'member_id');
+    }
 }

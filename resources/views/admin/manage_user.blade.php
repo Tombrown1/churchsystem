@@ -1,5 +1,5 @@
 
-@include('includes.header')
+      @include('includes.header')
         @include('includes.sidebar')
         
         @include('includes.navbar')
@@ -88,7 +88,14 @@
                                                             </a>
                                                             
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item  btn btn-danger " > <i class="fa fa-cog mr-1"></i>Delete</a>                            
+                                                            <!-- <a class="dropdown-item  btn btn-danger " > <i class="fa fa-cog mr-1"></i>Delete</a>                             -->
+                                                            <form method="POST" action="{{route('user.delete', ['id'=>$user->id])}}">
+                                                               @csrf
+                                                               <input type="hidden" name="_method" value="DELETE">
+                                                               <button type="submit" class="btn btn-danger btn-icon">
+                                                                  <i data-feather="delete">Delete</i>
+                                                               </button>
+                                                               </form>
                                                       </div>
                                                 </td>  
                                           </tr>

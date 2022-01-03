@@ -52,9 +52,9 @@ class UserDetailController extends Controller
                 'passport' => 'required',
                 'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
             ]);
-            $passport = $request->file('passport'); 
+            $file = $request->file('passport'); 
             // $passName = $passport->getClientOriginalName();
-            $path = Storage::disk('public')->putFile('images', $passport);
+            $path = Storage::disk('public')->putFile('images', $file);
 
             $userdetail->passport = $path;        
         }

@@ -7,6 +7,7 @@ use App\Http\Controllers\subUnitController;
 use App\Http\Controllers\manageMemberController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserDetailController;
+use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,8 @@ use App\Http\Controllers\UserDetailController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/', [PageController::class, 'index'])->name('index');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -58,6 +61,11 @@ require __DIR__.'/auth.php';
     Route::put('/update-workpro/{id}', [UserDetailController::class, 'updateworkpro'])->name('update.workpro');
     Route::put('/update-churchmember/{id}', [UserDetailController::class, 'updatechurchmember'])->name('update.churchmember');
 
+    //Posting Route
+    Route::post('/member-Post', [manageMemberController::class, 'posting'])->name('post.member');
+    Route::get('/posted-members', [manageMemberController::class, 'posted_member'])->name('post');
+
+
     Route::post('/churchmembership/{id}',[UserDetailController::class, 'churchmember'])->name('churchmember.detail');
     Route::post('/create-user',[ManageUserController::class, 'createUser'])->name('create.user');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
@@ -68,5 +76,9 @@ require __DIR__.'/auth.php';
     Route::get('/prosale', [subUnitController::class, 'prosaleSubunit'])->name('prosale');
     Route::get('/members', [manageMemberController::class, 'manageMember'])->name('members');
     Route::get('/profile', [UserDetailController::class, 'profile'])->name('profile');
+
+
+    //Delete User route
+    Route::delete('/delete/{id}', [ManageUserController::class, 'deluser'])->name('user.delete');
 
     });

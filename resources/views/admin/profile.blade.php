@@ -65,7 +65,7 @@
                                            @if($user->userdetail == NULL)
                                                 No passport
                                             @else
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/'.$user->userdetail->passport)}}" alt="User Passport"></div>
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->userdetail->passport)}}" alt="User Passport"></div>
                                             @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
