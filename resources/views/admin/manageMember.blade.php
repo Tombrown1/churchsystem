@@ -55,10 +55,10 @@
                                        <thead>
                                           <tr>
                                              <th><strong>S/N</strong></th>
-                                             <th><strong>Name</strong></th>
-                                             <th><strong>Username</strong></th>
+                                             <th><strong>firstname</strong></th>
+                                             <th><strong>lastname</strong></th>
                                              <th><strong>Email</strong></th>
-                                             <h><strong>Posted By</strong></h>                                  
+                                             <th><strong>Posted By</strong></th>                                  
                                              <th><strong>Posting Status</strong></th> 
                                              <th><strong>Date Joined</strong></th>
                                              <th><strong>Action</strong></th>                                        
@@ -69,20 +69,20 @@
                                           <tr>
                                              <td>{{$loop->index +1}}</td>
                                              <td> {{$user->firstname}} </td>
-                                             <td>{{$user->username}}</td>
+                                             <td>{{$user->lastname}}</td>
                                              <td>{{$user->email}}</td>
-                                             <td>{{$posted_by->user->name}}</td>
                                              <td>
-                                                @if($user->badge == 1)
-                                                <span class="badge badge-pill badge-danger">Leader</span>
-                                                @elseif($user->badge == 2)
-                                                <span class="badge badge-pill badge-warning">Subunit Leader</span>
-                                                @elseif($user->badge == 3)
-                                                <span class="badge badge-pill badge-success">Member</span>                                                
-                                                 @elseif($user->badge == 4)
-                                                 <span class="badge badge-pill badge-primary">Probation</span>
-                                                  @else
-
+                                                @if($user->posting != null)
+                                                  {{App\Models\User::find($user->posting->user_id)->name}}
+                                                @else
+                                                   <span class="badge badge-danger">Not Posted</span>
+                                                @endif
+                                             </td>
+                                             <td>
+                                                @if($user->posting != null)
+                                                   <span class="badge badge-success">Posted</span>
+                                                @else
+                                                   Not Posted
                                                 @endif
                                              </td>
                                              <td>{{$user->created_at->isoFormat('dddd D, Y')}}</td>
@@ -90,7 +90,7 @@
                                              <td class="">
                                                    <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                       <div class="dropdown-menu arrow">
-                                                            <a class="dropdown-item" href="">
+                                                            <a class="dropdown-item" href="{{route('edit.personal.detail', ['id' => $user->id])}}">
                                                                <i class="fa fa-calendar-check mr-1"></i>Edit
                                                             </a>
                                                             <a class="dropdown-item " href="{{route('post')}}"> <i class="fa fa-cog mr-1"></i>Posting</a>                            
@@ -139,16 +139,11 @@
                                                    <!-- <input type="text" name="name" class="form-control" id="basic-url" aria-describedby="basic-addon3" required> -->
                                                    <select name="member_id" id="" class="form-control">
                                                       @foreach($users as $user)
-                                                         <option value="{{$user->id}}">{{$user->name}}</option>
+                                                         <option value="{{$user->id}}">{{$user->firstname }}</option>
                                                          @endforeach
                                                    </select>
                                                    </div>
 
-                                                   <!-- <div class="input-group-append">
-                                                      <span class="input-group-text" id="basic-addon2">Phone Number</span>
-                                                   </div>
-                                                   <input type="text" namae="phone"  class="form-control" aria-label="phone" aria-describedby="basic-addon2" required>
-                                                   </div> -->
                                                    
                                                    <div class="input-group mb-3">
                                                    <div class="input-group-prepend">
@@ -167,18 +162,14 @@
                                                       <div class="input-group-prepend">
                                                          <span class="input-group-text" id="basic-addon3">Member Status</span>
                                                       </div>
-                                                   
-                                                      @if($user->badge == 1)
-                                                         <input type="text" name="posting_status" value="Leader" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                      @elseif($user->badge == 2)
-                                                         <input type="text" name="posting_status" value="Subunit Leader" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                         @elseif($user->badge == 3)
-                                                         <input type="text" name="posting_status" value="Member" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                         @elseif($user->badge == 4) 
-                                                         <input type="text" name="posting_status" value="Probation" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                         @else
-                                                      @endif
-
+                                                      <select name="posting_status" id="" class="form-control">
+                                                         <option>Select Member</option>
+                                                         <option value="1">Leader</option>
+                                                         <option value="2">Subunit Leader</option>
+                                                         <option value="3">Full Member</option>
+                                                         <option value="4">Probation</option>
+                                                      </select>
+                                                     
                                                    </div>
 
                                                    <div class="input-group mb-3">

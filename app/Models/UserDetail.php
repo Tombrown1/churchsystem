@@ -13,4 +13,12 @@ class UserDetail extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function posting()
+    {
+        return $this->hasOne(Posting::class, 'member_id');
+    }
+
+    
+   
 }

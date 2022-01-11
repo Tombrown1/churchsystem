@@ -28,6 +28,7 @@
                            </div>
                            <div class="float-right mb-5">
                         <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Complete User Registeration</button> 
+                        <a type="button" class="model_bt btn btn-info" href="{{route('edit.personal.detail', ['id' =>$user->id])}}">Edit User</a> 
                             </div>
                         </div>
                      </div>
@@ -62,10 +63,10 @@
                            
                                     <div class="col-lg-12">
                                        <div class="full dis_flex center_text">
-                                           @if($user->userdetail == NULL)
+                                           @if($user->details == NULL)
                                                 No passport
                                             @else
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->userdetail->passport)}}" alt="User Passport"></div>
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->details->passport)}}" alt="User Passport"></div>
                                             @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
@@ -292,14 +293,15 @@
                                                                 </div> 
                                                     </form>  
                                                 </div>
-                                                <!-- Form to update member Next of Kin Info -->
+                                                <!-- Form to complete member Next of Kin Info -->
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    @if($user->Userdetail == NULL)
+                                                    @if($user->details == NULL)
                                                         User detail not Available
                                                         @else
-                                                    <form action="{{route('nextofkin.detail', ['id' => $user->userdetail->id])}}" method="POST">
+                                                    <form action="{{route('nextofkin.detail', ['id' => $user->details->id])}}" method="POST">
+                                                        @csrf
                                                         @endif
-                                                        @csrf 
+                                                        
                                                         <div class="input-group mb-3">                            
 
                                                                 <div class="input-group mb-3">
@@ -353,15 +355,16 @@
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-info" >Save</button>
                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
+                                                                                    
                                                                 </div> 
                                                     </form>
                                                 </div>
-                                                    <!-- Form to Update Member Work Profession -->
+                                                    <!-- Form to Complete Member Work Profession -->
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                    @if($user->userdetail == NULL)
+                                                    @if($user->details == NULL)
                                                     
                                                     @else
-                                                <form action="{{route('workpro.detail', ['id' => $user->userdetail->id])}}" method="POST">
+                                                <form action="{{route('workpro.detail', ['id' => $user->details->id])}}" method="POST">
                                                     @endif
                                                         @csrf 
                                                         <div class="input-group mb-3"> 
@@ -436,12 +439,12 @@
                                                                 </div> 
                                                     </form>
                                                 </div>
-                                                    <!-- Form that update Church Membership Record -->
+                                                    <!-- Form that Complete Church Membership Record -->
                                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                                    @if($user->userdetail == NULL)
+                                                    @if($user->details == NULL)
 
                                                     @else
-                                                <form action="{{route('churchmember.detail', ['id' => $user->userdetail->id])}}" method="POST">
+                                                <form action="{{route('churchmember.detail', ['id' => $user->details->id])}}" method="POST">
                                                     @endif 
                                                     @csrf 
                                                         <div class="input-group mb-3">                            

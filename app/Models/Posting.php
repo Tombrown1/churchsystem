@@ -13,4 +13,15 @@ class Posting extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function details()
+    {
+        return $this->belongsTo(UserDetail::class);
+    }
+
+    public function subunit()
+    {
+        return $this->belongsTo(Subunit::class);
+    }
 }
+ 

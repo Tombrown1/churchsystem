@@ -7,6 +7,7 @@ use App\Http\Controllers\subUnitController;
 use App\Http\Controllers\manageMemberController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserDetailController;
+use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,9 @@ require __DIR__.'/auth.php';
     Route::get('/prosale', [subUnitController::class, 'prosaleSubunit'])->name('prosale');
     Route::get('/members', [manageMemberController::class, 'manageMember'])->name('members');
     Route::get('/profile', [UserDetailController::class, 'profile'])->name('profile');
+    Route::get('/announcement', [NewsEventController::class, 'announcement'])->name('announce');
+    Route::post('/create-category', [NewsEventController::class, 'announcement_category'])->name('create.cat');
+    Route::post('/create-announcement', [NewsEventController::class, 'save_announce'])->name('create.announce');
 
 
     //Delete User route

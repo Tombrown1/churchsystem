@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class announcement extends Model
 {
     use HasFactory;
+
+    public function announce_cat()
+    {
+        return $this->belongsTo(AnnoucementCategory::class);
+    }
 }

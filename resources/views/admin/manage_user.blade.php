@@ -45,7 +45,7 @@
                     <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">                              
-                                    <button type="button" class="model_bt btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create User</button>
+                                    <button type="button" class="model_bt btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Add New Member</button>
                            
                                  <!-- <div class="heading1 margin_0">
                                     <h2>Manage Users</h2>                                    
@@ -57,7 +57,7 @@
                                     <table class="table table-striped">
                                        <thead>
                                           <tr>
-                                             <th><strong>#</strong></th>
+                                             <th><strong>S/N</strong></th>
                                              <th><strong>Full Name</strong></th>
                                              <th><strong>Date Joined</strong></th>
                                              <th><strong>Role</strong></th>
@@ -70,8 +70,8 @@
                                     @foreach($users as $user)
                                           <tr>
                                              <td>{{$loop->index +1}}</td>
-                                             <td>{{$user->name}}</td>
-                                             <td>{{$user->created_at}}</td>
+                                             <td>{{$user->firstname. ' '. $user->lastname}}</td>
+                                             <td>{{date('d-m-Y', strtotime($user->created_at))}}</td>
                                              <td>{{$user->role}}</td>
                                              <td>{{$user->gender}}</td>
                                              <td>{{$user->badge}}</td>                                    
@@ -130,12 +130,7 @@
                             </div>
                             <input type="text" name="name" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                             </div>
-
-                            <!-- <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">Phone Number</span>
-                            </div>
-                            <input type="text" namae="phone"  class="form-control" aria-label="phone" aria-describedby="basic-addon2" required>
-                            </div> -->
+                     
 
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -143,12 +138,7 @@
                             </div>
                             <input type="email" name="email" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                             </div>
-
-                             <!-- <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">Password</span>
-                            </div>
-                            <input type="password" name="password"  class="form-control" aria-label="password" aria-describedby="basic-addon2" required>
-                            </div> -->
+                            
 
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -161,13 +151,19 @@
                             </select>
                             </div>
 
-                            <!-- <label for="basic-url">Message Description</label>
-                            <div class="input-group">
+                            <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Message Description</span>
+                                <span class="input-group-text" id="basic-addon3">Role</span>
                             </div>
-                            <textarea class="form-control" aria-label="With textarea"></textarea>
-                            </div> -->
+                            <select name="role" id="" class="form-control">
+                                <option>Select Role</option>
+                                <option value="2">Super Admin</option>
+                                <option value="3">Admin</option>
+                                <option value="4">User</option>
+                            </select>
+                            </div>
+
+                           
                        </div>                     
                   <!-- Modal footer -->
                   <div class="modal-footer">

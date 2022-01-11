@@ -10,7 +10,7 @@
                      <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                           <h6>John David</h6>
+                           <h6>{{Auth::User()->name}}</h6>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
@@ -32,13 +32,15 @@
                            <li><a href="{{route('prosale')}}"> <span>Production/Sales</span></a></li>
                         </ul>
                      </li>
-                     <li><a href="{{route('members')}}"><i class="fa fa-table purple_color2"></i> <span>View Members</span></a></li>
+                     <li><a href="{{route('members')}}"><i class="fa fa-table purple_color2"></i> <span>Manage Members</span></a></li>
+                     <li>
+                     <li><a href="{{route('post')}}"><i class="fa fa-table purple_color2"></i> <span>Posting</span></a></li>
                      <li>
                         <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>News/Events</span></a>
                         <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="email.html"> <span>Announcement</span></a></li>
-                           <li><a href="calendar.html"> <span>Service Activities</span></a></li>
-                           <li><a href="media_gallery.html"> <span>Media Gallery</span></a></li>
+                           <li><a href="{{route('announce')}}"> <span>Announcement</span></a></li>
+                           <li><a href="#"> <span>Service Activities</span></a></li>
+                           <li><a href="#"> <span>Media Gallery</span></a></li>
                         </ul>
                      </li>
                    

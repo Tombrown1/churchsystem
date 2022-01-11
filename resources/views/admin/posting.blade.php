@@ -55,8 +55,8 @@
                                           <tr>
                                              <th><strong>S/N</strong></th>
                                              <th><strong>Fullname</strong></th>
-                                             <th><strong>Member Status</strong></th> 
                                              <th><strong>Subunit</strong></th>
+                                             <th><strong>Member Status</strong></th>
                                              <th><strong>Posted By</strong></th> 
                                              <th><strong>Date Posted</strong></th>
                                              <th><strong>Duration</strong></th>
@@ -68,12 +68,37 @@
                                            @foreach($members_posted as $member_posted)
                                            <tr>
                                                <td>{{$loop->index +1}}</td>
-                                               <td>{{$member_posted->user->userdetail->firstname}}</td>
-                                               <td>{{$member_posted->posting_status}}</td>
-                                               <td>{{$member_posted->subunit_id}}</td>
-                                               <td>{{$member_posted->user_id}}</td>
-                                               <td>{{$member_posted->start_date}}</td>
+                                               <td>
+                                                  @if($member_posted->user != null)
+                                                      {{App\Models\User::find($member_posted->member_id)->name}}
+                                                   @else
+                                                   @endif
+                                                </td>  
+                                                <td>
+                                                   @if($member_posted->subunit != null )
+                                                   {{App\Models\Subunit::find($member_posted->subunit_id)->name}}
+                                                      @else
+                                                   @endif
+                                                </td>
+                                                <td>
+                                                   @if($member_posted->posting_status == 4)
+                                                      <span class="badge badge-primary">Probation</span>
+                                                   @else
+                                                      <span class="badge badge-success">Full Member</span>
+                                                   @endif
+                                                </td>
+                                                <td>
+                                                  @if($member_posted->user != null)
+                                                   {{App\Models\User::find($member_posted->user_id)->name}}
+                                                   @else
+                                                   @endif
+                                               </td>
+                                               <td>{!! date('d/M/Y', strtotime($member_posted->start_date)) !!}</td>
                                                <td>{{$member_posted->duration}}</td>
+                                                                                    
+                                                                                       
+                                              
+                                               
                                            @endforeach
                                        </tbody>
                                     </table>
@@ -108,12 +133,7 @@
                             </select>
                             </div>
 
-                            <!-- <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">Phone Number</span>
-                            </div>
-                            <input type="text" namae="phone"  class="form-control" aria-label="phone" aria-describedby="basic-addon2" required>
-                            </div> -->
-                           
+                            
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Unit</span>
@@ -148,13 +168,6 @@
                             <input type="date" name="end_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                             </div>
 
-                            <!-- <label for="basic-url">Message Description</label>
-                            <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Message Description</span>
-                            </div>
-                            <textarea class="form-control" aria-label="With textarea"></textarea>
-                            </div> -->
                        </div>                     
                   <!-- Modal footer -->
                   <div class="modal-footer">

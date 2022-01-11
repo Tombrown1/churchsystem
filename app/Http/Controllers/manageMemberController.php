@@ -18,15 +18,18 @@ class manageMemberController extends Controller
         // $userdetail->userdetail()->find('2');
         // $userdetail = UserDetail::where('user_id', $user->id)->get();
         // return $userdetail;
-        $posted_by = Posting::where('user_id', 1)->first();
 
+        //by victor 
+        $users = UserDetail::with(['posting', 'user'])->orderBy("id", 'DESC')->get();
+
+        // return $users;
         // return $posted_by->user->name;
        // $members = User::get();
-        // $users = User::with('userdetail')->orderBy("id", 'DESC')->get(); 
-        $users = User::orderBy("id","DESC")->get(); 
-        // return $users;
+        //$users =  User::with(['userdetail', 'postings'])->orderBy("id", 'DESC')->get(); 
+        //$users = User::with('userdetail')->orderBy("id","DESC")->get(); 
+        // $user = User::find(3)->userdetail;
 
-        return view('admin.manageMember', compact('users', 'posted_by'));
+        return view('admin.manageMember', compact('users'));
     }
 
 
@@ -40,26 +43,28 @@ class manageMemberController extends Controller
             'end_date' => 'required'
         ]);
 
-        $start_date = Carbon::parse($request->start_date);
-        $end_date = Carbon::parse($request->end_date);
-        $duration = $end_date->diffForHumans($start_date);
-        
-        // return  $duration;
+        // return $request;
 
-        if($request->posting_status == 'Probation'){
-            $posting_status = 1;
-        }else{
-            $posting_status = 2;
-        }
+        // $start_date = Carbon::parse($request->start_date);
+        // $end_date = Carbon::parse($request->end_date);
+        // $duration = $end_date->diffForHumans($start_date);
+        $start_date = strtotime($request->start_date);
+        $end_date = strtotime($request->end_date);
+        $date_diff = ($start_date - $end_date);
+         
+        $duration =  date('Y-m-d', $date_diff);
+
+        // return $duration;
+
         
-       
+                
         $posted_by = Auth::user()->id;
         $post = new Posting;
 
         $post->user_id = $posted_by;
         $post->member_id = $request->member_id;
         $post->subunit_id = $request->subunit_id;
-        $post->posting_status = $posting_status;
+        $post->posting_status = $request->posting_status;
         $post->duration = $duration;
         $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
@@ -68,13 +73,16 @@ class manageMemberController extends Controller
 
         if($post->save())
         {
-            return redirect('admin.posting')->with('message', 'Posting Done!');
+            // return $post->with('details')->get();
+            $redirect = 'admin/posted-members';
+            return redirect($redirect)->with('message', 'Posting Done!');
         }        
     }    
    
     public function posted_member()
     {
-        $members_posted = Posting::get();
+        $members_posted = Posting::with('user', 'subunit')->orderBy('id', 'DESC')->get();
+        // return $members_posted;
         // return $members_posted->user->userdetail;
         return view('admin.posting', compact('members_posted'));
     }

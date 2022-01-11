@@ -25,6 +25,17 @@
 
                 <x-input id="email" class="" type="email" name="email" :value="old('email')" required />
             </div>
+ <!-- Gender -->
+            <div class="mt-4">
+                <x-label for="gender" :value="__('Gender')" />
+                <select name="gender" class="form-control">
+                    <option >Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <!-- <x-input id="email" class="" type="email" name="email" :value="old('email')" required /> -->
+            </div>
 
             <!-- Password -->
             <div class="mt-4">

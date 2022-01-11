@@ -105,6 +105,8 @@ class UserDetailController extends Controller
         $personal_detail->marital_status = $request->marital_status;
         $personal_detail->passport = $path;
 
+        // return $personal_detail;
+
         if($personal_detail->save())
         {
             return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
@@ -130,6 +132,7 @@ class UserDetailController extends Controller
         // $userdetail_id = session()->get('last_id');
         $nextofkin = Userdetail::find($id);
         // return $nextofkin->id;
+        // return $request;
 
         $nextofkin->fname_next_of_kin = $request->fname_next_of_kin;
         $nextofkin->lname_next_of_kin = $request->lname_next_of_kin;
@@ -141,6 +144,9 @@ class UserDetailController extends Controller
         
         if($nextofkin->save())
         {
+            // $redirect = 'admin/profile/'.$nextofkin->id;
+
+            // return $redirect;
             return back()->with('message', 'Next of Kin Record saved, please proceed with other form so as to keep your record updated');
         }
     }

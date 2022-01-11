@@ -9,8 +9,18 @@ class Subunit extends Model
 {
     use HasFactory;
 
-    public function member()
+    // public function member()
+    // {
+    //     return $this->hasOne(Member::class);
+    // }
+
+    public function user()
     {
-        return $this->hasOne(Member::class);
+        return $this->hasOne(User::class);
+    }
+
+    public function posting()
+    {
+        return $this->hasOne(Posting::class);
     }
 }

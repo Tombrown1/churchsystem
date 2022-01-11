@@ -62,18 +62,18 @@
                            
                                     <div class="col-lg-12">
                                        <div class="full dis_flex center_text">
-                                            @if($user->userdetail->passport == NULL)
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/'.$user->userdetail->passport)}}" alt="User Passport"></div>
+                                            @if($user->details->passport == NULL)
+                                         
                                             @else
-                                                
+                                                 <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->details->passport)}}" alt="User Passport"></div>
                                             @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
-                                                <h3>{{$user->name . ' '. $user->userdetail->lastname}}</h3>
+                                                <h3>{{$user->name . ' '. $user->details->lastname}}</h3>
                                                 <p><strong>About: </strong>Frontend Developer</p>
                                                 <ul class="list-unstyled">
-                                                   <li><i class="fa fa-envelope-o"></i> : {{$user->userdetail->email}}</li>
-                                                   <li><i class="fa fa-phone"></i> : {{$user->userdetail->work_phone}}</li>
+                                                   <li><i class="fa fa-envelope-o"></i> : {{$user->details->email}}</li>
+                                                   <li><i class="fa fa-phone"></i> : {{$user->details->work_phone}}</li>
                                                 </ul>
                                              </div>
                                              <div class="user_progress_bar">
@@ -180,12 +180,14 @@
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <!-- Modal body -->
+
+                 <!-- Editing of member Details Begins Here! -->
                   <div class="modal-body">
                   <div class="col-md">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Add Member Details</h2>
+                                    <h2>Edit Member Details</h2>
                                  </div>
                               </div>
                               <div class="full inner_elements">
@@ -201,7 +203,7 @@
                                              </div>
                                              <div class="tab-content" id="v-pills-tabContent">
                                                 <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                                   <form action="{{route('update.personal.detail', ['id' => $user->userdetail->id])}}" method="POST" enctype="multipart/form-data">
+                                                   <form action="{{route('update.personal.detail', ['id' => $user->details->id])}}" method="POST" enctype="multipart/form-data">
                                                        <input type="hidden" name="_method" value="PUT">
                                                        {{method_field('PUT')}}
                                                         @csrf 
@@ -212,21 +214,21 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">First Name</span>
                                                                 </div>
-                                                                <input type="test" name="firstname" value="{{$user->userdetail->firstname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="test" name="firstname" value="{{$user->details->firstname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Last Name</span>
                                                                 </div>
-                                                                <input type="text" name="lastname" value="{{$user->userdetail->lastname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="lastname" value="{{$user->details->lastname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Email</span>
                                                                 </div>
-                                                                <input type="text" name="email" value="{{$user->userdetail->email}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="email" value="{{$user->details->email}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
@@ -234,7 +236,7 @@
                                                                     <span class="input-group-text" id="basic-addon3">Gender</span>
                                                                 </div>
                                                                 <select name="gender" id="" class="form-control">
-                                                                   <option value="{{$user->userdetail->gender}}">{{$user->userdetail->gender}}</option>
+                                                                   <option value="{{$user->details->gender}}">{{$user->details->gender}}</option>
                                                                     <option value="male" >Male</option>
                                                                     <option value="female">Female</option>
                                                                    
@@ -244,28 +246,28 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Work Phone Number</span>
                                                                 </div>
-                                                                <input type="text" name="work_phone" value="{{$user->userdetail->work_phone}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="work_phone" value="{{$user->details->work_phone}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                                 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Home Phone Number</span>
                                                                 </div>
-                                                                <input type="text" name="home_phone" value="{{$user->userdetail->home_phone}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="home_phone" value="{{$user->details->home_phone}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Date of Birth</span>
                                                                 </div>
-                                                                <input type="date" name="dob" value="{{$user->userdetail->dob}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="date" name="dob" value="{{$user->details->dob}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Place of Birth</span>
                                                                 </div>
-                                                                <input type="text" name="pob" value="{{$user->userdetail->pob}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="pob" value="{{$user->details->pob}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
@@ -273,7 +275,7 @@
                                                                     <span class="input-group-text" id="basic-addon3">Marital Status</span>
                                                                 </div>
                                                                 <select name="marital_status" id="" class="form-control">
-                                                                    <option value="{{$user->userdetail->marital_status}}">{{$user->userdetail->marital_status}}</option>
+                                                                    <option value="{{$user->details->marital_status}}">{{$user->details->marital_status}}</option>
                                                                     <option value="single">Single</option>
                                                                     <option value="married">Married</option>
                                                                     <option value="divorced">Divorced</option>
@@ -285,7 +287,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Passport</span>
                                                                 </div>
-                                                                <input type="file" name="passport" value="{{$user->userdetail->passport}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="file" name="passport" value="{{$user->details->passport}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                             </div>                     
                                                                 <!-- Modal footer -->
@@ -295,10 +297,10 @@
                                                                 </div> 
                                                     </form>  
                                                 </div>
-                                                <!-- Form to update member Next of Kin Info -->
+                                                <!-- Form to Edit member Next of Kin Info -->
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                  
-                                                    <form action="{{route('update.nextofkin', ['id' => $user->userdetail->id])}}" method="POST"> 
+                                                    <form action="{{route('update.nextofkin', ['id' => $user->details->id])}}" method="POST"> 
                                                         <input type="hidden" name="_method" value="PUT"> 
                                                         {{method_field('PUT')}}                                                     
                                                         @csrf 
@@ -308,14 +310,14 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">First Name</span>
                                                                 </div>
-                                                                <input type="text" name="fname_next_of_kin" value="{{$user->userdetail->fname_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="fname_next_of_kin" value="{{$user->details->fname_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Last Name</span>
                                                                 </div>
-                                                                <input type="text" name="lname_next_of_kin" value="{{$user->userdetail->lname_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="lname_next_of_kin" value="{{$user->details->lname_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>                                       
 
                                                                 <div class="input-group mb-3">
@@ -323,7 +325,7 @@
                                                                     <span class="input-group-text" id="basic-addon3">Gender</span>
                                                                 </div>
                                                                 <select name="gender_next_of_kin" id="" class="form-control">
-                                                                    <option value="{{$user->userdetail->gender_next_of_kin}}">{{$user->userdetail->gender_next_of_kin}}</option>
+                                                                    <option value="{{$user->details->gender_next_of_kin}}">{{$user->details->gender_next_of_kin}}</option>
                                                                     <option value="male">Male</option>
                                                                     <option value="female">Female</option>
                                                                 </select>
@@ -332,14 +334,14 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Phone Number</span>
                                                                 </div>
-                                                                <input type="text" name="phone_next_of_kin" value="{{$user->userdetail->phone_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="phone_next_of_kin" value="{{$user->details->phone_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                                 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Relationship</span>
                                                                 </div>
-                                                                <input type="text" name="relate_next_of_kin" value="{{$user->userdetail->relate_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="relate_next_of_kin" value="{{$user->details->relate_next_of_kin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                  
@@ -347,7 +349,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">Next of Kin Address</span>
                                                                 </div>
-                                                                <textarea class="form-control" name="address_next_of_kin" value="{{$user->userdetail->address_next_of_kin}}" aria-label="With textarea"></textarea>
+                                                                <textarea class="form-control" name="address_next_of_kin" value="{{$user->details->address_next_of_kin}}" aria-label="With textarea">{{$user->details->address_next_of_kin}}</textarea>
                                                                 </div>
 
                                                                 </div>                     
@@ -358,10 +360,10 @@
                                                                 </div> 
                                                     </form>
                                                 </div>
-                                                    <!-- Form to Update Member Work Profession -->
+                                                    <!-- Form to Edit Member Work Profession -->
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                    
-                                                <form action="{{route('update.workpro', ['id'=> $user->userdetail->id])}}" method="POST">
+                                                <form action="{{route('update.workpro', ['id'=> $user->details->id])}}" method="POST">
                                                     <input type="hidden" name="_method" value="PUT">
                                                     {{method_field('PUT')}}
                                                  @csrf 
@@ -371,63 +373,63 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Employment Status</span>
                                                                 </div>
-                                                                <input type="text" name="employment_status" value="{{$user->userdetail->employment_status}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="employment_status" value="{{$user->details->employment_status}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Profession</span>
                                                                 </div>
-                                                                <input type="text" name="profession" value="{{$user->userdetail->profession}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="profession" value="{{$user->details->profession}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Area of Specialization</span>
                                                                 </div>
-                                                                <input type="email" name="area_of_specialization" value="{{$user->userdetail->area_of_specialization}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="email" name="area_of_specialization" value="{{$user->details->area_of_specialization}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>                                                                
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Nationality</span>
                                                                 </div>
-                                                                <input type="text" name="nationality" value="{{$user->userdetail->nationality}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="nationality" value="{{$user->details->nationality}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                                 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">State of Origin</span>
                                                                 </div>
-                                                                <input type="text" name="state_origin" value="{{$user->userdetail->state_origin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="state_origin" value="{{$user->details->state_origin}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">L G A</span>
                                                                 </div>
-                                                                <input type="text" name="lga" value="{{$user->userdetail->lga}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="lga" value="{{$user->details->lga}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Home Town</span>
                                                                 </div>
-                                                                <input type="text" name="town" value="{{$user->userdetail->town}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="town" value="{{$user->details->town}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>                                                                
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Maiden Name</span>
                                                                 </div>
-                                                                <input type="text" name="maiden_name" value="{{$user->userdetail->maiden_name}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="maiden_name" value="{{$user->details->maiden_name}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">Residential Address</span>
                                                                 </div>
-                                                                <textarea class="form-control" name="resident_address" value="{{$user->userdetail->resident_address}}" aria-label="With textarea"></textarea>
+                                                                <textarea class="form-control" name="resident_address" value="{{$user->details->address_next_of_kin}}" aria-label="With textarea">{{$user->details->address_next_of_kin}}</textarea>
                                                                 </div>
                                                                     </div>                     
                                                                 <!-- Modal footer -->
@@ -440,7 +442,7 @@
                                                     <!-- Form that update Church Membership Record -->
                                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
     
-                                                <form action="{{route('update.churchmember', ['id' => $user->userdetail->id])}}" method="POST">
+                                                <form action="{{route('update.churchmember', ['id' => $user->details->id])}}" method="POST">
                                                     <input type="hidden" name="_method" value="PUT">
                                                     {{method_field('PUT')}}
                                                     @csrf 
@@ -450,49 +452,49 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Are You Born Again</span>
                                                                 </div>
-                                                                <input type="text" name="born_again" value="{{$user->userdetail->born_again}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="born_again" value="{{$user->details->born_again}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Church Membership Date</span>
                                                                 </div>
-                                                                <input type="date" name="church_join_date" value="{{$user->userdetail->church_join_date}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="date" name="church_join_date" value="{{$user->details->church_join_date}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Unit Join Date</span>
                                                                 </div>
-                                                                <input type="date" name="unit_join_date" value="{{$user->userdetail->unit_join_date}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="date" name="unit_join_date" value="{{$user->details->unit_join_date}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                                
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Membership Class</span>
                                                                 </div>
-                                                                <input type="text" name="membership_class" value="{{$user->userdetail->membership_class}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="membership_class" value="{{$user->details->membership_class}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
                                                                 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Water Baptism</span>
                                                                 </div>
-                                                                <input type="text" name="water_baptism" value="{{$user->userdetail->water_baptism}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="water_baptism" value="{{$user->details->water_baptism}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Holy Ghost Baptism</span>
                                                                 </div>
-                                                                <input type="text" name="holyghost_baptism" value="{{$user->userdetail->holyghost_baptism}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="holyghost_baptism" value="{{$user->details->holyghost_baptism}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Are you a Tither</span>
                                                                 </div>
-                                                                <input type="text" name="tither" value="{{$user->userdetail->tither}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="tither" value="{{$user->details->tither}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 <div class="input-group mb-3">
@@ -500,7 +502,7 @@
                                                                     <span class="input-group-text" id="basic-addon3">WOFBI CLASS</span>
                                                                 </div>
                                                                 <select name="wofbi_id" id="" class="form-control">
-                                                                    <option value="{{$user->userdetail->wofbi_id}}">{{$user->userdetail->wofbi_id}}</option>
+                                                                    <option value="{{$user->details->wofbi_id}}">{{$user->details->wofbi_id}}</option>
                                                                     <option value="1">BCC</option>
                                                                     <option value="2">LCC</option>
                                                                     <option value="3">LDC</option>
@@ -511,7 +513,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Homecell</span>
                                                                 </div>
-                                                                <input type="text" name="homecell_id" value="{{$user->userdetail->homecell_id}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="homecell_id" value="{{$user->details->homecell_id}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
                                                                 
@@ -519,7 +521,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"> Hobbies</span>
                                                                 </div>
-                                                                <textarea class="form-control" name="hobbies" value="{{$user->userdetail->hobbies}}" aria-label="With textarea"></textarea>
+                                                                <textarea class="form-control" name="hobbies" value="{{$user->details->hobbies}}" aria-label="With textarea">{{$user->details->hobbies}}"</textarea>
                                                                 </div>
                                                                     </div>                     
                                                                 <!-- Modal footer -->

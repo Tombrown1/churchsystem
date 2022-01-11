@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AnnoucementCategory extends Model
 {
     use HasFactory;
+
+    public function announcement()
+    {
+        return $this->hasOne(announcement::class, 'cat_id');
+    }
 }

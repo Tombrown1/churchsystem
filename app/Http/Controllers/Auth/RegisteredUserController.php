@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             
         ]);
 
-        dd($request);
+        // dd($request);
         // return $request;
 
         $username = $request->name.rand(2,100);
