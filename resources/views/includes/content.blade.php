@@ -145,8 +145,8 @@
                </div>
                <div class="container-fluid ">
                      <div class="footer">
-                        <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
-                           Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+                        <p>Copyright © 2022 | Technical Crew Unit D/Line Port Harcourt. All rights reserved.<br><br>
+                        Designed By: <a href="#">tombrowngodwin</a>
                         </p>
                      </div>
                   </div>

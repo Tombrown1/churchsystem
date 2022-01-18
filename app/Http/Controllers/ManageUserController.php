@@ -38,8 +38,11 @@ class ManageUserController extends Controller
         
        //  dd($request);
         // $password = $request->name.rand(4, 50);
-        $password = $request->name;
-        $username = $request->name.rand(2,100);
+        $name = explode(" ", trim($request->name));
+        // return $name[0];
+        $username = $name[0].rand(4,10000);
+        $password = $username;
+        // return $username;
         // $password = Hash::make('yourPa$$w0rd');
 
         // Role Definitions : 1 = root_admin, 2 = super_admin, 3 = admin, 4 = user

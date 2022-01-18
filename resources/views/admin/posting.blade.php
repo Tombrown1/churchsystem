@@ -95,9 +95,19 @@
                                                </td>
                                                <td>{!! date('d/M/Y', strtotime($member_posted->start_date)) !!}</td>
                                                <td>{{$member_posted->duration}}</td>
-                                                                                    
-                                                                                       
-                                              
+                                                <?php
+                                                      // $end_date = new DateTime($member_posted->end_date);
+                                                      // $remain = $end_date->diff(new DateTime());
+                                                      $end_date = strtotime($member_posted->end_date);
+                                                      $remain = $end_date - time();
+                                                      
+                                                      $days_remaining = floor($remain/86400);
+                                                      $hours_remaining = floor($remain % 86400)/3600;
+                                                      $hours =  (int)$hours_remaining;
+                                                  ?>
+                                               <td>
+                                               {!! "$days_remaining days and $hours hours left" !!}
+                                               </td>
                                                
                                            @endforeach
                                        </tbody>

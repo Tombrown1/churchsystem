@@ -64,19 +64,33 @@
                                              <th>Category</th>
                                              <th>Created By</th>
                                              <th>Date Created</th>
-                                             <th>Action</th>                                            
+                                             <th colspan="2">Action</th>                                            
                                           </tr>
-                                       </thead>
+                                       </thead>                                       
                                        <tbody>
+                                          @foreach($announcement as $announce)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
-                                             <td>Pitt</td>
-                                             <td>35</td>
-                                             <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
+                                             <td>{{$loop->index +1}}</td>
+                                             <td>{{$announce->title}}</td>
+                                             <td>{{$announce->message}}</td>
+                                             <td>
+                                                @if($announce->announce_cat != null)
+                                                {{App\Models\AnnoucementCategory::find($announce->annouce_cat_id)->name}}
+                                                @else
+                                                @endif
+                                             </td>
+                                             <td>
+                                             @if($announce->user != null)
+                                                {{App\Models\User::find($announce->user_id)->name}}
+                                                @else
+                                                @endif
+                                             </td>
+                                             <td>{{$announce->created_at->isoFormat('D dddd, Y')}}</td>
+                                             <td><a href="#" type="button" class="btn btn-primary">Edit</a></td>
+                                             <td><a href="#" type="button" class="btn btn-success">View</a></td>
+                                             
                                            </tr>
+                                          @endforeach
                                        </tbody>
                                     </table>
                                  </div>

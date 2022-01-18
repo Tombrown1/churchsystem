@@ -44,10 +44,10 @@ class RegisteredUserController extends Controller
         ]);
 
         // dd($request);
-        // return $request;
+       
 
         $username = $request->name.rand(2,100);
-
+        return $username;
         $user = User::create([
             'username' => $username,
             'name' => $request->name,

@@ -31,27 +31,23 @@
                                        <thead>
                                           <tr>
                                              <th>#</th>
-                                             <th>Firstname</th>
-                                             <th>Lastname</th>
-                                             <th>Age</th>
-                                             <th>City</th>
-                                             <th>Country</th>
-                                             <th>Sex</th>
-                                             <th>Example</th>                                             
+                                             <th>Fullname</th>                                             
+                                             <th>Posted By</th>
+                                             <th>Duration</th>
+                                             <th>Due Date</th>                                             
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach($camera_posted_member as $camera_posting)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
-                                             <td>Pitt</td>
-                                             <td>35</td>
+                                             <td>{{$loop->index +1}}</td>
+                                             <td>{{App\Models\User::find($camera_posting->member_id)->name}}</td>
+                                             <td>{{App\Models\User::find($camera_posting->user_id)->name}}</td>
+                                             <td>{{$camera_posting->created_at->isoFormat('ddd D, Y')}}</td>
                                              <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
-                                             <td>Yes</td>
-                                             <
-                                          </tr>
+                                            
+                                            </tr>
+                                            @endforeach;
                                        </tbody>
                                     </table>
                                  </div>

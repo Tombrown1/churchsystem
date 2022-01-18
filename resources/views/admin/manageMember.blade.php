@@ -67,33 +67,30 @@
                                        <tbody>
                                           @foreach( $users as $user)
                                           <tr>
-                                             <td>{{$loop->index +1}}</td>
-                                             <td> {{$user->firstname}} </td>
-                                             <td>{{$user->lastname}}</td>
-                                             <td>{{$user->email}}</td>
-                                             <td>
-                                                @if($user->posting != null)
-                                                  {{App\Models\User::find($user->posting->user_id)->name}}
-                                                @else
-                                                   <span class="badge badge-danger">Not Posted</span>
-                                                @endif
-                                             </td>
-                                             <td>
-                                                @if($user->posting != null)
-                                                   <span class="badge badge-success">Posted</span>
-                                                @else
-                                                   Not Posted
-                                                @endif
-                                             </td>
-                                             <td>{{$user->created_at->isoFormat('dddd D, Y')}}</td>
+                                                <td>{{$loop->index +1}}</td>
+                                                <td> {{$user->firstname}} </td>
+                                                <td>{{$user->lastname}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td>
+                                                   @if($user->posting != null)
+                                                   {{App\Models\User::find($user->posting->user_id)->name}}
+                                                   @else
+                                                      <span class="badge badge-danger">Not Posted</span>
+                                                   @endif
+                                                </td>
+                                                <td>
+                                                   @if($user->posting != null)
+                                                      <span class="badge badge-success">Posted</span>
+                                                   @else
+                                                      Not Posted
+                                                   @endif
+                                                </td>
+                                                <td>{{$user->created_at->isoFormat('ddd D, Y')}}</td>
                                                                                     
-                                             <td class="">
-                                                   <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                                <td class="">
+                                                      <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                       <div class="dropdown-menu arrow">
-                                                            <a class="dropdown-item" href="{{route('edit.personal.detail', ['id' => $user->id])}}">
-                                                               <i class="fa fa-calendar-check mr-1"></i>Edit
-                                                            </a>
-                                                            <a class="dropdown-item " href="{{route('post')}}"> <i class="fa fa-cog mr-1"></i>Posting</a>                            
+                                                            <a class="dropdown-item " href="{{route('admin.profile', ['id' => $user->id])}}"> <i class="fa fa-cog mr-1"></i>Profile</a>                            
                                                             <a class="dropdown-item " href="#"> <i class="fa fa-cog mr-1"></i>Suspend</a>                            
                                                             <a class="dropdown-item" href="#">
                                                                <i class="fa fa-calendar-check mr-1"></i> Block

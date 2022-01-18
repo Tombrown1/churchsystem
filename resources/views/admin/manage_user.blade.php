@@ -72,9 +72,27 @@
                                              <td>{{$loop->index +1}}</td>
                                              <td>{{$user->firstname. ' '. $user->lastname}}</td>
                                              <td>{{date('d-m-Y', strtotime($user->created_at))}}</td>
-                                             <td>{{$user->role}}</td>
+                                             <td>
+                                                
+                                                   @if($user->user->role == 0)
+                                                   <span class="badge badge-primary">Member</span>
+                                                   @elseif($user->user->role == 1)
+                                                   <span class="badge badge-success">Admin</span>
+                                                   @else
+                                                   <span class="badge badge-warning">Probation</span>
+                                                   @endif
+                                              
+                                             </td>
                                              <td>{{$user->gender}}</td>
-                                             <td>{{$user->badge}}</td>                                    
+                                             <td>
+                                                @if($user->user->badge == 3)
+                                                   <strong><span class="badge badge-info">Posted</span></strong>
+                                                   @elseif($user->user->badge == 4)
+                                                   <strong><span class="badge badge-info">Posted</span></strong>
+                                                   @else
+                                                   <strong><span class="badge badge-danger">Not Posted</span></strong>
+                                                @endif
+                                             </td>                                    
                                              
                                                 <td class="">
                                                    <button class="btn btn-info dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>

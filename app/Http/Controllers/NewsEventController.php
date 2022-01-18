@@ -13,8 +13,9 @@ class NewsEventController extends Controller
     public function announcement()
     {   
         $announce_cat = AnnoucementCategory::get();
-        // return $announce_cat; 
-        return view('admin.announcement', compact('announce_cat'));
+        $announcement = announcement::with(['announce_cat','user'])->orderBy('id', 'DESC')->get();
+        // return $announcement; 
+        return view('admin.announcement', compact('announce_cat', 'announcement'));
     }
 
     public function announcement_category(Request $request)

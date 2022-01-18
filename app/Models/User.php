@@ -63,6 +63,11 @@ class User extends Authenticatable
     }
 
     public function subunit(){
-        return $this->belongdTo(Subunit::class);
+        return $this->belongsTo(Subunit::class);
+    }
+
+    public function announcement()
+    {
+        return $this->hasOne(announcement::class);
     }
 }

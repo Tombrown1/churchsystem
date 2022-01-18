@@ -11,6 +11,8 @@ class AnnoucementCategory extends Model
 
     public function announcement()
     {
-        return $this->hasOne(announcement::class, 'cat_id');
+        return $this->hasOne(announcement::class);
     }
+
+
 }

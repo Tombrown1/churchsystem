@@ -11,6 +11,11 @@ class announcement extends Model
 
     public function announce_cat()
     {
-        return $this->belongsTo(AnnoucementCategory::class);
+        return $this->belongsTo(AnnoucementCategory::class, 'annouce_cat_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
