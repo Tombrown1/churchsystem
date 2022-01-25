@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserHomeController extends Controller
 {
@@ -11,9 +12,11 @@ class UserHomeController extends Controller
         return view('users.home');
     }
 
-    public function profile()
+    public function myprofile($id)
     {
-        return view('users.profile');
+        $user = User::find($id);
+        // return $user;
+        return view('users.profile', compact('user'));
     }
 
     public function annoucement()

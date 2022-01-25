@@ -74,23 +74,26 @@
                                              <td>{{date('d-m-Y', strtotime($user->created_at))}}</td>
                                              <td>
                                                 
-                                                   @if($user->user->role == 0)
-                                                   <span class="badge badge-primary">Member</span>
+                                             @if($user->user == null)
+                                                   <span class="badge badge-primary">No Role</span>
+                                                   @elseif($user->user->role == 0)
+                                                   <span class="badge badge-success">Member</span>
                                                    @elseif($user->user->role == 1)
                                                    <span class="badge badge-success">Admin</span>
                                                    @else
                                                    <span class="badge badge-warning">Probation</span>
-                                                   @endif
-                                              
+                                                   @endif                                               
                                              </td>
                                              <td>{{$user->gender}}</td>
                                              <td>
-                                                @if($user->user->badge == 3)
-                                                   <strong><span class="badge badge-info">Posted</span></strong>
+                                             @if($user->user == null)
+                                                   <strong><span class="badge badge-info">Not Posted</span></strong>
+                                                   @elseif($user->user->badge == 3)
+                                                   <strong><span class="badge badge-info">On Posting</span></strong>
                                                    @elseif($user->user->badge == 4)
-                                                   <strong><span class="badge badge-info">Posted</span></strong>
+                                                   <strong><span class="badge badge-info">On Posting</span></strong>
                                                    @else
-                                                   <strong><span class="badge badge-danger">Not Posted</span></strong>
+                                                   <strong><span class="badge badge-danger">Not Posted Yet</span></strong>
                                                 @endif
                                              </td>                                    
                                              

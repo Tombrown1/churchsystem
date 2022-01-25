@@ -30,7 +30,7 @@ class AddColunmToUserDetailsTable extends Migration
     public function down()
     {
         Schema::table('user_details', function (Blueprint $table) {
-            $table->dropColumn('user_id','created_by');
+            $table->dropColumn(['user_id','created_by', 'posting_id']);
         });
     }
 }

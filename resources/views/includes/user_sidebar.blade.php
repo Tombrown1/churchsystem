@@ -22,7 +22,7 @@
                      <li class="active">
                      <li><a href="{{route('home')}}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>                        
                      </li>
-                     <li><a href="{{route('user.profile')}}"><i class="fa fa-table purple_color2"></i> <span>My Profile</span></a></li>                    
+                     <li><a href="{{route('user.myprofile', ['id' => Auth::User()->id])}}"><i class="fa fa-table purple_color2"></i> <span>My Profile</span></a></li>                    
                    
                      <li><a href="{{route('annoucement')}}"><i class="fa fa-cog yellow_color"></i> <span>Announcement</span></a></li>
                      <li><a href="{{route('activity')}}"><i class="fa fa-cog yellow_color"></i> <span>Weekly Service Activities</span></a></li>

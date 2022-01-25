@@ -62,7 +62,7 @@
                                              <th>Title</th>
                                              <th>Announcement</th>
                                              <th>Category</th>
-                                             <th>Created By</th>
+                                             <th>Banner</th>
                                              <th>Date Created</th>
                                              <th colspan="2">Action</th>                                            
                                           </tr>
@@ -78,6 +78,9 @@
                                                 {{App\Models\AnnoucementCategory::find($announce->annouce_cat_id)->name}}
                                                 @else
                                                 @endif
+                                             </td>
+                                             <td>
+                                                <img src="{{asset('/storage/'.$announce->image)}}" height="50" width="50" alt="">
                                              </td>
                                              <td>
                                              @if($announce->user != null)
@@ -111,7 +114,7 @@
                   </div>
                   <!-- Modal body -->
                   <div class="modal-body">
-                     <form action="{{route('create.announce')}}" method="POST">
+                     <form action="{{route('create.announce')}}" method="POST" enctype="multipart/form-data">
                         @csrf 
                         <div class="input-group mb-3">
                            <div class="input-group mb-3">
@@ -131,6 +134,12 @@
                                  <span class="input-group-text" id="basic-addon3">Title</span>
                               </div>
                               <input type="text" name="title" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                           </div>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3">Image</span>
+                              </div>
+                              <input type="file" name="image" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                            </div>
                            <label for="">Message Description</label>
                            <div class="input-group">

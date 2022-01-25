@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AnnoucementCategory;
 use App\Models\announcement;
+use Storage;
 use Auth;
 
 class NewsEventController extends Controller
@@ -45,6 +46,8 @@ class NewsEventController extends Controller
             'title' => 'required',
             'message' => 'required',
         ]);
+            
+
         $user_id = Auth::User()->id;
         // return $request;
 
@@ -54,6 +57,18 @@ class NewsEventController extends Controller
         $announce->annouce_cat_id = $request->cat_id;
         $announce->title = $request->title;
         $announce->message = $request->message;
+
+            // Script for image Validation;
+        if($request->hasfile('image')){
+            $request->validate([
+                'image' => 'required',
+                'image' => 'mimes:png,jpg,pdf,jpeg,gif|max:2048'
+            ]);
+
+            $file = $request->file('image');
+            $path = Storage::disk('public')->putFile('announcement', $file);
+            $announce->image = $path;
+        }
 
         // return $announce;
         if($announce->save())

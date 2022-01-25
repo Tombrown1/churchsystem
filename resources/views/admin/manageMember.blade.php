@@ -135,8 +135,8 @@
                                                    </div>
                                                    <!-- <input type="text" name="name" class="form-control" id="basic-url" aria-describedby="basic-addon3" required> -->
                                                    <select name="member_id" id="" class="form-control">
-                                                      @foreach($users as $user)
-                                                         <option value="{{$user->id}}">{{$user->firstname }}</option>
+                                                      @foreach($posts as $user)
+                                                         <option value="{{$user->id}}">{{$user->name }}</option>
                                                          @endforeach
                                                    </select>
                                                    </div>

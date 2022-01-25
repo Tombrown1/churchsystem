@@ -22,6 +22,9 @@ class manageMemberController extends Controller
 
         //by victor 
         $users = UserDetail::with(['posting', 'user'])->orderBy("id", 'DESC')->get();
+        $posts = User::where('is_posted', 1)->get();
+
+        // return $posts;
 
         // return $users;
         // return $posted_by->user->name;
@@ -30,7 +33,7 @@ class manageMemberController extends Controller
         //$users = User::with('userdetail')->orderBy("id","DESC")->get(); 
         // $user = User::find(3)->userdetail;
 
-        return view('admin.manageMember', compact('users'));
+        return view('admin.manageMember', compact('users', 'posts'));
     }
 
 
@@ -60,8 +63,15 @@ class manageMemberController extends Controller
         $start_date = new DateTime($request->start_date);
         $end_date = new DateTime($request->end_date);
         $duration = $end_date->diff($start_date);
-        
-    //    return $duration->format('%m months, %d days');
+        // return $duration;
+        //    return $duration->format('%m months, %d days');
+
+        $start_date = strtotime($request->start_date);
+        $end_date = strtotime($request->end_date);
+        $check_duration = ($end_date - $start_date);
+        // return $check_duration; date(y-m-d);
+
+    
 
         //return $post_duration;
         //  $duration =  date('F j, Y', $date_diff);
@@ -78,6 +88,7 @@ class manageMemberController extends Controller
         $post->subunit_id = $request->subunit_id;
         $post->posting_status = $request->posting_status;
         $post->duration = $duration->format('%m months, %d days');
+        $post->check_duration = $check_duration;
         $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
 
@@ -85,6 +96,17 @@ class manageMemberController extends Controller
 
         if($post->save())
         {
+            //This function will help to update the postcount field in User table each time posted
+            //Meaning when posting is carried out, the field increment by one
+
+            
+            $user = User::find($post->member_id);
+            // $user->post_count = $user->post_count + 1;            
+            $user->post_count += 1;            
+            $user->is_posted = 0;
+            $user->save(); 
+            // return $user;
+
             // return $post->with('details')->get();
             $redirect = 'admin/posted-members';
             return redirect($redirect)->with('message', 'Posting Done!');
@@ -95,49 +117,10 @@ class manageMemberController extends Controller
     {
         $members_posted = Posting::with('user', 'subunit')->orderBy('id', 'DESC')->get();
         // return $members_posted;
-        // return $members_posted->user->userdetail;
+        // return $members_posted->user->userdetail;->where('is_posted', 1)
         return view('admin.posting', compact('members_posted'));
     }
 
-    // public function time_duration($post_duration)
-    // {
-    //     $time_difference = time() - $post_duration;
-    //     $seconds = $time_difference;
-    //     $minutes = round($time_difference/60);
-    //     $hours = round($time_difference/3600);
-    //     $days = round($time_difference/86400);
-    //     $weeks = round($time_difference/604800);
-    //     $months = round($time_difference/2419200);
-    //     $years = round($time_difference/29030400);
-
-    //     if($seconds <= 60)
-    //     {
-    //         return array('type'=>'secs', 'time' => $seconds);
-    //     }elseif($minutes <= 60)
-    //     {
-    //         if($minutes == 1)
-    //         {
-    //             return array('type' => 'mins', 'time' => 1);
-    //         }
-    //         else{
-    //             return array('type' => 'mins', 'time' => $minutes);
-    //         }
-    //     }
-    //     elseif($hours <= 24)
-    //     {
-    //         if($hours == 1)
-    //         {
-    //             return array('type' => 'hours', 'time' => 1);
-    //         }
-    //         else
-    //         {
-    //             return array('type' => 'mins', 'time' => $hours);
-    //         }
-    //     }
-    //     else
-    //     {
-    //        return false;
-    //     }
-    // }
+    
     
 }

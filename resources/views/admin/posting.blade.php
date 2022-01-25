@@ -60,7 +60,7 @@
                                              <th><strong>Posted By</strong></th> 
                                              <th><strong>Date Posted</strong></th>
                                              <th><strong>Duration</strong></th>
-                                             <th><strong>Due Date</strong></th>
+                                             <th><strong>Post Count Down</strong></th>
                                              <th><strong>Action</strong></th>                                        
                                           </tr>
                                        </thead>
@@ -108,7 +108,15 @@
                                                <td>
                                                {!! "$days_remaining days and $hours hours left" !!}
                                                </td>
-                                               
+
+                                               <?php
+                                                      $str_date = $member_posted->check_duration;                                                      // $cont_date = date('d-m-Y', $str_date);
+                                                      // $cont_date = Covert('d-m-Y', $str_date,Date());
+                                                      // $expiring_date = Date($cont_date);
+                                                  ?>
+                                               <td>
+                                                {!! date('d-m-Y', "$str_date") !!}
+                                               </td>
                                            @endforeach
                                        </tbody>
                                     </table>

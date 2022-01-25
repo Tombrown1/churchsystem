@@ -24,7 +24,7 @@ use App\Http\Controllers\PageController;
 //     return view('welcome');
 // });
 
-Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/', [PageController::class, 'index'])->name('index')->middleware('posting.expire');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -35,7 +35,7 @@ require __DIR__.'/auth.php';
     Route::group(['prefix' => 'user', 'middleware' => ['auth', 'isuser']], function()
     {
         Route::get('/dashboard', [UserHomeController::class, 'home'])->name('home');
-        Route::get('/profile', [UserHomeController::class, 'profile'])->name('user.profile');
+        Route::get('/my-profile/{id}', [UserHomeController::class, 'myprofile'])->name('user.myprofile');
         Route::get('/annoucement', [UserHomeController::class, 'annoucement'])->name('annoucement');
         Route::get('/activity', [UserHomeController::class, 'activities'])->name('activity');
         Route::get('/gallery', [UserHomeController::class, 'gallery'])->name('gallery');

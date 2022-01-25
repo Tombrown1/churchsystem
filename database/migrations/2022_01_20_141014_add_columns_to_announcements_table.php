@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToAnnouncementsTable extends Migration
+class AddColumnsToAnnouncementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddColumnToAnnouncementsTable extends Migration
     public function up()
     {
         Schema::table('announcements', function (Blueprint $table) {
-            $table->after('id', function($table){
-                $table->foreignId('user_id');
+            $table->after('message', function($table){
+                $table->string('image')->nullable();
             });
         });
     }
@@ -28,7 +28,7 @@ class AddColumnToAnnouncementsTable extends Migration
     public function down()
     {
         Schema::table('announcements', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+            $table->dropColumn('image');
         });
     }
 }
