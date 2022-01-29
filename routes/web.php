@@ -80,6 +80,7 @@ require __DIR__.'/auth.php';
     Route::get('/announcement', [NewsEventController::class, 'announcement'])->name('announce');
     Route::post('/create-category', [NewsEventController::class, 'announcement_category'])->name('create.cat');
     Route::post('/create-announcement', [NewsEventController::class, 'save_announce'])->name('create.announce');
+    Route::get('/view-announcement/{id}', [NewsEventController::class, 'view_announcement'])->name('view.announcement');
 
 
     //Delete User route

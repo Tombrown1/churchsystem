@@ -18,9 +18,10 @@ class PostingExpirationCheck extends MyPlugin
      */
     public function handle(Request $request, Closure $next)
     {
+
         $processdate = config('posting.process_date');
         $currentDate = date('Y-m-d');
-        if($processdate == null){
+        if($processdate === null){
             // run the expiration function
             $this->expirePosting();
             //update config file with the latest date

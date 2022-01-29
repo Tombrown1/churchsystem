@@ -1,7 +1,7 @@
 
-@include('includes.header')
-        @include('includes.sidebar')
-        
+         @section('title', 'Posting')
+         @include('includes.header')
+        @include('includes.sidebar')        
         @include('includes.navbar')
 
         <!-- Display Error Message When not created -->

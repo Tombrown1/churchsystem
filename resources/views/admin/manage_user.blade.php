@@ -1,4 +1,4 @@
-
+@section('title', 'Manage User')  
       @include('includes.header')
         @include('includes.sidebar')
         

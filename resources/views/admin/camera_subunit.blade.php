@@ -1,5 +1,5 @@
-
-@include('includes.header')
+      @section('title', 'Camera Subunit')      
+      @include('includes.header')
         @include('includes.sidebar')
         
         @include('includes.navbar')

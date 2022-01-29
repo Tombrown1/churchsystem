@@ -1,6 +1,6 @@
-@include('includes.header')
-        @include('includes.sidebar')
         
+        @include('includes.header')
+        @include('includes.sidebar')        
         @include('includes.navbar')
         <!-- dashboard inner -->
         <div class="midde_cont">

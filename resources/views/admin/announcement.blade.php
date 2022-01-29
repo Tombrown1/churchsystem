@@ -90,7 +90,7 @@
                                              </td>
                                              <td>{{$announce->created_at->isoFormat('D dddd, Y')}}</td>
                                              <td><a href="#" type="button" class="btn btn-primary">Edit</a></td>
-                                             <td><a href="#" type="button" class="btn btn-success">View</a></td>
+                                             <td><a href="{{route('view.announcement', ['id' => $announce->id])}}" type="button" class="btn btn-success">View</a></td>
                                              
                                            </tr>
                                           @endforeach

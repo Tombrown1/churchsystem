@@ -53,17 +53,20 @@ class manageMemberController extends Controller
         // $end_date = Carbon::parse($request->end_date);
         // $duration = $end_date->diffForHumans($start_date);
 
-    //     $start_date = strtotime($request->start_date);
-    //     $end_date = strtotime($request->end_date);
-    //     $post_duration = ($end_date - $start_date);
+        $start_date = strtotime($request->start_date);
+        // return $start_date;
+        $end_date = strtotime($request->end_date);
+        $post_duration = abs($end_date - $start_date);
+        // $year = floor($post_duration/(365*60*60*24));
+        // $month = floor(($post_duration-$year*365*60*60*24)/(365*60*60*24));
     //     $dataing = date("t", strtotime($post_duration
     // ));
-    //    return $dataing;
+       return $post_duration;
 
         $start_date = new DateTime($request->start_date);
         $end_date = new DateTime($request->end_date);
-        $duration = $end_date->diff($start_date);
-        // return $duration;
+        $duration = $end_date->diff($start_date);        
+        return $duration;
         //    return $duration->format('%m months, %d days');
 
         $start_date = strtotime($request->start_date);
@@ -101,6 +104,7 @@ class manageMemberController extends Controller
 
             
             $user = User::find($post->member_id);
+            //This line of code help to increment post_count field each time a user is posted
             // $user->post_count = $user->post_count + 1;            
             $user->post_count += 1;            
             $user->is_posted = 0;

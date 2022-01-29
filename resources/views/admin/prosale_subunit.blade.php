@@ -1,7 +1,7 @@
 
-@include('includes.header')
-        @include('includes.sidebar')
-        
+        @section('title', 'Production/Sales Subunit')
+        @include('includes.header')
+        @include('includes.sidebar')        
         @include('includes.navbar')
 
             <!-- dashboard inner -->

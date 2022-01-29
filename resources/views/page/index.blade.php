@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>eBusiness Bootstrap Template - Index</title>
+  <title>Technical Crew Unit</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,8 +51,8 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>          
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#services">Subunit</a></li>          
+          <li><a class="nav-link scrollto" href="#team">Leader</a></li>
           <li><a class="nav-link scrollto" href="{{ route('login')}}">Login</a></li>        
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
@@ -71,31 +71,31 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assets2/img/hero-carousel/1.jpg)">
+          <div class="carousel-item active" style="background-image: url(assets2/img/hero-carousel/tcu1.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">The Best Business Information </h2>
-                <p class="animate__animated animate__fadeInUp">We're In The Business Of Helping You Start Your Business</p>
+                <h2 class="animate__animated animate__fadeInDown">Technical Crew Unit</h2>
+                <p class="animate__animated animate__fadeInUp">We are gives sound to the church</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/2.jpg)">
+          <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/tcu2.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
-                <p class="animate__animated animate__fadeInUp">Helping Business Security & Peace of Mind for Your Family</p>
+                <h2 class="animate__animated animate__fadeInDown">We are Professionala </h2>
+                <p class="animate__animated animate__fadeInUp">We deliver only the best and exceeds  service expectation </p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/3.jpg)">
+          <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/tcu3.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Temporibus autem quibusdam</h2>
-                <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
+                <h2 class="animate__animated animate__fadeInDown">The Best Studio Visual</h2>
+                <p class="animate__animated animate__fadeInUp">We are the colour and beauty of the church and present them to the world</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
@@ -133,7 +133,7 @@
             <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="assets2/img/about/1.jpg" alt="">
+                  <img src="assets2/img/about/6.jpeg" alt="">
                 </a>
               </div>
             </div>
@@ -143,27 +143,25 @@
             <div class="well-middle">
               <div class="single-well">
                 <a href="#">
-                  <h4 class="sec-head">project Maintenance</h4>
+                  <h4 class="sec-head">We are the Eye of the Church</h4>
                 </a>
                 <p>
-                  Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
+                  Technical crew unit is the arm of the church that is responsible for the sounds and the visual organization of the church. The Unit is a big unit is subdivided into various subunit where her work processes is been broken down into different chunks for excellent work delivery.They are categories into four various subunits. <br>
+                    <h5>Subunits Includes</h5>
                 </p>
                 <ul>
                   <li>
-                    <i class="bi bi-check"></i> Interior design Package
+                    <i class="bi bi-check"></i>Camera Subunit
                   </li>
                   <li>
-                    <i class="bi bi-check"></i> Building House
+                    <i class="bi bi-check"></i>Cable Subunit
                   </li>
                   <li>
-                    <i class="bi bi-check"></i> Reparing of Residentail Roof
+                    <i class="bi bi-check"></i> Console Subunit
                   </li>
                   <li>
-                    <i class="bi bi-check"></i> Renovaion of Commercial Office
-                  </li>
-                  <li>
-                    <i class="bi bi-check"></i> Make Quality Products
-                  </li>
+                    <i class="bi bi-check"></i> Sales and Production Subunit
+                  </li>                  
                 </ul>
               </div>
             </div>
@@ -181,6 +179,7 @@
             <div class="section-headline services-head text-center">
               <h2>Our Subunits</h2>
             </div>
+            <p>The Subunits of Technical Crew Unit of Living Faith Church D/Line branch is where the various work done by the unit is been carries out and it also help us as a unit to categories our members base on their area of specialization so as to get the best result at every service.</p>
           </div>
         </div>
         <div class="row text-center">
@@ -192,9 +191,9 @@
                   <a class="services-icon" href="#">
                     <i class="bi bi-briefcase"></i>
                   </a>
-                  <h4>Expert Coder</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
+                  <h4>Camera Subunit</h4>
+                  <p style="text-align:justify">
+                   The Camera Subunit is an arm of the Technical Crew Unit that is responsible for keeping visual record of service and as well sending visual signal to the control room for live service broadcast. The Unit is one of the most sensitive arm of the unit which add colours and beauty to church service. It is fondly called the eye of the church.
                   </p>
                 </div>
               </div>
@@ -205,14 +204,14 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
-                    <i class="bi bi-card-checklist"></i>
-                  </a>
-                  <h4>Creative Designer</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
+                <div class="well-left">
+                  <div class="single-well">
+                    <a href="#">
+                      <img src="assets2/img/subunit/1.jpg" alt="">
+                    </a>
+                  </div>
                 </div>
+              </div>
               </div>
               <!-- end about-details -->
             </div>
@@ -222,13 +221,13 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
-                    <i class="bi bi-bar-chart"></i>
-                  </a>
-                  <h4>Wordpress Developer</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
+                <div class="well-left">
+              <div class="single-well">
+                <a href="#">
+                  <img src="assets2/img/subunit/7.jpg" alt="">
+                </a>
+              </div>
+            </div>                  
                 </div>
               </div>
               <!-- end about-details -->
@@ -242,54 +241,234 @@
                   <a class="services-icon" href="#">
                     <i class="bi bi-binoculars"></i>
                   </a>
-                  <h4>Social Marketer </h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
+                  <h4>Cable Subunit</h4>
+                  <p style="text-align:justify">
+                    The Cable subunit is an arm of the Technical Crew Unit, whose work role is making sure that all connection ranging from sound appliances, speakers, microphones, television and various devices are in good state so as to experiience uninterrupted service either in the main auditorium or any of the various overflow.
                   </p>
                 </div>
               </div>
               <!-- end about-details -->
             </div>
           </div>
-          <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="bi bi-briefcase"></i>
+                  </a>
+                  <h4>Console Subunit</h4>
+                  <p style="text-align:justify">
+                    Console Subunit is an arm of the Technical Crew Unit which is also known as the Unit control room where all Production is closely monitored and conducted. The unit function is to basically facilitate procesess like recording, mixing, mastering, making adjustment giving out the final output to the general audience.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                <div class="well-left">
+              <div class="single-well">
+                <a href="#">
+                  <img src="assets2/img/subunit/3.jpg" alt="">
+                </a>
+              </div>
+            </div>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                <div class="well-left">
+              <div class="single-well">
+                <a href="#">
+                  <img src="assets2/img/subunit/6.jpg" alt="">
+                </a>
+              </div>
+            </div>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          
+          <!-- Footer Begins Here -->
+          <div class="col-md-6 col-sm-6 col-xs-12">
             <!-- end col-md-4 -->
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-binoculars"></i>
                   </a>
-                  <h4>Seo Expart</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
+                  <h4>Sales and Production Subunit</h4>
+                  <p style="text-align:justify">
+                  Production and Sales are both subunit of the Technical Unit that was merge together for efficient work delivery. The Production as an arm makes mass production of every recorded message pass to them by the control room officials, replicating both audio, mp3 and DVD messages and are well package and send to the bookshop for sell. <br>
+                  The sales Unit officials then go to bookshop and sign out some copies and reach out to members that might be in need of it so as to bless their life.
                   </p>
                 </div>
               </div>
               <!-- end about-details -->
             </div>
           </div>
-          <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-                    <i class="bi bi-calendar4-week"></i>
-                  </a>
-                  <h4>24/7 Support</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
+          <!-- End Left services -->         
         </div>
       </div>
     </div><!-- End Services Section -->
+     <!-- Team Area Begins Here -->
+     <div id="team" class="our-team-area area-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Our Winning Leaders</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+                  <img src="assets2/img/team/6.jpg" alt="">
+                </a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Mr Omotosho Samuel</h4>
+                <p>Unit Leader</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+                  <img src="assets2/img/team/8.jpg" alt="">
+                </a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Mr Davis Obeleye</h4>
+                <p>Unit Assistant Leader</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+                  <img src="assets2/img/team/7a.jpg" alt="">
+                </a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Mr Victor Ngah</h4>
+                <p>Unit Secretary</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+                  <img src="assets2/img/team/9.jpg" alt="">
+                </a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="bi bi-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Pastor David Durotiwon</h4>
+                <p>Unit Pastor</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+        </div>
+      </div>
+    </div>
   </main><!-- End #main -->
 
 
@@ -302,10 +481,10 @@
             <div class="footer-content">
               <div class="footer-head">
                 <div class="footer-logo">
-                  <h2><span>e</span>Business</h2>
+                  <h2><span>Technical</span>Unit</h2>
                 </div>
 
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                <p>We remain the amplyfing voice and the visual of the church and its audience and making church service lively and interesting for member making them to be comfortable and relax in their worship to God</p>
                 <div class="footer-icons">
                   <ul>
                     <li>
@@ -331,12 +510,14 @@
               <div class="footer-head">
                 <h4>information</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                  Do you have need for recorded messages or suggestion that you think that will add values and improves our operation, feel free to visit the unit office and your opinion will be helpful.
                 </p>
                 <div class="footer-contacts">
-                  <p><span>Tel:</span> +123 456 789</p>
-                  <p><span>Email:</span> contact@example.com</p>
-                  <p><span>Working Hours:</span> 9am-5pm</p>
+                  <p><span>Tel:</span> +234 806 1539</p>
+                  <p><span>Email:</span> godwintombrown@gmail.com</p>
+                  <p><span>Sunday Service:</span> 6am-2pm</p>
+                  <p><span>Wednesday Service Hour:</span> 5pm-6:30pm</p>
+                  <p><span>Covenant Service Hour:</span> 6am-7am</p>
                 </div>
               </div>
             </div>

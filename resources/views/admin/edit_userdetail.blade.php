@@ -1,5 +1,5 @@
-
-@include('includes.header')
+  
+    @include('includes.header')
         @include('includes.sidebar')
         
         @include('includes.navbar')
@@ -62,7 +62,7 @@
                            
                                     <div class="col-lg-12">
                                        <div class="full dis_flex center_text">
-                                            @if($user->details->passport == NULL)
+                                            @if($user->details == NULL)
                                          
                                             @else
                                                  <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->details->passport)}}" alt="User Passport"></div>

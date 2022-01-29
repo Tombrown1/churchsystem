@@ -1,5 +1,5 @@
 
-         @section('title', 'Manage Member')         
+         @section('title', 'Cable Subunit')         
          @include('includes.header')
         @include('includes.sidebar')
         
