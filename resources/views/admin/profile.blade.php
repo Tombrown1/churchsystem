@@ -23,7 +23,7 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>User Profile</h2>                              
+                              <h2>{{ $user->name }} Profile</h2>                              
 
                            </div>
                            <div class="float-right mb-5">
@@ -80,22 +80,22 @@
                                              <div class="user_progress_bar">
                                                 <div class="progress_bar">
                                                    <!-- Skill Bars -->
-                                                   <span class="skill" style="width:85%;">Web Applications <span class="info_valume">85%</span></span>                   
+                                                   <span class="skill" style="width:85%;">Camera Performance<span class="info_valume">85%</span></span>                   
                                                    <div class="progress skill-bar ">
                                                       <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
                                                       </div>
                                                    </div>
-                                                   <span class="skill" style="width:78%;">Website Design <span class="info_valume">78%</span></span>   
+                                                   <span class="skill" style="width:78%;">Cable Performance <span class="info_valume">78%</span></span>   
                                                    <div class="progress skill-bar">
                                                       <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%;">
                                                       </div>
                                                    </div>
-                                                   <span class="skill" style="width:47%;">Automation &amp; Testing <span class="info_valume">47%</span></span>
+                                                   <span class="skill" style="width:47%;">Console Performance<span class="info_valume">47%</span></span>
                                                    <div class="progress skill-bar">
                                                       <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;">
                                                       </div>
                                                    </div>
-                                                   <span class="skill" style="width:65%;">UI / UX <span class="info_valume">65%</span></span>
+                                                   <span class="skill" style="width:65%;">Production &amp; Sales Performance <span class="info_valume">65%</span></span>
                                                    <div class="progress skill-bar">
                                                       <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%;">
                                                       </div>

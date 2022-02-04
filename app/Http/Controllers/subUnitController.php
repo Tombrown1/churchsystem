@@ -22,11 +22,13 @@ class subUnitController extends Controller
 
    public function consoleSubunit()
    {
-       return view('admin.console_subunit');
+       $console_posted_member = Posting::where('subunit_id', 3)->with('user')->get();
+       return view('admin.console_subunit', compact('console_posted_member'));
    }
 
    public function prosaleSubunit()
    {
-       return view('admin.prosale_subunit');
+       $prosale_posted_member = Posting::where('subunit_id', 4)->with('user')->get();
+       return view('admin.prosale_subunit', compact('prosale_posted_member'));
    }
 }

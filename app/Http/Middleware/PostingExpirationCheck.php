@@ -17,26 +17,8 @@ class PostingExpirationCheck extends MyPlugin
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
-
-        $processdate = config('posting.process_date');
-        $currentDate = date('Y-m-d');
-        if($processdate === null){
-            // run the expiration function
-            $this->expirePosting();
-            //update config file with the latest date
-            Config::set('posting.process_date', $currentDate);
-        }else{
-            //check if the value is equal to todays date if yes it means the function have run for today 
-            //if no then run the function
-            if($processdate != $currentDate){
-                // run the expiration function
-                $this->expirePosting();
-                //update config file with the latest date
-                //config(['posting.process_date' => $currentDate]);
-                Config::set('posting.process_date', $currentDate);
-            }
-        }
+    {        
+        $this->expirePosting();
 
         return $next($request);
     }

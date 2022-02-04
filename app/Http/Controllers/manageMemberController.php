@@ -22,7 +22,7 @@ class manageMemberController extends Controller
 
         //by victor 
         $users = UserDetail::with(['posting', 'user'])->orderBy("id", 'DESC')->get();
-        $posts = User::where('is_posted', 1)->get();
+        $posts = User::where('is_posted', 0)->where('role', '!=', 1)->get();
 
         // return $posts;
 
@@ -47,33 +47,20 @@ class manageMemberController extends Controller
             'end_date' => 'required'
         ]);
 
-        // return $request;
-
-        // $start_date = Carbon::parse($request->start_date);
-        // $end_date = Carbon::parse($request->end_date);
-        // $duration = $end_date->diffForHumans($start_date);
-
-        $start_date = strtotime($request->start_date);
-        // return $start_date;
-        $end_date = strtotime($request->end_date);
-        $post_duration = abs($end_date - $start_date);
-        // $year = floor($post_duration/(365*60*60*24));
-        // $month = floor(($post_duration-$year*365*60*60*24)/(365*60*60*24));
-    //     $dataing = date("t", strtotime($post_duration
-    // ));
-       return $post_duration;
-
+        
+        $s_date = date('Y-m-d', strtotime($request->start_date));
+        $e_date = date('Y-m-d',strtotime($request->end_date));
+        // return $end_date;
+       
+        
         $start_date = new DateTime($request->start_date);
         $end_date = new DateTime($request->end_date);
-        $duration = $end_date->diff($start_date);        
-        return $duration;
+        $duration = $end_date->diff($start_date); 
+
+        // return $duration->format('%m months, %d days');
         //    return $duration->format('%m months, %d days');
 
-        $start_date = strtotime($request->start_date);
-        $end_date = strtotime($request->end_date);
-        $check_duration = ($end_date - $start_date);
-        // return $check_duration; date(y-m-d);
-
+        
     
 
         //return $post_duration;
@@ -91,15 +78,14 @@ class manageMemberController extends Controller
         $post->subunit_id = $request->subunit_id;
         $post->posting_status = $request->posting_status;
         $post->duration = $duration->format('%m months, %d days');
-        $post->check_duration = $check_duration;
-        $post->start_date = $request->start_date;
-        $post->end_date = $request->end_date;
+        $post->start_date = $s_date;
+        $post->end_date = $e_date;
 
         // return $post;
 
         if($post->save())
         {
-            //This function will help to update the postcount field in User table each time posted
+            //This function will help to update the postcount field in User table each time a user is posted
             //Meaning when posting is carried out, the field increment by one
 
             

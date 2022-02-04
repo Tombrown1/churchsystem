@@ -43,7 +43,7 @@
                                              <td>{{$loop->index +1}}</td>
                                              <td>{{App\Models\User::find($camera_posting->member_id)->name}}</td>
                                              <td>{{App\Models\User::find($camera_posting->user_id)->name}}</td>
-                                             <td>{{$camera_posting->created_at->isoFormat('ddd D, Y')}}</td>
+                                             <td>{{$camera_posting->created_at->diffForHumans()}}</td>
                                              <td>New York</td>
                                             
                                             </tr>

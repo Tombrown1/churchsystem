@@ -6,9 +6,11 @@
                      </div>
                   </div>
                   <div class="sidebar_user_info">
-                     <div class="icon_setting"></div>
-                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                     <div class="icon_setting"></div>                    
+                     <div class="user_profle_side"> 
+                   
+                        <div class="user_img"><img class="img-responsive" src="#" alt="#" /></div>
+                     
                         <div class="user_info">
                            <h6>{{Auth::User()->name}}</h6>
                            <p><span class="online_animation"></span> Online</p>

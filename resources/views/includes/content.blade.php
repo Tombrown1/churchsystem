@@ -11,8 +11,8 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">2500</p>
-                                    <p class="head_couter">Welcome</p>
+                                    <p class="total_no">350</p>
+                                    <p class="head_couter">Camera Unit</p>
                                  </div>
                               </div>
                            </div>
@@ -21,13 +21,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div> 
-                                    <i class="fa fa-clock-o blue1_color"></i>
+                                    <i class="fa fa-user blue1_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">123.50</p>
-                                    <p class="head_couter">Average Time</p>
+                                    <p class="total_no">250</p>
+                                    <p class="head_couter">Cable Unit</p>
                                  </div>
                               </div>
                            </div>
@@ -36,13 +36,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div> 
-                                    <i class="fa fa-cloud-download green_color"></i>
+                                    <i class="fa fa-user green_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">1,805</p>
-                                    <p class="head_couter">Collections</p>
+                                    <p class="total_no">100</p>
+                                    <p class="head_couter">Console Unit</p>
                                  </div>
                               </div>
                            </div>
@@ -51,13 +51,13 @@
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div> 
-                                    <i class="fa fa-comments-o red_color"></i>
+                                    <i class="fa fa-user red_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">54</p>
-                                    <p class="head_couter">Comments</p>
+                                    <p class="total_no">150</p>
+                                    <p class="head_couter">Sales and Production</p>
                                  </div>
                               </div>
                            </div>
@@ -67,17 +67,18 @@
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons fb margin_bottom_30">
                               <div class="social_icon">
-                                 <i class="fa fa-facebook"></i>
+                                 <!-- <i class="fa fa-facebook"></i> -->
+                                 <span>Camera</span>
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>35k</strong></span>
-                                       <span>Friends</span>
+                                       <span><strong>300</strong></span>
+                                       <span>Members</span>
                                     </li>
                                     <li>
-                                       <span><strong>128</strong></span>
-                                       <span>Feeds</span>
+                                       <span><strong>50</strong></span>
+                                       <span>Probation</span>
                                     </li>
                                  </ul>
                               </div>
@@ -86,17 +87,18 @@
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons tw margin_bottom_30">
                               <div class="social_icon">
-                                 <i class="fa fa-twitter"></i>
+                                 <!-- <i class="fa fa-twitter"></i> -->
+                                 <span>Cable</span>
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>584k</strong></span>
-                                       <span>Followers</span>
+                                       <span><strong>220</strong></span>
+                                       <span>Member</span>
                                     </li>
                                     <li>
-                                       <span><strong>978</strong></span>
-                                       <span>Tweets</span>
+                                       <span><strong>30</strong></span>
+                                       <span>Probation</span>
                                     </li>
                                  </ul>
                               </div>
@@ -105,17 +107,18 @@
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons linked margin_bottom_30">
                               <div class="social_icon">
-                                 <i class="fa fa-linkedin"></i>
+                                 <!-- <i class="fa fa-linkedin"></i> -->
+                                 <span>Console</span>
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>758+</strong></span>
-                                       <span>Contacts</span>
+                                       <span><strong>100</strong></span>
+                                       <span>Members</span>
                                     </li>
                                     <li>
-                                       <span><strong>365</strong></span>
-                                       <span>Feeds</span>
+                                       <span><strong>20</strong></span>
+                                       <span>Probation</span>
                                     </li>
                                  </ul>
                               </div>
@@ -124,17 +127,18 @@
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons google_p margin_bottom_30">
                               <div class="social_icon">
-                                 <i class="fa fa-google-plus"></i>
+                                 <!-- <i class="fa fa-google-plus"></i> -->
+                                 <span>Prosales</span>
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>450</strong></span>
-                                       <span>Followers</span>
+                                       <span><strong>120</strong></span>
+                                       <span>Members</span>
                                     </li>
                                     <li>
-                                       <span><strong>57</strong></span>
-                                       <span>Circles</span>
+                                       <span><strong>20</strong></span>
+                                       <span>Probation</span>
                                     </li>
                                  </ul>
                               </div>
