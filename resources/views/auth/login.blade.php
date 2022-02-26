@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/" class="d-flex justify-content-center mb-4">
-                <x-application-logo width=64 height=64 />
+            <img src="{{asset('assets2/logos/main_logo2.jpg')}}" width=200 height=150 alt=""> 
             </a>
         </x-slot>
 

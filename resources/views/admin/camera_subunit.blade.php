@@ -1,8 +1,7 @@
       @section('title', 'Camera Subunit')      
-      @include('includes.header')
-        @include('includes.sidebar')
-        
-        @include('includes.navbar')
+      @extends('layouts.admin_master')
+
+      @section('admin')
 
             <!-- dashboard inner -->
             <div class="midde_cont">
@@ -34,7 +33,7 @@
                                              <th>Fullname</th>                                             
                                              <th>Posted By</th>
                                              <th>Duration</th>
-                                             <th>Due Date</th>                                             
+                                             <th>End Date</th>                                             
                                           </tr>
                                        </thead>
                                        <tbody>
@@ -44,7 +43,7 @@
                                              <td>{{App\Models\User::find($camera_posting->member_id)->name}}</td>
                                              <td>{{App\Models\User::find($camera_posting->user_id)->name}}</td>
                                              <td>{{$camera_posting->created_at->diffForHumans()}}</td>
-                                             <td>New York</td>
+                                             <td>{{$camera_posting->end_date}}</td>
                                             
                                             </tr>
                                             @endforeach;
@@ -120,7 +119,8 @@
                </div>            
             </div>
          </div>
+      </div>
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

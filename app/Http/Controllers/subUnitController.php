@@ -10,7 +10,11 @@ class subUnitController extends Controller
 {
    public function cableSubunit()
    {
-       return view('admin.cable_subunit');
+       $cable_posted_member = Posting::where('subunit_id',1)->with('user')->get();
+       $cp_count = count($cable_posted_member);
+       return $cp_count;
+    //    return $cable_posted_member;
+       return view('admin.cable_subunit', compact('cable_posted_member'));
    }
 
    public function cameraSubunit()
@@ -29,6 +33,7 @@ class subUnitController extends Controller
    public function prosaleSubunit()
    {
        $prosale_posted_member = Posting::where('subunit_id', 4)->with('user')->get();
+    //    return $prosale_posted_member;
        return view('admin.prosale_subunit', compact('prosale_posted_member'));
    }
 }

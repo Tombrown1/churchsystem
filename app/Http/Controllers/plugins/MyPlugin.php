@@ -32,9 +32,9 @@ class MyPlugin
                 $tp->save();
                 // this query update is_posted field in user table to zero, and 
                 // user becomes available for reposting after posting duration has expired
-                $user = User::find($post->user_id);
+                $user = User::find($post->member_id);
    
-               //  return $user;
+                // return $user;
    
                 $user->is_posted = 0;
    

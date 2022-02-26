@@ -68,7 +68,7 @@
                            <div class="full socile_icons fb margin_bottom_30">
                               <div class="social_icon">
                                  <!-- <i class="fa fa-facebook"></i> -->
-                                 <span>Camera</span>
+                                <a href="{{ route('camera')}}"> <span>Camera</span></a>
                               </div>
                               <div class="social_cont">
                                  <ul>
@@ -88,7 +88,7 @@
                            <div class="full socile_icons tw margin_bottom_30">
                               <div class="social_icon">
                                  <!-- <i class="fa fa-twitter"></i> -->
-                                 <span>Cable</span>
+                                <a href="{{ route('cable')}}"><span>Cable</span></a> 
                               </div>
                               <div class="social_cont">
                                  <ul>
@@ -108,7 +108,7 @@
                            <div class="full socile_icons linked margin_bottom_30">
                               <div class="social_icon">
                                  <!-- <i class="fa fa-linkedin"></i> -->
-                                 <span>Console</span>
+                                 <a href="{{ route('console')}}"><span>Console</span></a> 
                               </div>
                               <div class="social_cont">
                                  <ul>
@@ -128,7 +128,7 @@
                            <div class="full socile_icons google_p margin_bottom_30">
                               <div class="social_icon">
                                  <!-- <i class="fa fa-google-plus"></i> -->
-                                 <span>Prosales</span>
+                                 <a href="{{ route('prosale')}}"><span>Prosales</span></a>
                               </div>
                               <div class="social_cont">
                                  <ul>

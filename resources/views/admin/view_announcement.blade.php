@@ -1,7 +1,7 @@
 @section('title', 'View Announcement')
-@include('includes.header')
-@include('includes.sidebar')
-@include('includes.navbar')
+@extends('layouts.admin_master')
+
+      @section('admin')
 
 
 
@@ -88,4 +88,4 @@
 
 
 
-@include('includes.footer')
+@endsection

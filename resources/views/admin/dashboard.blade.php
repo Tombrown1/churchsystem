@@ -1,9 +1,5 @@
 @section('title', 'Dashboard')
-@extends('layouts.admin')
+@extends('layouts.index')
 @section('user-name', 'Auth::user()->name')
 
-@section('content')
 
-
-
-@endsection

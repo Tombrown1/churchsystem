@@ -1,11 +1,9 @@
 
          @section('title', 'Cable Subunit')         
-         @include('includes.header')
-        @include('includes.sidebar')
-        
-        @include('includes.navbar')
+         @extends('layouts.admin_master')
 
-            <!-- dashboard inner -->
+         @section('admin')  
+         <!-- dashboard inner -->
             <div class="midde_cont">
                   <div class="container-fluid">
                      <div class="row column_title">
@@ -31,28 +29,24 @@
                                     <table class="table">
                                        <thead>
                                           <tr>
-                                             <th>#</th>
-                                             <th>Firstname</th>
-                                             <th>Lastname</th>
-                                             <th>Age</th>
-                                             <th>City</th>
-                                             <th>Country</th>
-                                             <th>Sex</th>
-                                             <th>Example</th>                                             
+                                          <th>#</th>
+                                             <th>Fullname</th>                                             
+                                             <th>Posted By</th>
+                                             <th>Duration</th>
+                                             <th>End Date</th>                                              
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach($cable_posted_member as $cable_posted)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
-                                             <td>Pitt</td>
-                                             <td>35</td>
-                                             <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
-                                             <td>Yes</td>
-                                             <
+                                             <td>{{ $loop->index+1}}</td>
+                                             <td>{{ App\Models\User::find($cable_posted->member_id)->name}}</td>
+                                             <td>{{App\Models\User::find($cable_posted->user_id)->name}}</td>
+                                             <td>{{$cable_posted->created_at->diffForHumans()}}</td>
+                                             <td>{{$cable_posted->end_date}}</td>
+                                             
                                           </tr>
+                                          @endforeach
                                        </tbody>
                                     </table>
                                  </div>
@@ -128,4 +122,4 @@
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

@@ -1,9 +1,7 @@
 @section('title', 'Announcement')
-@include('includes.header')
-@include('includes.sidebar')
-@include('includes.navbar')
+@extends('layouts.admin_master')
 
-
+@section('admin')
 <!-- Display Error Message When not created -->
 
       @if($errors->any())
@@ -18,7 +16,7 @@
          @endif
 
 <!-- dashboard inner -->
-<div class="midde_cont">
+      <div class="midde_cont">
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
@@ -212,4 +210,4 @@
 
 
 
-@include('includes.footer')
+         @endsection

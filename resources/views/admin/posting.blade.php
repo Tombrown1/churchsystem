@@ -1,9 +1,8 @@
 
          @section('title', 'Posting')
-         @include('includes.header')
-        @include('includes.sidebar')        
-        @include('includes.navbar')
+         @extends('layouts.admin_master')
 
+      @section('admin')
         <!-- Display Error Message When not created -->
 
         @if($errors->any())
@@ -41,7 +40,7 @@
                     <div class="col-md-12">
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">                              
-                                    <button type="button" class="model_bt btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Repost Member</button>
+                                    <a href="{{route('posting.expired')}}" class="btn btn-primary">Track Posted Member</a>
                            
                                  <!-- <div class="heading1 margin_0">
                                     <h2>Manage Users</h2>                                    
@@ -110,13 +109,15 @@
                                                </td>
 
                                                <?php
-                                                      $str_date = $member_posted->check_duration;                                                      // $cont_date = date('d-m-Y', $str_date);
-                                                      // $cont_date = Covert('d-m-Y', $str_date,Date());
-                                                      // $expiring_date = Date($cont_date);
+                                                      // $str_date = $member_posted->check_duration;                                                       $cont_date = date('d-m-Y', $str_date);
+                                                   //   $cont_date = Covert('d-m-Y', $str_date,Date());
+                                                   //     $expiring_date = Date($cont_date);
+                                                      // {!! date('d-m-Y', "$str_date") !!}
                                                   ?>
-                                               <td>
-                                                {!! date('d-m-Y', "$str_date") !!}
-                                               </td>
+                                                <td class="">
+                                                <button type="button" class="model_bt btn btn-danger float-right btn-xs" data-toggle="modal" data-target="#myModal" href="{{$member_posted->user_id}}">Terminate</button>  
+                                                      
+                                                 </td>  
                                            @endforeach
                                        </tbody>
                                     </table>
@@ -128,77 +129,77 @@
  <!-- model popup begins here -->
          <!-- The Modal -->
          <div class="modal fade" id="myModal">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                <div class="modal-content">
                   <!-- Modal Header -->
                   <div class="modal-header">
-                     <h4 class="modal-title">Make Posting</h4>
+                     <h4 class="modal-title">Terminate Posting</h4>
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                      <form action="{{route('post.member')}}" method="POST">
-                        @csrf 
-                      <div class="input-group mb-3">                            
+                
+                     <!-- Modal body -->
+                           <div class="modal-body">
+                                 <form action="#" method="post">
+                                    @csrf
+                                    <input type="hidden" name="#">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text">Name</span>
+                                       </div>
+                                       <input type="text" name="name" value="#" class="form-control">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                             <span class="input-group-text" id="basic-addon3">Subunit</span>
+                                          </div>
+                                          
+                                          <select name="subunit_id" id="" class="form-control">
+                                             <option value=""></option>
+                                          </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                             <span class="input-group-text" id="basic-addon3">Action</span>
+                                          </div>
+                                          
+                                          <select name="is_terminated" id="" class="form-control">
+                                             <option value="">Select Action</option>
+                                             <option value="repost">Repost</option>
+                                             <option value="transfer">Transfer</option>
+                                             <option value="suspend">Suspend</option>
+                                             <option value="terminate">Terminate</option>
+                                          </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text">Cogent Reason</span>   
+                                       </div>
+                                       <textarea name="reason" class="form-control" cols="10" rows="4"></textarea>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text" id="basic-addon3"> Date Terminated</span>
+                                       </div>
+                                       <input type="date" name="start_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                       </div>
 
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Name</span>
-                            </div>
-                            <!-- <input type="text" name="name" class="form-control" id="basic-url" aria-describedby="basic-addon3" required> -->
-                            <select name="member_id" id="" class="form-control">
-                              
-                            </select>
-                            </div>
-
-                            
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Unit</span>
-                            </div>
-                            <select name="subunit_id" id="" class="form-control">
-                                <option>Select Subunit</option>
-                                <option value="1">Cable</option>
-                                <option value="2">Camera</option>
-                                <option value="3">Console</option>
-                                <option value="4">Production/Sales</option>
-                            </select>
-                            </div>
-                           
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Member Status</span>
-                            </div>
-                            <input type="text" name="posting_status" value="3" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                            </div>
-
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Start Date</span>
-                            </div>
-                            <input type="date" name="start_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                            </div>
-
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">End Date</span>
-                            </div>
-                            <input type="date" name="end_date" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                            </div>
-
-                       </div>                     
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-info" >Post</button>
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
-                  </div> 
-               </form>                     
-               </div>            
-            </div>
-         </div>
-         <!-- end model popup -->
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer"> 
+                                           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> 
+                                             <button type="submit" class="btn btn-danger" >Terminate</button>
+                                                                
+                                          </div> 
+                                       
+                                 </form>         
+                           </div>  
+                               
+                        </div>
+                     </div>
+               </div>
+               <!-- end model popup -->
+                 
            
      
            
 
-@include('includes.footer')
+@endsection

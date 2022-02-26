@@ -1,10 +1,10 @@
          @section('title', 'Manage Member')
-         @include('includes.header')
-         @include('includes.sidebar')
-        
-        
-        @include('includes.navbar')
+         @extends('layouts.admin_master')
 
+          @section('admin')
+        
+        
+       
         <!-- Display Error Message When not created -->
 
         @if($errors->any())
@@ -55,11 +55,12 @@
                                        <thead>
                                           <tr>
                                              <th><strong>S/N</strong></th>
-                                             <th><strong>firstname</strong></th>
-                                             <th><strong>lastname</strong></th>
+                                             <th><strong>Firstname</strong></th>
+                                             <th><strong>Lastname</strong></th>
                                              <th><strong>Email</strong></th>
                                              <th><strong>Posted By</strong></th>                                  
                                              <th><strong>Posting Status</strong></th> 
+                                             <th><strong>Post Count</strong></th> 
                                              <th><strong>Date Joined</strong></th>
                                              <th><strong>Action</strong></th>                                        
                                           </tr>
@@ -75,7 +76,7 @@
                                                    @if($user->posting != null)
                                                    {{App\Models\User::find($user->posting->user_id)->name}}
                                                    @else
-                                                      <span class="badge badge-danger">Not Posted</span>
+                                                      <span class="badge badge-danger">Not Available</span>
                                                    @endif
                                                 </td>
                                                 <td>
@@ -83,6 +84,17 @@
                                                       <span class="badge badge-success">Posted</span>
                                                    @else
                                                       Not Posted
+                                                   @endif
+                                                </td>
+                                                <td>
+                                                   @if($user->user->post_count >=1)
+                                                      @if($user->user->post_count == 1)
+                                                         <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}"> once</a></span>
+                                                      @else
+                                                         <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}">{{ $user->user->post_count. ' times'}}</a></span>
+                                                      @endif
+                                                   @else
+                                                   <span class="badge badge-info">Not posted yet</span>
                                                    @endif
                                                 </td>
                                                 <td>{{$user->created_at->isoFormat('ddd D, Y')}}</td>
@@ -93,7 +105,7 @@
                                                             <a class="dropdown-item " href="{{route('admin.profile', ['id' => $user->id])}}"> <i class="fa fa-cog mr-1"></i>Profile</a>                            
                                                             <a class="dropdown-item " href="#"> <i class="fa fa-cog mr-1"></i>Suspend</a>                            
                                                             <a class="dropdown-item" href="#">
-                                                               <i class="fa fa-calendar-check mr-1"></i> Block
+                                                               <i class="fa fa-calendar-check mr-1"></i> Post Status
                                                             </a>
                                                             
                                                             <div class="dropdown-divider"></div>
@@ -112,7 +124,7 @@
                            </div>
                         </div>
                         
-
+                      
         <!-- model popup begins here -->
          <!-- The Modal -->
          <div class="modal fade" id="myModal">
@@ -199,9 +211,10 @@
                                        </form>                     
                                        </div>            
                                        </div>
-                                    </div>
+            </div>
+         </div>
                                     <!-- end model popup -->
                  
            
 
-@include('includes.footer')
+      @endsection

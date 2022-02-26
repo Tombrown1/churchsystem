@@ -25,6 +25,7 @@ use App\Http\Controllers\PageController;
 // });
 
 Route::get('/', [PageController::class, 'index'])->name('index')->middleware('posting.expire');
+Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -50,8 +51,9 @@ require __DIR__.'/auth.php';
 
     // Route::get('/profile/{id}',[DemoController::class, 'show'])->name('profile');
         // route that helps in inserting user details records
-    Route::post('/personal-detail',[UserDetailController::class, 'personaldetail'])->name('personal.detail');
+    Route::post('/personal-detail/{id}',[UserDetailController::class, 'personaldetail'])->name('personal.detail');
     Route::get('/profile/{id}',[UserDetailController::class, 'userProfile'])->name('admin.profile');    
+    Route::get('/times-posted/{id}',[UserDetailController::class, 'post_count'])->name('times.posted');    
     Route::post('/nextofkin/{id}',[UserDetailController::class, 'nextofkin'])->name('nextofkin.detail');
     Route::post('/workpro/{id}',[UserDetailController::class, 'workprofession'])->name('workpro.detail');
         // route that helps in editing user details records
@@ -65,6 +67,7 @@ require __DIR__.'/auth.php';
     //Posting Route
     Route::post('/member-Post', [manageMemberController::class, 'posting'])->name('post.member');
     Route::get('/posted-members', [manageMemberController::class, 'posted_member'])->name('post');
+    Route::get('/expired-posted-members', [manageMemberController::class, 'post_expiration'])->name('posting.expired');
 
 
     Route::post('/churchmembership/{id}',[UserDetailController::class, 'churchmember'])->name('churchmember.detail');
@@ -81,6 +84,7 @@ require __DIR__.'/auth.php';
     Route::post('/create-category', [NewsEventController::class, 'announcement_category'])->name('create.cat');
     Route::post('/create-announcement', [NewsEventController::class, 'save_announce'])->name('create.announce');
     Route::get('/view-announcement/{id}', [NewsEventController::class, 'view_announcement'])->name('view.announcement');
+    Route::get('/photo_gallery', [PageController::class, 'photo_gallery'])->name('photo_gallery');
 
 
     //Delete User route

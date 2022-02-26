@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Posting;
+use App\Models\TrackPosting;
 use Carbon\Carbon;
 use Auth;
 use DateTime;
@@ -22,6 +23,7 @@ class manageMemberController extends Controller
 
         //by victor 
         $users = UserDetail::with(['posting', 'user'])->orderBy("id", 'DESC')->get();
+        // return $users;
         $posts = User::where('is_posted', 0)->where('role', '!=', 1)->get();
 
         // return $posts;
@@ -47,9 +49,11 @@ class manageMemberController extends Controller
             'end_date' => 'required'
         ]);
 
+        // return $request;
+
         
         $s_date = date('Y-m-d', strtotime($request->start_date));
-        $e_date = date('Y-m-d',strtotime($request->end_date));
+        $e_date = date('Y-m-d', strtotime($request->end_date));
         // return $end_date;
        
         
@@ -93,7 +97,7 @@ class manageMemberController extends Controller
             //This line of code help to increment post_count field each time a user is posted
             // $user->post_count = $user->post_count + 1;            
             $user->post_count += 1;            
-            $user->is_posted = 0;
+            $user->is_posted = 1;
             $user->save(); 
             // return $user;
 
@@ -106,10 +110,19 @@ class manageMemberController extends Controller
     public function posted_member()
     {
         $members_posted = Posting::with('user', 'subunit')->orderBy('id', 'DESC')->get();
+        $terminate_post = Posting::with('user', 'subunit')->orderBy('id', 'DESC')->get();
         // return $members_posted;
         // return $members_posted->user->userdetail;->where('is_posted', 1)
-        return view('admin.posting', compact('members_posted'));
+        return view('admin.posting', compact('members_posted', 'terminate_post'));
     }
+
+    public function post_expiration()
+    {
+        $exp_posted_member = TrackPosting::with('user', 'subunit')->get();
+        // return $exp_posted_member;
+        return view('admin.expired_posting', compact('exp_posted_member'));
+    }
+
 
     
     

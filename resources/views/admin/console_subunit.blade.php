@@ -1,8 +1,7 @@
 @section('title', 'Console Subunit')  
-   @include('includes.header')
-        @include('includes.sidebar')
-        
-        @include('includes.navbar')
+@extends('layouts.admin_master')
+
+@section('admin')
 
             <!-- dashboard inner -->
             <div class="midde_cont">
@@ -30,28 +29,24 @@
                                     <table class="table">
                                        <thead>
                                           <tr>
-                                             <th>#</th>
-                                             <th>Firstname</th>
-                                             <th>Lastname</th>
-                                             <th>Age</th>
-                                             <th>City</th>
-                                             <th>Country</th>
-                                             <th>Sex</th>
-                                             <th>Example</th>                                             
+                                             <td>#</td>
+                                             <th>Fullname</th>                                             
+                                             <th>Posted By</th>
+                                             <th>Duration</th>
+                                             <th>End Date</th>                                          
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach($console_posted_member as $console_posted)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Anna</td>
-                                             <td>Pitt</td>
-                                             <td>35</td>
-                                             <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
-                                             <td>Yes</td>
-                                             <
+                                             <td>{{ $loop->index + 1}}</td>
+                                             <td>{{App\Models\User::find($console_posted->member_id)->name}}</td>
+                                             <td>{{App\Models\User::find($console_posted->user_id)->name}}</td>
+                                             <td>{{$console_posted->created_at->diffForHumans()}}</td>
+                                             <td>{{$console_posted->end_date}}</td>
+                                                                             
                                           </tr>
+                                          @endforeach
                                        </tbody>
                                     </table>
                                  </div>
@@ -124,7 +119,8 @@
                </div>            
             </div>
          </div>
+      </div>
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

@@ -1,8 +1,8 @@
 
         @section('title', 'Profile')
-        @include('includes.header')
-        @include('includes.sidebar')        
-        @include('includes.navbar')
+        @extends('layouts.admin_master')
+
+        @section('admin')
 
          <!-- Display Error Message When not created -->
 
@@ -19,16 +19,20 @@
 
             <!-- dashboard inner -->
             <div class="midde_cont">
-                  <div class="container-fluid">
+                  < class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>{{ $user->name }} Profile</h2>                              
+                               @if($user->details == Null)
+                                <h4>No Record</h4>
+                                @else
+                                <h2>{{ $user->details->firstname . ' '. $user->details->lastname }} Profile</h2>
+                                @endif                              
 
                            </div>
                            <div class="float-right mb-5">
                         <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Complete User Registeration</button> 
-                        <a type="button" class="model_bt btn btn-info" href="{{route('edit.personal.detail', ['id' =>$user->id])}}">Edit User</a> 
+                        <a type="button" class="model_bt btn btn-info" href="{{route('edit.personal.detail', ['id' =>$user->details->id])}}">Edit User</a> 
                             </div>
                         </div>
                      </div>
@@ -66,14 +70,14 @@
                                            @if($user->details == NULL)
                                                 No passport
                                             @else
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->details->passport)}}" alt="User Passport"></div>
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset($user->details->passport)}}" alt="User Passport"></div>
                                             @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
-                                                <h3>{{ $user->name }}</h3>
+                                                <h3>{{ $user->details->firstname }}</h3>
                                                 <p><strong>About: </strong>Frontend Developer</p>
                                                 <ul class="list-unstyled">
-                                                   <li><i class="fa fa-envelope-o"></i> : {{ $user->email }}</li>
+                                                   <li><i class="fa fa-envelope-o"></i> : {{ $user->details->email }}</li>
                                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
                                                 </ul>
                                              </div>
@@ -166,6 +170,7 @@
                         
                         <!-- end row -->
                      </div>
+                     
 
                      
                         
@@ -202,38 +207,44 @@
                                              </div>
                                              <div class="tab-content" id="v-pills-tabContent">
                                                 <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                                   <form action="{{route('personal.detail')}}" method="POST" enctype="multipart/form-data">
+                                                   <form action="{{route('personal.detail', ['id'=> $user->details->id])}}" method="POST" enctype="multipart/form-data">
                                                         @csrf 
                                                         <div class="input-group mb-3">  
-                                                                                          
-                                                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                                                <!-- <div class="input-group mb-3">
+                                                                 
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="basic-addon3">Surname</span>
+                                                                </div>
+                                                                <input type="text" name="surname" value="{{ $user->details->surname }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                </div>
+                                                              
+                                                                <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">First Name</span>
-                                                                </div> -->
-                                                                <input type="hidden" name="firstname" value="{{ $user->name }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                <!-- </div> -->
+                                                                </div>
+                                                                <input type="text" name="firstname" value="{{ $user->details->firstname }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Last Name</span>
                                                                 </div>
-                                                                <input type="text" name="lastname" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="text" name="lastname" value="{{$user->details->lastname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                                 </div>
 
-                                                                <!-- <div class="input-group mb-3">
+                                                                <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Email</span>
-                                                                </div> -->
-                                                                <input type="hidden" name="email" value="{{ $user->email }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
-                                                                <!-- </div> -->
+                                                                </div>
+                                                                <input type="email" name="email" value="{{ $user->details->email }}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                </div>
 
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Gender</span>
                                                                 </div>
                                                                 <select name="gender" id="" class="form-control">
-                                                                    <option value="">Select Gender</option>
+                                                                    <option value="{{$user->details->gender}}">{{$user->details->gender}}</option>
                                                                     <option value="male">Male</option>
                                                                     <option value="female">Female</option>
                                                                 </select>
@@ -543,7 +554,8 @@
                </div>            
             </div>
          </div>
+         </div>
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

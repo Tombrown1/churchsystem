@@ -16,7 +16,7 @@ class ManageUserController extends Controller
 {
     public function ManageUser()
     {   
-        $users = UserDetail::with('user', 'posting')->orderBy('id', 'DESC')->get();  
+        $users = UserDetail::with('user', 'posting')->orderBy('user_id', 'DESC')->get();  
         // $users = User::get();  
         // return $users;      
         return view('admin.manage_user', compact('users'));
@@ -27,7 +27,9 @@ class ManageUserController extends Controller
     {    
         //   
        $this->validate($request, [
-        'name' => ['required', 'string', 'max:255'],
+        'surname' => ['required', 'string', 'max:255'],
+        'fname' => ['required', 'string', 'max:255'],
+        'lname' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         // 'password' => ['required', 'min:8'],
         // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -37,9 +39,8 @@ class ManageUserController extends Controller
         // return $request;
         
        //  dd($request);
-        // $password = $request->name.rand(4, 50);
-        $name = explode(" ", trim($request->name));
-        // return $name[0];
+        $fullname = $request->surname. ' ' .$request->fname. ' '. $request->lname;
+        $name = explode(" ", trim($request->fname));
         $username = $name[0].rand(4,10000);
         $password = $username;
         // return $username;
@@ -58,24 +59,33 @@ class ManageUserController extends Controller
       
             
         // return $role;
+        // $created_by = Auth::user()->id;
         
         $user = new User;
 
         $user->username = $username;
-        $user->name = $request->name;
+        $user->name = $fullname;
         $user->email = $request->email;
         $user->gender = $request->gender;
         $user->password = Hash::make($password);
         $user->role = $role;
-        $user->banned_id = 0;
-        $user->suspension_id = 0;
-        $user->badge = $role;
 
-        // return $user;
+        // return $userdetail;
 
         if($user->save())
         {
-            $redirect = 'admin/profile/'. $user->id;
+            $userdetail = new UserDetail;
+            $userdetail->user_id = $user->id;
+            $userdetail->created_by = Auth::user()->id;
+            $userdetail->surname = $request->surname;
+            $userdetail->firstname = $request->fname;
+            $userdetail->lastname = $request->lname;
+            $userdetail->gender = $user->gender;
+            $userdetail->email = $user->email;
+
+            $userdetail->save();
+
+            $redirect = 'admin/profile/'. $userdetail->user_id;
             return redirect($redirect)->with('message', 'User is Created Successfully!, complete the user registration');
         }
 

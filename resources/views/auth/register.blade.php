@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="d-flex justify-content-center mb-4">
-                <x-application-logo width=64 height=64 />
+            <a href="/"  class="d-flex justify-content-center mb-4">
+               <img src="{{asset('assets2/logos/tcu_winners_logo.png')}}" width=64 height=64 alt=""> 
             </a>
         </x-slot>
 

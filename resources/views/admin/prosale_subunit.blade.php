@@ -1,8 +1,8 @@
 
         @section('title', 'Production/Sales Subunit')
-        @include('includes.header')
-        @include('includes.sidebar')        
-        @include('includes.navbar')
+        @extends('layouts.admin_master')
+
+      @section('admin')
 
             <!-- dashboard inner -->
             <div class="midde_cont">
@@ -19,10 +19,6 @@
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">                              
                                     <button type="button" class="model_bt btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create User</button>
-                           
-                                 <!-- <div class="heading1 margin_0">
-                                    <h2>Manage Users</h2>                                    
-                                 </div> -->
                               </div>
                    
                               <div class="table_section padding_infor_info">
@@ -34,7 +30,7 @@
                                              <th>Fullname</th>
                                              <th>Posted By</th>
                                              <th>Duration</th>
-                                             <th>Due Date</th>
+                                             <th>End Date</th>
                                                                                          
                                           </tr>
                                        </thead>
@@ -45,10 +41,7 @@
                                              <td>{{App\Models\User::find($prosale_posting->member_id)->name}}</td>
                                              <td>{{App\Models\User::find($prosale_posting->user_id)->name}}</td>
                                              <td>{{$prosale_posting->created_at->diffForHumans()}}</td>
-                                             <td>New York</td>
-                                             <td>USA</td>
-                                             <td>Female</td>
-                                             <td>Yes</td>
+                                             <td>{{$prosale_posting->end_date}}</td>
                                              
                                           </tr>
                                           @endforeach
@@ -124,7 +117,8 @@
                </div>            
             </div>
          </div>
+      </div>
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

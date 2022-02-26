@@ -23,4 +23,9 @@ class Subunit extends Model
     {
         return $this->hasOne(Posting::class);
     }
+
+    public function trackposting()
+    {
+        return $this->hasOne(TrackPosting::class);
+    }
 }

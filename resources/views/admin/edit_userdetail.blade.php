@@ -1,9 +1,7 @@
-  
-    @include('includes.header')
-        @include('includes.sidebar')
-        
-        @include('includes.navbar')
+    @section('title', 'Edit Member Info')
+    @extends('layouts.admin_master')
 
+@section('admin')
          <!-- Display Error Message When not created -->
 
          @if($errors->any())
@@ -65,7 +63,7 @@
                                             @if($user->details == NULL)
                                          
                                             @else
-                                                 <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset('/storage/'.$user->details->passport)}}" alt="User Passport"></div>
+                                                 <div class="profile_img"><img width="180" class="rounded-circle" src="{{asset($user->details->passport)}}" alt="User Passport"></div>
                                             @endif
                                           <div class="profile_contant">
                                              <div class="contact_inner">
@@ -207,9 +205,16 @@
                                                        <input type="hidden" name="_method" value="PUT">
                                                        {{method_field('PUT')}}
                                                         @csrf 
+                                                        <input type="hidden" name="old_passport" value="{{$user->details->passport}}">
                                                         <div class="input-group mb-3">  
                                                                                           
                                                                 <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                                <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="basic-addon3">Surname</span>
+                                                                </div>
+                                                                <input type="test" name="surname" value="{{$user->details->surname}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                </div>
                                                                 <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">First Name</span>
@@ -287,7 +292,10 @@
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" id="basic-addon3">Passport</span>
                                                                 </div>
-                                                                <input type="file" name="passport" value="{{$user->details->passport}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                                                <input type="file" name="passport" value="{{$user->details->passport}}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <img src="{{asset($user->details->passport)}}" style="width:100px; height:100px;">
                                                                 </div>
                                                             </div>                     
                                                                 <!-- Modal footer -->
@@ -545,4 +553,4 @@
          <!-- end model popup -->
            
 
-@include('includes.footer')
+@endsection

@@ -34,8 +34,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'username' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'min:8'],
             // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -43,22 +44,23 @@ class RegisteredUserController extends Controller
             
         ]);
 
-        // dd($request);
+        // return $request;
        
-
-        $username = $request->name.rand(2,100);
+        $fullname = $request->surname.' '. $request->fname.' '. $request->lanme;
+        $username = $request->name[0].rand(4,10000);
         return $username;
         $user = User::create([
             'username' => $username,
-            'name' => $request->name,
+            'name' => $fullname,
             'email' => $request->email,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
             'role' => 0,
-            'banned_id' => 0,
-            'suspension_id' => 0,
-            'badge' => 0,
+            
         ]);
+
+        // $userdetail = new UserDetail;
+        // $userdetail = new UserDetail;
 
         // return $user;
 
@@ -67,5 +69,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::USER);
     }
 }

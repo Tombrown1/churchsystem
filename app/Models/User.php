@@ -70,4 +70,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(announcement::class);
     }
+    public function trackposting()
+    {
+        return $this->hasOne(TrackPosting::class);
+    }
 }

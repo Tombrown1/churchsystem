@@ -10,10 +10,11 @@ use Auth;
 
 class UserDetailController extends Controller
 {
-    public function personaldetail(Request $request)
+    public function personaldetail(Request $request, $id)
     {
         $this->validate($request, [
-            'user_id' => ['required'],
+            // 'user_id' => ['required'],
+            'surname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'gender' => ['required'],
@@ -25,16 +26,30 @@ class UserDetailController extends Controller
             'pob' => ['required'],
             // 'image' => ['required|image|mimes:png,jpeg,jpg,gif,pdf|max:2048'],  
             'marital_status' => ['required'],   
-        ]);        
+        ]);
+
+        // return $request;
+        
+        $passport = $request->file('passport');
+        $name_gen = hexdec(uniqid());
+        $img_ext = strtolower($passport->getClientOriginalExtension());
+        $img_name = $name_gen.'.'.$img_ext;
+        $up_location = 'images/passport/';
+        $last_img = $up_location.$img_name;
+        $passport->move($up_location,$img_name);
 
         $created_by = Auth::user()->id;
 
         // return $request->hasfile('passport');
         
-        $userdetail = new UserDetail;
+        $userdetail = UserDetail::find($id);
+        // $userdetail = new UserDetail;
 
-        $userdetail->user_id = $request->user_id;
+        // return $userdetail;
+
+        // $userdetail->user_id = $request->user_id;
         $userdetail->created_by = $created_by;
+        $userdetail->surname = $request->surname;
         $userdetail->firstname = $request->firstname;
         $userdetail->lastname = $request->lastname;
         $userdetail->gender = $request->gender;
@@ -44,22 +59,24 @@ class UserDetailController extends Controller
         $userdetail->dob = $request->dob;
         $userdetail->pob = $request->pob;
         $userdetail->marital_status = $request->marital_status;
+        $userdetail->passport = $last_img;
 
 
-        if($request->hasfile('passport'))
-        {
-            request()->validate([
-                'passport' => 'required',
-                'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
-            ]);
-            $file = $request->file('passport'); 
-            // $passName = $passport->getClientOriginalName();
-            $path = Storage::disk('public')->putFile('images', $file);
+        // if($request->hasfile('passport'))
+        // {
+        //     request()->validate([
+        //         'passport' => 'required',
+        //         'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
+        //     ]);
+        //     $file = $request->file('passport'); 
+        //     // $passName = $passport->getClientOriginalName();
+        //     $path = Storage::disk('public')->putFile('images', $file);
 
-            $userdetail->passport = $path;        
-        }
+        //     $userdetail->passport = $path;        
+        // }
 
         // return $userdetail;
+
         if($userdetail->save())
         {
             session(['last_id' => $userdetail->id]);
@@ -76,41 +93,100 @@ class UserDetailController extends Controller
     }
 
     public function update_personal_detail(Request $request, $id)
-    {
-        $personal_detail = UserDetail::find($id);
+    {   
+        $this->validate($request, [
+            'surname' => ['required', 'min:5'],
+            'firstname' => ['required', 'min:5'],
+            'lastname' => ['required', 'min:5'],
+            'gender' => ['required'],
+            'email' => ['required'],
+            'work_phone' => ['required'],
+            'home_phone' => ['required'],
+            'dob' => ['required'],
+            'pob' => ['required'],
+            'marital_status' => ['required'] 
+        ]);
 
-        if($request->hasfile('passport'))
-        {
-            request()->validate([
-                'passport' => 'required',
-                'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
-            ]);
-            $passport = $request->file('passport'); 
-            // $passName = $passport->getClientOriginalName();
-            $path = Storage::disk('public')->putFile('images', $passport);                   
+        // if($request->hasfile('passport'))
+        // {
+        //     request()->validate([
+        //         'passport' => 'required',
+        //         'passport' => 'mimes:gif,jpg,jpeg,png,pdf,|max:2048'
+        //     ]);
+
+        //     $passport = $request->file('passport'); 
+        //     // $passName = $passport->getClientOriginalName();
+        //     $path = Storage::disk('public')->putFile('images', $passport);                   
+        // }
+
+        $old_passport = $request->old_passport;
+
+        // return $old_passport;
+
+        $passport = $request->file('passport');
+        if($passport){
+            $name_gen = hexdec(uniqid());
+            $img_ext = strtolower($passport->getClientOriginalExtension());
+            $img_name = $name_gen.'.'.$img_ext;
+            $up_location = 'images/passport/';
+            $last_img = $up_location.$img_name;
+            $passport->move($up_location,$img_name);
+
+            $created_by = Auth::user()->id;
+            
+            unlink($old_passport);
+
+            $personal_detail = UserDetail::find($id);
+
+            $personal_detail->user_id = $request->user_id;
+            $personal_detail->created_by = $created_by;
+            $personal_detail->surname = $request->surname;
+            $personal_detail->firstname = $request->firstname;
+            $personal_detail->lastname = $request->lastname;
+            $personal_detail->gender = $request->gender;
+            $personal_detail->email = $request->email;
+            $personal_detail->work_phone = $request->work_phone;
+            $personal_detail->home_phone = $request->home_phone;
+            $personal_detail->dob = $request->dob;
+            $personal_detail->pob = $request->pob;
+            $personal_detail->marital_status = $request->marital_status;
+            $personal_detail->passport = $last_img;
+
+            if($personal_detail->update())
+            {
+                $update_user = User::find($personal_detail->user_id);
+                $update_user->name = $request->surname.' '.$request->firstname.' '.$request->lastname;         
+                $update_user->gender = $request->gender;
+                $update_user->email = $request->email;
+
+                    $update_user->update();
+                return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
+            }
+        }else{
+
+            $created_by = Auth::user()->id;
+
+            $personal_detail = UserDetail::find($id);
+
+            $personal_detail->user_id = $request->user_id;
+            $personal_detail->created_by = $created_by;
+            $personal_detail->firstname = $request->firstname;
+            $personal_detail->lastname = $request->lastname;
+            $personal_detail->gender = $request->gender;
+            $personal_detail->email = $request->email;
+            $personal_detail->work_phone = $request->work_phone;
+            $personal_detail->home_phone = $request->home_phone;
+            $personal_detail->dob = $request->dob;
+            $personal_detail->pob = $request->pob;
+            $personal_detail->marital_status = $request->marital_status;
+
+            if($personal_detail->update())
+            {
+                return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
+            } 
         }
-
-        $created_by = Auth::user()->id;
-
-        $personal_detail->user_id = $request->user_id;
-        $personal_detail->created_by = $created_by;
-        $personal_detail->firstname = $request->firstname;
-        $personal_detail->lastname = $request->lastname;
-        $personal_detail->gender = $request->gender;
-        $personal_detail->email = $request->email;
-        $personal_detail->work_phone = $request->work_phone;
-        $personal_detail->home_phone = $request->home_phone;
-        $personal_detail->dob = $request->dob;
-        $personal_detail->pob = $request->pob;
-        $personal_detail->marital_status = $request->marital_status;
-        $personal_detail->passport = $path;
-
-        // return $personal_detail;
-
-        if($personal_detail->save())
-        {
-            return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
-        }
+        
+              
     }
         
 
@@ -291,5 +367,10 @@ class UserDetailController extends Controller
     {   
         $user = User::find($id);        
         return view('admin.profile', compact('user'));
+    }
+
+    public function post_count($id){
+        $user = User::find($id);
+        return view('admin.post_count', compact('user'));
     }
 }
