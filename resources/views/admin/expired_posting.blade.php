@@ -67,12 +67,23 @@
                                                 <td>{{$exp_member->start_date}}</td>
                                                 <td>{{$exp_member->expired_at}}</td>
                                                 <td>{{$exp_member->duration}}</td>
+                                                <td>{{$exp_member->is_terminated}}</td>
+                                                <td>{{$exp_member->reason}}</td>
+                                                <td style="color:red">{{$exp_member->date_terminated}}</td>
                                              </tr>
-                                          @endforeach
-                                       </tbody>
-                                    </table>
-                                 </div>
-                              </div>
+                                             
+                                          @endforeach                                          
+                                       </tbody>                                      
+                                    </table>                                          
+                                 </div> 
+                                 <div class="container">
+                                 @if($exp_posted_member->hasPages())
+                                                <div class="pagination-wrapper">
+                                                   {{$exp_posted_member->links() }}
+                                                </div>
+                                          @endif
+                                 </div>                                
+                              </div>                                         
                            </div>
                         </div>
                         

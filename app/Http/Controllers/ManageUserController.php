@@ -70,7 +70,7 @@ class ManageUserController extends Controller
         $user->password = Hash::make($password);
         $user->role = $role;
 
-        // return $userdetail;
+        // return $user;
 
         if($user->save())
         {

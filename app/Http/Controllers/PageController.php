@@ -19,8 +19,10 @@ class PageController extends Controller
         return view('page.gallery');
     }
 
-    public function photo_gallery()
-    {
-        return view('admin.photo_gallery');
-    }
+    
+
+    // public function gallery_category(Request $request)
+    // {
+    //     return view('admin.photo_gallery');
+    // }
 }

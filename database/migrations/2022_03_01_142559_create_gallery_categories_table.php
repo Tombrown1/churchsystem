@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSurnameColumnToUserDetailsTable extends Migration
+class CreateGalleryCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddSurnameColumnToUserDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_details', function (Blueprint $table) {
-            $table->after('posting_id', function($table){
-                $table->string('surname')->nullable();
-            });
+        Schema::create('gallery_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AddSurnameColumnToUserDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_details', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('gallery_categories');
     }
 }

@@ -11,8 +11,8 @@ class subUnitController extends Controller
    public function cableSubunit()
    {
        $cable_posted_member = Posting::where('subunit_id',1)->with('user')->get();
-       $cp_count = count($cable_posted_member);
-       return $cp_count;
+       $cp_count = $cable_posted_member->count();
+    //    return $cp_count;
     //    return $cable_posted_member;
        return view('admin.cable_subunit', compact('cable_posted_member'));
    }

@@ -26,9 +26,9 @@
                      <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>                        
                      </li>
                      <li><a href="{{route('manage.user')}}"><i class="fa fa-clock-o orange_color"></i> <span>Add New Member</span></a></li>
-                     <li><a href="{{route('members')}}"><i class="fa fa-table purple_color2"></i> <span>Manage Members</span></a></li>
+                     <li><a href="{{route('members')}}"><i class="fa fa-table purple_color2"></i> <span>Manage Posting</span></a></li>
                      <li>
-                     <li><a href="{{route('post')}}"><i class="fa fa-table purple_color2"></i> <span>Posting</span></a></li>
+                     <li><a href="{{route('post')}}"><i class="fa fa-table purple_color2"></i> <span>Posted Members</span></a></li>
                      <li>
                         <a href="#subunits" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Subunits</span></a>
                         <ul class="collapse list-unstyled" id="subunits">
@@ -45,7 +45,7 @@
                         <ul class="collapse list-unstyled" id="apps">
                            <li><a href="{{route('announce')}}"> <span>Announcement</span></a></li>
                            <li><a href="#"> <span>Service Activities</span></a></li>
-                           <li><a href="{{route('photo_gallery')}}"> <span>Media Gallery</span></a></li>
+                           <li><a href="{{route('photo.gallery')}}"> <span>Media Gallery</span></a></li>
                         </ul>
                      </li>
                    

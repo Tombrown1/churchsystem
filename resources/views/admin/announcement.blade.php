@@ -87,10 +87,74 @@
                                                 @endif
                                              </td>
                                              <td>{{$announce->created_at->isoFormat('D dddd, Y')}}</td>
-                                             <td><a href="#" type="button" class="btn btn-primary">Edit</a></td>
-                                             <td><a href="{{route('view.announcement', ['id' => $announce->id])}}" type="button" class="btn btn-success">View</a></td>
-                                             
+                                             <td><a href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editannounce{{$announce->id}}">Edit</a></td>
+                                             <td><a href="{{route('view.announcement', ['id' => $announce->id])}}" type="button" class="btn btn-success">View</a></td>                                             
                                            </tr>
+                        <!-- The  Modal For Edot Announcement-->
+         <div class="modal fade" id="editannounce{{$announce->id}}">
+            <div class="modal-dialog modal-md">
+               <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                     <h4 class="modal-title">Edit Announcement {{$announce->id}}</h4>
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                     <form action="{{route('edit.announce', ['id'=>$announce->id])}}" method="POST" enctype="multipart/form-data">
+                        @csrf 
+                        <input type="hidden" name="old_image" value="{{asset('/storage/'.$announce->image)}}">
+                        <input type="hidden" name="user_id" value="{{$announce->user_id}}">
+                        <div class="input-group mb-3">
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">Category</span>
+                              </div>
+                             
+                              <select name="cat_id" id="" class="form-control">
+                                 <option>{{App\Models\AnnoucementCategory::find($announce->annouce_cat_id)->name}}</option>
+                                  @foreach($announce_cat as $cat)
+                                 <option value="{{$cat->id}}">{{$cat->name}}</option>      @endforeach                            
+                              </select>
+                             
+                           </div>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3">Title</span>
+                              </div>
+                              <input type="text" name="title" value="{{$announce->title}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                           </div>
+
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <!-- <span class="input-group-text">Message Description</span> -->
+                              </div>
+                              <textarea class="form-control" name="message" value="" placeholder="Message Description" aria-label="With textarea">{{$announce->message}}</textarea>
+                           </div>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3">Image</span>
+                              </div>
+                              <input type="file" name="image" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                           </div>
+                           <div class="form-group">
+                              <img src="{{asset('/storage/'.$announce->image)}}" alt="">
+                              
+                           </div>
+                           
+                        </div>                     
+                         <!-- Modal footer -->
+                        <div class="modal-footer">
+                           <button type="submit" class="btn btn-info" >Save Announcement</button>
+                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                     
+                        </div> 
+                     </form>                     
+                  </div>            
+               </div>
+             </div>
+         </div>
+         <!-- End Edit Announcement model popup begins here -->
+
                                           @endforeach
                                        </tbody>
                                     </table>

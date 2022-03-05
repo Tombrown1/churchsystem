@@ -134,7 +134,9 @@ class UserDetailController extends Controller
 
             $created_by = Auth::user()->id;
             
-            unlink($old_passport);
+                // if($old_passport == true){
+                //     unlink($old_passport);
+                // }
 
             $personal_detail = UserDetail::find($id);
 

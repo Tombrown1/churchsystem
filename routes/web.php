@@ -67,7 +67,8 @@ require __DIR__.'/auth.php';
     //Posting Route
     Route::post('/member-Post', [manageMemberController::class, 'posting'])->name('post.member');
     Route::get('/posted-members', [manageMemberController::class, 'posted_member'])->name('post');
-    Route::get('/expired-posted-members', [manageMemberController::class, 'post_expiration'])->name('posting.expired');
+    Route::get('/expired-posted-members', [manageMemberController::class, 'expired_posting'])->name('posting.expired');
+    Route::post('/terminate/{id}', [manageMemberController::class, 'terminate'])->name('terminate.member');
 
 
     Route::post('/churchmembership/{id}',[UserDetailController::class, 'churchmember'])->name('churchmember.detail');
@@ -84,9 +85,13 @@ require __DIR__.'/auth.php';
     Route::post('/create-category', [NewsEventController::class, 'announcement_category'])->name('create.cat');
     Route::post('/create-announcement', [NewsEventController::class, 'save_announce'])->name('create.announce');
     Route::get('/view-announcement/{id}', [NewsEventController::class, 'view_announcement'])->name('view.announcement');
-    Route::get('/photo_gallery', [PageController::class, 'photo_gallery'])->name('photo_gallery');
+    Route::post('/edit-announce/{id}', [NewsEventController::class, 'edit_announce'])->name('edit.announce');
+    Route::post('/save-gallery-image', [NewsEventController::class, 'save_gallery_photo'])->name('save.gallery.image');
+    Route::post('/update-gallery/{id}', [NewsEventController::class, 'update_gallery'])->name('update.gallery');
+    
+    Route::get('/photo-gallery', [NewsEventController::class, 'photo_gallery'])->name('photo.gallery');  
 
-
+    Route::post('/photo-category', [NewsEventController::class, 'gallery_category'])->name('photo.category');
     //Delete User route
     Route::delete('/delete/{id}', [ManageUserController::class, 'deluser'])->name('user.delete');
 

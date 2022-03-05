@@ -82,7 +82,7 @@
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>300</strong></span>
+                                       <span><strong>{{$count_camera}}</strong></span>
                                        <span>Members</span>
                                     </li>
                                     <li>
@@ -102,7 +102,7 @@
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>220</strong></span>
+                                       <span><strong>{{$count_cable}}</strong></span>
                                        <span>Member</span>
                                     </li>
                                     <li>
@@ -122,7 +122,7 @@
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>100</strong></span>
+                                       <span><strong>{{$count_console}}</strong></span>
                                        <span>Members</span>
                                     </li>
                                     <li>
@@ -142,7 +142,7 @@
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>120</strong></span>
+                                       <span><strong>{{$count_prosale}}</strong></span>
                                        <span>Members</span>
                                     </li>
                                     <li>
