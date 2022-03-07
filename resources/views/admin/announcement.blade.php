@@ -111,8 +111,8 @@
                                  <span class="input-group-text">Category</span>
                               </div>
                              
-                              <select name="cat_id" id="" class="form-control">
-                                 <option>{{App\Models\AnnoucementCategory::find($announce->annouce_cat_id)->name}}</option>
+                              <select name="annouce_cat_id" id="" class="form-control">
+                                 <option value="{{$announce->annouce_cat_id}}" >{{App\Models\AnnoucementCategory::find($announce->annouce_cat_id)->name}}</option>
                                   @foreach($announce_cat as $cat)
                                  <option value="{{$cat->id}}">{{$cat->name}}</option>      @endforeach                            
                               </select>
@@ -138,7 +138,7 @@
                               <input type="file" name="image" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                            </div>
                            <div class="form-group">
-                              <img src="{{asset('/storage/'.$announce->image)}}" alt="">
+                              <img src="{{asset('/storage/'.$announce->image)}}" height="100px" width="100px" alt="">
                               
                            </div>
                            

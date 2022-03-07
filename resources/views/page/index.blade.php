@@ -4,35 +4,33 @@
 
 
 @include('page.body.slider')
-    
+    <br><br>
 
-    <div id="announcement" class=" area-padding">
-      <div class="marquee marquee">
-        <h3 class="text-center">Unit Announcements</h3>
-      </div>   
-         
-        <div class="container">
-          <div class="row">
-            @foreach($announcement as $announce)
-              <div class="col-md-3">
-                
-                  <div class="card " style="width: 16rem;">
-                    <img src="{{asset('/storage/'.$announce->image)}}" width="100px" height="100px"  class="card-img-top" alt="announcement image">
-                    <div class="card-body">
-                        <div class="card-text">
-                          <p>
-                            {{$announce->message}}
-                          </p>
-                        </div>
-                        <a href="#" class="btn btn-xs btn-primary">view</a>
+    <div class="container">
+        <div class="slider owl-carousel">
+              @foreach($announcement as $announce)
+                <div class="card">
+                    <div class="img">
+                      <img src="{{asset('/storage/'.$announce->image)}}" width="100px" height="100px" alt="">
                     </div>
-                  </div> 
-                          
-              </div>
-            @endforeach
+                    <div class="content">
+                      <!-- <div class="title">
+                          Briana Tozour
+                      </div> -->
+                      <div class="sub-title">
+                      {{$announce->title}}
+                      </div>
+                      <p>
+                      {{$announce->message}}
+                          <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit modi dolorem quis quae animi nihil minus sed unde voluptas cumque. -->
+                      </p>
+                      <div class="btn">
+                          <button>Read more</button>
+                      </div>
+                    </div>
+                </div>
+               @endforeach
           </div>
-        </div>
-      
     </div>
     
      <!-- ======= About Section ======= -->
@@ -387,7 +385,7 @@
         </div>
       </div>
     </div>
-
+  
 
 
 

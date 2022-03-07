@@ -20,7 +20,7 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">350</p>
+                                    <p class="total_no">{{$count_camera}}</p>
                                     <p class="head_couter">Camera Unit</p>
                                  </div>
                               </div>
@@ -35,8 +35,8 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">250</p>
-                                    <p class="head_couter">Cable Unit</p>
+                                    <p class="total_no">{{$count_cable}}</p>
+                                    <p class="head_couter">Console</p>
                                  </div>
                               </div>
                            </div>
@@ -50,7 +50,7 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">100</p>
+                                    <p class="total_no">{{$count_console}}</p>
                                     <p class="head_couter">Console Unit</p>
                                  </div>
                               </div>
@@ -65,7 +65,7 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">150</p>
+                                    <p class="total_no">{{$count_prosale}}</p>
                                     <p class="head_couter">Sales and Production</p>
                                  </div>
                               </div>

@@ -84,13 +84,16 @@ class NewsEventController extends Controller
     public function edit_announce(Request $request, $id)
     {
         $this->validate($request, [
+            'annouce_cat_id' => 'required',
             'title' => 'required',
             'message' => 'required',
         ]);
 
+        // return $request;
+
         $old_image = $request->old_image;
 
-        return $old_image;
+        // return $old_image;
 
         // $announ_img = $request->file('image');
         // $name_gen = hexdec(uniqid()).'.'.$announ_img->getClientOrinalExtension();
@@ -110,8 +113,19 @@ class NewsEventController extends Controller
 
         $user_id = Auth::user()->id;
         $update_announce = announcement::find($id);
+        // return $update_announce;
 
-        return $update_announce;
+        $update_announce->user_id = $user_id;
+        $update_announce->annouce_cat_id = $request->annouce_cat_id;
+        $update_announce->title = $request->title;
+        $update_announce->message = $request->message;
+        $update_announce->image = $path;
+
+        if($update_announce->update())
+        {
+            return back()->with('message', 'Announcement record successfully updated');
+        }
+        
     }
 
     public function view_announcement($id)
