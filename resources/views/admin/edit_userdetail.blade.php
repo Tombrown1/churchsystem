@@ -23,7 +23,7 @@
                     <div class="page_title">
                         <h2>User Profile</h2> 
                     </div>
-                    <a href="{{route('admin.profile', ['id'=> $user->details->id])}}" class="btn btn-success">Profile</a>
+                   
                     <div class="float-right mb-3">
                         <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Update User Details</button>                                                        
                     </div>

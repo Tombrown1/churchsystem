@@ -8,6 +8,7 @@ use App\Models\AnnoucementCategory;
 use App\Models\announcement;
 use App\Models\GalleryCategory;
 use App\Models\Gallery;
+use App\Models\Slider;
 use Image;
 use Storage;
 use Auth;
@@ -165,7 +166,7 @@ class NewsEventController extends Controller
 
             $gallery_image = $request->file('image');
             $name_gen = hexdec(Uniqid()).'.'.$gallery_image->getClientOriginalExtension();
-            image::make($gallery_image)->resize(500,500)->save('images/gallery/'.$name_gen);
+            image::make($gallery_image)->resize(800,640)->save('images/gallery/'.$name_gen);
 
             $last_image = 'images/gallery/'.$name_gen;
            
@@ -196,7 +197,7 @@ class NewsEventController extends Controller
        //Validate Image
        $gallery_image = $request->file('image');
        $name_gen = hexdec(uniqid()).'.'.$gallery_image->getClientOriginalExtension();
-       image::make($gallery_image)->resize(500, 500)->save('images/gallery/'.$name_gen);
+       image::make($gallery_image)->resize(800, 640)->save('images/gallery/'.$name_gen);
        $last_image = 'images/gallery/'.$name_gen;
 
         $user_id = Auth::user()->id;
@@ -235,4 +236,97 @@ class NewsEventController extends Controller
             return back()->with('message', 'Image Category Successfully created!');
          }
     }
+
+    public function image_slider()
+    {
+        $sliders = Slider::with('user')->orderBy('id', 'DESC')->get();
+        return view('admin.slider', compact('sliders'));
+    }
+
+    public function save_slider(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required' 
+        ]);
+        // Script for image Validation;
+        if($request->hasfile('image'))
+        {
+            $request->validate([
+                'image' => 'required',
+                'image' => 'mimes:jpeg,jpg,gif,png,pdf|max:4096'
+            ]);
+
+            $slider_image = $request->file('image');
+            $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
+            image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
+
+            $last_image = 'images/slider/'.$name_gen;
+        }  
+        
+        $user_id = Auth::user()->id;
+        $slider = new Slider;
+
+        $slider->user_id = $user_id;
+        $slider->title = $request->title;
+        $slider->description = $request->description;
+        $slider->image = $last_image;
+
+        // return $slider;
+
+        if($slider->save())
+        {
+            return back()->with('message', 'Slide image successfully created');
+        }
+
+    }
+
+    public function update_slider(Request $request, $id)
+    {
+        $this->validate($request, [
+           
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        $old_image = $request->old_image;
+
+        if($request->hasFile('image'))
+        {
+            $request->validate([
+                'image' => 'required',
+                'image' => 'mimes:jpg,jpeg,png,pdf|max:4096'
+            ]);
+
+            $slider_image = $request->file('image');
+            $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
+            image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
+
+            $last_image = 'images/slider/'.$name_gen;            
+        }
+
+        // if(request()->hasFile('image'))
+        // {
+        //     $slideImage = public_path("images/"{$sliders->image});// Get the Previous image from folder
+        //     if(File::exists($slideImage)){ //Unlink or remove image from folder
+        //         unlink($slideImage);
+        //     }
+        // }
+        unlink($old_image);
+        $user_id = Auth::user()->id;
+        $update_slider = Slider::find($id);
+
+        $update_slider->user_id = $user_id;
+        $update_slider->title = $request->title;
+        $update_slider->description = $request->description;
+        $update_slider->image = $last_image;
+
+        // return $update_slider;
+        if($update_slider->update())
+        {
+            return back()->with('message', 'Record Updated successfully!');
+        }
+    }
+
+
 }

@@ -1,3 +1,8 @@
+@php
+$sliders = DB::table('sliders')->get();
+
+@endphp
+
 
        <!-- ======= hero Section ======= -->
        <section id="hero">
@@ -5,20 +10,20 @@
       <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
-
         <div class="carousel-inner" role="listbox">
+          @foreach($sliders as $key => $slider)
 
-          <div class="carousel-item active" style="background-image: url(assets2/img/hero-carousel/tcu1.jpg)">
+          <div class="carousel-item {{ $key == 0 ? 'active' : '' }} " style="background-image: url({{asset($slider->image)}})">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Technical Crew Unit</h2>
-                <p class="animate__animated animate__fadeInUp">We are gives sound to the church</p>
+                <h2 class="animate__animated animate__fadeInDown">{{$slider->title}}</h2>
+                <p class="animate__animated animate__fadeInUp">{{$slider->description}}</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
-
-          <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/tcu2.jpg)">
+          @endforeach
+          <!-- <div class="carousel-item" style="background-image: url(assets2/img/hero-carousel/tcu2.jpg)">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">We are Professionala </h2>
@@ -36,7 +41,7 @@
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
 

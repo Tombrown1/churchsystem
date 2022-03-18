@@ -496,8 +496,8 @@ div#preloader {
 }
 #hero .carousel-item::before {
   content: "";
-  background-color: rgba(0, 0, 0, 0.7);
-}
+  background-color: rgba(0, 0, 0, 0.2);
+} 
 #hero .carousel-container {
   display: flex;
   justify-content: center;

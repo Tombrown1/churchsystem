@@ -83,7 +83,7 @@
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
             -->
-              Designed by <a href="#">tombrowngodwin</a>
+             App Developed by <a href="#">tombrowngodwin</a>
             </div>
           </div>
         </div>

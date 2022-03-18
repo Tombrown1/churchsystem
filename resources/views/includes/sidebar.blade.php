@@ -46,11 +46,12 @@
                            <li><a href="{{route('announce')}}"> <span>Announcement</span></a></li>
                            <li><a href="#"> <span>Service Activities</span></a></li>
                            <li><a href="{{route('photo.gallery')}}"> <span>Media Gallery</span></a></li>
+                           <li><a href="{{route('slider')}}"> <span>Image Slider</span></a></li>
                         </ul>
                      </li>
                    
                    
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                     <!-- <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
                   </ul>
                </div>
             </nav>

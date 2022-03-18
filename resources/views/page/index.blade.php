@@ -6,8 +6,14 @@
 @include('page.body.slider')
     <br><br>
 
-    <div class="container">
-        <div class="slider owl-carousel">
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Unit Announcement</h2>
+            </div>
+          </div>
+          <div class="slider owl-carousel">
               @foreach($announcement as $announce)
                 <div class="card">
                     <div class="img">
@@ -31,6 +37,7 @@
                 </div>
                @endforeach
           </div>
+      </div>
     </div>
     
      <!-- ======= About Section ======= -->

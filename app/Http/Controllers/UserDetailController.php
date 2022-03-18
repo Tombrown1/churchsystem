@@ -79,6 +79,11 @@ class UserDetailController extends Controller
 
         if($userdetail->save())
         {
+            //This Logic will have to update user table status with 1 once this field is been saved in user details table for easy identification
+            $update_status = User::find($userdetail->user_id);
+            $update_status->status = 1;
+            $update_status->save();
+
             session(['last_id' => $userdetail->id]);
             return back()->with('message', 'User Personal Details is added, please proceed and update Next of Kin Record');
         }
@@ -156,6 +161,8 @@ class UserDetailController extends Controller
 
             if($personal_detail->update())
             {
+                //This logic here helps to update user table with user name during 
+                //editing in userdetails table
                 $update_user = User::find($personal_detail->user_id);
                 $update_user->name = $request->surname.' '.$request->firstname.' '.$request->lastname;         
                 $update_user->gender = $request->gender;
@@ -222,9 +229,11 @@ class UserDetailController extends Controller
         
         if($nextofkin->save())
         {
-            // $redirect = 'admin/profile/'.$nextofkin->id;
-
-            // return $redirect;
+            //This logic will update user table status 2 once the above form record is save.
+            $update_status = User::find($nextofkin->user_id);
+            $update_status->status = 2;
+            $update_status->save();
+          
             return back()->with('message', 'Next of Kin Record saved, please proceed with other form so as to keep your record updated');
         }
     }
@@ -241,7 +250,7 @@ class UserDetailController extends Controller
         $updateNextofkin->address_next_of_kin = $request->address_next_of_kin;
         $updateNextofkin->gender_next_of_kin = $request->gender_next_of_kin;
 
-        if($updateNextofkin->save())
+        if($updateNextofkin->update())
         {
             return back()->with('message', 'Next of Kin Record Updated Successfully, please proceed with other update if need be !');
         }
@@ -278,6 +287,11 @@ class UserDetailController extends Controller
 
             if($workpro->save())
         {
+             //This logic will update user table status with 3 once the above form record is save.
+             $update_status = User::find($workpro->user_id);
+             $update_status->status = 3;
+             $update_status->save();
+
             return back()->with('message', 'Work Profession Record saved, please proceed with other form so as to keep your record updated');
         }
 
@@ -297,7 +311,7 @@ class UserDetailController extends Controller
             $update_workpro->maiden_name = $request->maiden_name;
             $update_workpro->resident_address = $request->resident_address;
 
-            if($update_workpro->save())
+            if($update_workpro->update())
             {
                 return back()->with('message', 'Work Profession Update saved, please proceed with other record updates if need be!');
             }
@@ -339,6 +353,11 @@ class UserDetailController extends Controller
 
             if($churchmember->save())
             {
+                 //This logic will update user table status with 4 once the above form record is save.
+                $update_status = User::find($churchmember->user_id);
+                $update_status->status = 4;
+                $update_status->save();
+
                 return back()->with('message', 'Member record is fully updated, Congratulation!');
             }
         }
@@ -358,7 +377,7 @@ class UserDetailController extends Controller
             $updatechurch->homecell_id = $request->homecell_id;
             $updatechurch->hobbies = $request->hobbies;
 
-            if( $updatechurch->save())
+            if( $updatechurch->update())
             {
                 return back()->with('message', 'Congratulation! Update Completed');
             }
@@ -372,7 +391,10 @@ class UserDetailController extends Controller
     }
 
     public function post_count($id){
-        $user = User::find($id);
+        // $user = User::find($id);
+        $user = UserDetail::with(['posting', 'user'])->find($id);
+        // return $user;
+
         return view('admin.post_count', compact('user'));
     }
 }

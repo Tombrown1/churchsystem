@@ -35,7 +35,7 @@ class manageMemberController extends Controller
         //$users = User::with('userdetail')->orderBy("id","DESC")->get(); 
         // $user = User::find(3)->userdetail;
 
-        return view('admin.manageMember', compact('users', 'posts'));
+        return view('admin.manageMember',compact('users', 'posts'));
     }
 
 

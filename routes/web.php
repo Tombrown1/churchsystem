@@ -92,6 +92,10 @@ require __DIR__.'/auth.php';
     Route::get('/photo-gallery', [NewsEventController::class, 'photo_gallery'])->name('photo.gallery');  
 
     Route::post('/photo-category', [NewsEventController::class, 'gallery_category'])->name('photo.category');
+    //Manage Image Slider routes
+    Route::get('/slider', [NewsEventController::class, 'image_slider'])->name('slider');
+    Route::post('/slider', [NewsEventController::class, 'save_slider'])->name('save.slider');
+    Route::post('/update-slider/{id}', [NewsEventController::class, 'update_slider'])->name('update.slider');
     //Delete User route
     Route::delete('/delete/{id}', [ManageUserController::class, 'deluser'])->name('user.delete');
 

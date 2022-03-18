@@ -33,9 +33,10 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">Cable Subunit</li>
+              <li data-filter=".filter-card">Camera Subunit</li>
+              <li data-filter=".filter-web">Console Subunit</li>
+              <li data-filter=".filter-web">Sales and Production Subunit</li>
             </ul>
           </div>
         </div>
