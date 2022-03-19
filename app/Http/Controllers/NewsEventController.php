@@ -402,11 +402,12 @@ class NewsEventController extends Controller
                 $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
                 
                 $last_image = $image_url;
+                $update_slider->image = $last_image;
             }
 
-            $slider_image = $request->file('image');
-            $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
-            image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
+            // $slider_image = $request->file('image');
+            // $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
+            // image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
         }
         
 
@@ -415,7 +416,7 @@ class NewsEventController extends Controller
         $update_slider->user_id = $user_id;
         $update_slider->title = $request->title;
         $update_slider->description = $request->description;
-        $update_slider->image = $last_image;
+       
 
         // return $update_slider;
         if($update_slider->update())
