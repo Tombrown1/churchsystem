@@ -109,7 +109,7 @@ class NewsEventController extends Controller
         // return $request;
 
         $old_image = $request->old_image;
-
+        $file = $request->file('image');
         // return $old_image;
 
         // $announ_img = $request->file('image');
@@ -137,10 +137,6 @@ class NewsEventController extends Controller
 
                 $path = $image_url;
             }
-
-
-            $file = $request->file('image');
-            $path = Storage::disk('public')->putFile('announce', $file);
 
             // return $path;
         }
@@ -309,6 +305,7 @@ class NewsEventController extends Controller
             'description' => 'required' 
         ]);
         // Script for image Validation;
+        $last_image = 'images/slider/'.$name_gen;
         if($request->hasfile('image'))
         {
             $request->validate([
@@ -337,8 +334,7 @@ class NewsEventController extends Controller
             $slider_image = $request->file('image');
             $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
             image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
-
-            $last_image = 'images/slider/'.$name_gen;
+            
         }  
         
         $user_id = Auth::user()->id;
@@ -367,6 +363,7 @@ class NewsEventController extends Controller
         ]);
 
         $old_image = $request->old_image;
+        $last_image = 'images/slider/'.$name_gen; 
 
         if($request->hasFile('image'))
         {
@@ -396,8 +393,6 @@ class NewsEventController extends Controller
             $slider_image = $request->file('image');
             $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
             image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
-
-            $last_image = 'images/slider/'.$name_gen;            
         }
 
         // if(request()->hasFile('image'))
