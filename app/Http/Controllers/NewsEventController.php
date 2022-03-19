@@ -306,8 +306,10 @@ class NewsEventController extends Controller
         ]);
         // Script for image Validation;
         $slider = new Slider;
-        if($request->hasfile('image'))
-        {
+        $file =  $request->file('image');
+
+            if($request->hasfile('image'))
+            {
             $request->validate([
                 'image' => 'required',
                 'image' => 'mimes:jpeg,jpg,gif,png,pdf|max:6144'
@@ -319,22 +321,19 @@ class NewsEventController extends Controller
                 image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
     
                 $last_image = 'images/slider/'.$name_gen; 
-            }else{
+            }elseif(env('APP_ENV') == 'production'){
                 $image_name = $file->getRealPath();
 
-                Cloudder::upload($image_name, null);
+               Cloudder::upload($image_name, null);
+
+                
                 
                 list($width, $height) = getimagesize($image_name);
     
                 $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
-                
                 $last_image = $image_url;
-                $slider->image = $last_image;
+                
             }
-
-            $slider_image = $request->file('image');
-            $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
-            image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
             
         }  
         
@@ -342,7 +341,7 @@ class NewsEventController extends Controller
         $slider->user_id = $user_id;
         $slider->title = $request->title;
         $slider->description = $request->description;
-        
+        $slider->image = $last_image;
 
         // return $slider;
 
@@ -353,75 +352,93 @@ class NewsEventController extends Controller
 
     }
 
+
+
     public function update_slider(Request $request, $id)
     {
+        // input validation
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
         ]);
 
+        //instanciate database table using model class
         $update_slider = Slider::find($id);
-
-        $old_image = $request->old_image;
-
-        if(!empty($old_image)){
-            if(file_exists($old_image)){
-                unlink($old_image);
-                $update_slider->image = null;
-                $update_slider->update();
-            }else{
-                $update_slider->image = null;
-                $update_slider->update();
-            }
-      
-        }
-
-      
 
         if($request->hasFile('image'))
         {
             $request->validate([
-                'image' => 'required',
                 'image' => 'mimes:jpg,jpeg,png,pdf|max:6144'
             ]);
+            $file = $request->file('image');
+            $last_image = null;
 
             if(env('APP_ENV') == 'local'){
-                $slider_image = $request->file('image');
+                //check if old iamge file is present and remove
+                if(!empty($update_slider->image)){
+                    if(file_exists($update_slider->image)){
+                        unlink($update_slider->image);
+                        $update_slider->image = null;
+                        $update_slider->update();
+                    }else{
+                        $update_slider->image = null;
+                        $update_slider->update();
+                    }
+              
+                }
+                //creation of new image file
+                $slider_image = $file;
                 $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
                 image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
     
-                $last_image = 'images/slider/'.$name_gen; 
-            }else{
+                $last_image = 'images/slider/'.$name_gen;
+
+            }elseif(env('APP_ENV') == 'production'){
+
+                //check if old iamge file is present and remove
+                
+                // if(!empty($update_slider->image)){
+                //     Cloudder::destroyImages('https://res.cloudinary.com/djgffdhhu/image/upload/v1647679363/smxrqzzlkdlae6twi8na.jpg',["folder" => "tcu"]);
+                // }
+
+
+                //get image name
                 $image_name = $file->getRealPath();
 
-                Cloudder::upload($image_name, null);
                 
+
+                //upload to cloudinary
+                Cloudder::upload($image_name,null);
+
                 list($width, $height) = getimagesize($image_name);
-    
-                $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+
+                //get url of the image sent to cloudinary
+                $image_url = Cloudder::show(Cloudder::getPublicId(), ['width' => $width, 'height'=>$height]);
                 
                 $last_image = $image_url;
-                $update_slider->image = $last_image;
+                
             }
-
-            // $slider_image = $request->file('image');
-            // $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
-            // image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
+        }else{
+            $last_image = $update_slider->image;
         }
-        
 
-        $user_id = Auth::user()->id;
-
-        $update_slider->user_id = $user_id;
+        //store value to database
+        $update_slider->user_id = Auth::id(); 
         $update_slider->title = $request->title;
         $update_slider->description = $request->description;
-       
+      
+        $update_slider->image = $last_image;
 
-        // return $update_slider;
-        if($update_slider->update())
-        {
-            return back()->with('message', 'Record Updated successfully!');
-        }
+
+        return back()->with('message', 'Record Updated successfully!');
+        
+    }
+
+    public function delete_slide($id){
+        $delete_slide = Slider::find($id);
+        $delete_slide->delete();
+
+        return back()->with('message', 'Slider Image deleted successfully!');
     }
 
 

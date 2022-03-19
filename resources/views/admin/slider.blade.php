@@ -67,7 +67,15 @@
                                                             <td><img src="{{asset($slider->image)}}"height="50px" width="70px" alt=""></td>
                                                             <td>{{$slider->created_at->isoFormat('D MM Y')}}</td>
                                                             <td><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#slider{{$slider->id}}">Edit</a></td>
+                                                            <td>
+                                                               <form action="{{route('del.slide', ['id'=> $slider->id])}}" method="post">
+                                                                  @csrf
+                                                                  {{method_field('DELETE')}}
+                                                                  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                                               </form>
+                                                            </td>
                                                         </tr>
+                                                      
             <!-- model popup begins here -->
         <!-- The Modal helps to edit slider image-->
         <div class="modal fade" id="slider{{$slider->id}}">
@@ -82,7 +90,6 @@
                   <div class="modal-body">                   
                     <form action="{{route('update.slider', ['id'=>$slider->id])}}" method="POST" enctype="multipart/form-data">
                         @csrf 
-                        <input type="hidden" name="old_image" value="{{$slider->image}}">
                         <div class="input-group mb-3">
                            <div class="input-group mb-3">
                               <div class="input-group-prepend">

@@ -96,6 +96,7 @@ require __DIR__.'/auth.php';
     Route::get('/slider', [NewsEventController::class, 'image_slider'])->name('slider');
     Route::post('/slider', [NewsEventController::class, 'save_slider'])->name('save.slider');
     Route::post('/update-slider/{id}', [NewsEventController::class, 'update_slider'])->name('update.slider');
+    Route::delete('/delslide/{id}', [NewsEventController::class, 'delete_slide'])->name('del.slide');
     //Delete User route
     Route::delete('/delete/{id}', [ManageUserController::class, 'deluser'])->name('user.delete');
 
