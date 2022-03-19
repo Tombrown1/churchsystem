@@ -306,36 +306,38 @@ class NewsEventController extends Controller
         ]);
         // Script for image Validation;
         $slider = new Slider;
-        $file =  $request->file('image');
+        $last_image = "";
 
             if($request->hasfile('image'))
             {
-            $request->validate([
-                'image' => 'required',
-                'image' => 'mimes:jpeg,jpg,gif,png,pdf|max:6144'
-            ]);
+                $request->validate([
+                    'image' => 'required',
+                    'image' => 'mimes:jpeg,jpg,gif,png,pdf|max:6144'
+                ]);
 
-            if(env('APP_ENV') == 'local'){
-                $slider_image = $request->file('image');
-                $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
-                image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
-    
-                $last_image = 'images/slider/'.$name_gen; 
-            }elseif(env('APP_ENV') == 'production'){
-                $image_name = $file->getRealPath();
+                if(env('APP_ENV') == 'local'){
+                    $slider_image = $request->file('image');
+                    $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
+                    image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
+        
+                    $last_image = 'images/slider/'.$name_gen; 
+                }
+                elseif(env('APP_ENV') == 'production')
+                {
+                    $file =  $request->file('image');
+                    $image_name = $file->getRealPath();
 
-               Cloudder::upload($image_name, null);
-
+                Cloudder::upload($image_name, null);                
+                    
+                    list($width, $height) = getimagesize($image_name);
+        
+                    $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+                    $last_image = $image_url;
+                    
+                }
                 
-                
-                list($width, $height) = getimagesize($image_name);
-    
-                $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
-                $last_image = $image_url;
-                
-            }
             
-        }  
+            }  
         
         $user_id = Auth::user()->id;
         $slider->user_id = $user_id;
@@ -345,11 +347,10 @@ class NewsEventController extends Controller
 
         // return $slider;
 
-        if($slider->save())
-        {
-            return back()->with('message', 'Slide image successfully created');
-        }
+        $slider->save();
 
+        return back()->with('message', 'Slide image successfully created');
+       
     }
 
 
