@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetail;
+use JD\Cloudder\Facades\Cloudder;
 use Storage;
 use Auth;
 
@@ -27,6 +28,32 @@ class UserDetailController extends Controller
             // 'image' => ['required|image|mimes:png,jpeg,jpg,gif,pdf|max:2048'],  
             'marital_status' => ['required'],   
         ]);
+        if($request->hasFile('passport'))
+        {
+            $request->validate([
+                'passport' => 'required',
+                'passport' => 'mimes:jpeg,jpg,png,gif,pdf|max:2048'
+            ]);
+
+            if(env('APP_ENV') == 'local'){
+                $passport = $request->file('passport');
+                $name_gen = hexdec(uniqid());
+                $img_ext = strtolower($passport->getClientOriginalExtension());
+                $img_name = $name_gen.'.'.$img_ext;
+                $up_location = 'images/passport/';
+                $last_img = $up_location.$img_name;
+
+            }else{
+                $image_name = $file->getRealPath();
+                Cloudder::upload($image_name, null);
+                
+                list($width, $height) = getimagesize($image_name);
+    
+                $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+                
+                $last_img = $image_url;
+            }
+        }
 
         // return $request;
         
@@ -127,6 +154,34 @@ class UserDetailController extends Controller
         $old_passport = $request->old_passport;
 
         // return $old_passport;
+
+        if($request->hasFile('passport'))
+        {
+            $request->validate([
+                'passport' => 'required',
+                'passport' => 'jpeg,jpg,png,gif,pdf|max:2048' 
+            ]);
+
+            if(env('APP_ENV') == 'local'){
+                $passport = $request->file('passport');
+                $name_gen = hexdec(uniqid());
+                $img_ext = strtolower($passport->getClientOriginalExtension());
+                $img_name = $name_gen.'.'.$img_ext;
+                $up_location = 'images/passport/';
+                $last_img = $up_location.$img_name;
+                $passport->move($up_location,$img_name);
+
+            }else{
+                $image_name = $file->getRealPath();
+                Cloudder::upload($image_name, null);
+                
+                list($width, $height) = getimagesize($image_name);
+    
+                $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+                
+                $last_img = $image_url;
+            }
+        }
 
         $passport = $request->file('passport');
         if($passport){
