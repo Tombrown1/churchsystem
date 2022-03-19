@@ -305,7 +305,7 @@ class NewsEventController extends Controller
             'description' => 'required' 
         ]);
         // Script for image Validation;
-      
+        $slider = new Slider;
         if($request->hasfile('image'))
         {
             $request->validate([
@@ -329,6 +329,7 @@ class NewsEventController extends Controller
                 $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
                 
                 $last_image = $image_url;
+                $slider->image = $last_image;
             }
 
             $slider_image = $request->file('image');
@@ -338,12 +339,10 @@ class NewsEventController extends Controller
         }  
         
         $user_id = Auth::user()->id;
-        $slider = new Slider;
-
         $slider->user_id = $user_id;
         $slider->title = $request->title;
         $slider->description = $request->description;
-        $slider->image = $last_image;
+        
 
         // return $slider;
 
