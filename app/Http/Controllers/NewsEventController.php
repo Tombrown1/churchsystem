@@ -305,7 +305,7 @@ class NewsEventController extends Controller
             'description' => 'required' 
         ]);
         // Script for image Validation;
-        $last_image = 'images/slider/'.$name_gen;
+      
         if($request->hasfile('image'))
         {
             $request->validate([
@@ -357,13 +357,27 @@ class NewsEventController extends Controller
     public function update_slider(Request $request, $id)
     {
         $this->validate($request, [
-           
             'title' => 'required',
             'description' => 'required',
         ]);
 
+        $update_slider = Slider::find($id);
+
         $old_image = $request->old_image;
-        $last_image = 'images/slider/'.$name_gen; 
+
+        if(!empty($old_image)){
+            if(file_exists($old_image)){
+                unlink($old_image);
+                $update_slider->image = null;
+                $update_slider->update();
+            }else{
+                $update_slider->image = null;
+                $update_slider->update();
+            }
+      
+        }
+
+      
 
         if($request->hasFile('image'))
         {
@@ -394,17 +408,9 @@ class NewsEventController extends Controller
             $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
             image::make($slider_image)->resize(2000,1333)->save('images/slider/'.$name_gen);
         }
+        
 
-        // if(request()->hasFile('image'))
-        // {
-        //     $slideImage = public_path("images/"{$sliders->image});// Get the Previous image from folder
-        //     if(File::exists($slideImage)){ //Unlink or remove image from folder
-        //         unlink($slideImage);
-        //     }
-        // }
-        unlink($old_image);
         $user_id = Auth::user()->id;
-        $update_slider = Slider::find($id);
 
         $update_slider->user_id = $user_id;
         $update_slider->title = $request->title;
