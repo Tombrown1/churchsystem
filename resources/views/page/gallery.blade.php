@@ -1,3 +1,4 @@
+@section('title', 'Gallery')
 @extends('page.page_master')
 
 @section('content')

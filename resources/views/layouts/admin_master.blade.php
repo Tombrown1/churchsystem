@@ -13,7 +13,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- site icon -->
-      <link rel="icon" href="{{asset('backend/assets/images/fevicon.png')}}" type="image/png" />
+      <link rel="icon" href="{{asset('backend/assets/images/favicon.ico')}}" type="icon" />
       <!-- bootstrap css -->
       <link rel="stylesheet" href="{{asset('backend/assets/css/bootstrap.min.css')}}" />
       <!-- site css -->
@@ -50,11 +50,7 @@
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
-                              <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                              </ul>
+                             
                               <ul class="user_profile_dd">
                                  <li>
                                    
@@ -62,8 +58,6 @@
                            
                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="{{route('admin.profile', ['id'=> Auth::User()->id])}}">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
                                        <form action="{{route('logout')}}" method="POST">
                                            @csrf
                                            <button class="btn btn-primary dropdown-item" type="submit">LogOut</button>

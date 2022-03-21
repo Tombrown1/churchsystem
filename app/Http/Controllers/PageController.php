@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\announcement;
+use App\Models\AnnoucementCategory;
 
 class PageController extends Controller
 {
@@ -19,10 +20,11 @@ class PageController extends Controller
         return view('page.gallery');
     }
 
-    
-
-    // public function gallery_category(Request $request)
-    // {
-    //     return view('admin.photo_gallery');
-    // }
+    public function announcement($id)
+    {
+        $view_announce = announcement::find($id);
+        $announce_cate = AnnoucementCategory::get();
+        // return $announce_cat;
+        return view('page.announcement', compact('view_announce', 'announce_cate'));
+    }
 }

@@ -26,6 +26,7 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'index'])->name('index')->middleware('posting.expire');
 Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
+Route::get('/announce-page/{id}', [PageController::class, 'announcement'])->name('announce.page');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -5,7 +5,7 @@
 
 @include('page.body.slider')
     <br><br>
-
+    <!--Announcement-->
     <div id="about" class="about-area area-padding">
       <div class="container">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -31,7 +31,8 @@
                           <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit modi dolorem quis quae animi nihil minus sed unde voluptas cumque. -->
                       </p>
                       <div class="btn">
-                          <button>Read more</button>
+                        <button><a href="{{route('announce.page', ['id'=>$announce->id])}}">view</a> </button>
+                          <!-- <button>Read more</button> -->
                       </div>
                     </div>
                 </div>
@@ -56,7 +57,7 @@
             <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="assets2/img/about/6.jpeg" alt="">
+                  <img src="frontend/assets/tcu_photos/tcu_group_photo.jpg" alt="">
                 </a>
               </div>
             </div>
@@ -261,7 +262,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="assets2/img/team/6.jpg" alt="">
+                  <img src="frontend/assets/tcu_photos/bro_omotosho.jpg" alt="">
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -284,7 +285,7 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Mr Omotosho Samuel</h4>
+                <h4>Bro Omotosho Samuel</h4>
                 <p>Unit Leader</p>
               </div>
             </div>
@@ -294,7 +295,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="assets2/img/team/8.jpg" alt="">
+                  <img src="frontend/assets/tcu_photos/bro_davis.jpg" alt="">
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -317,7 +318,7 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Mr Davis Obeleye</h4>
+                <h4>Bro Davis Obeleye</h4>
                 <p>Unit Assistant Leader</p>
               </div>
             </div>
@@ -327,7 +328,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="assets2/img/team/7a.jpg" alt="">
+                  <img src="frontend/assets/tcu_photos/bro_victor.jpg" alt="">
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -350,7 +351,7 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Mr Victor Ngah</h4>
+                <h4>Bro Victor Ngah</h4>
                 <p>Unit Secretary</p>
               </div>
             </div>
@@ -360,7 +361,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="assets2/img/team/9.jpg" alt="">
+                  <img src="frontend/assets/tcu_photos/pst_david.jpg" alt="">
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -383,7 +384,7 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Pastor David Durotiwon</h4>
+                <h4>Pst David Durotiwon</h4>
                 <p>Unit Pastor</p>
               </div>
             </div>

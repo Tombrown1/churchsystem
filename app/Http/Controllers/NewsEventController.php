@@ -306,10 +306,10 @@ class NewsEventController extends Controller
         ]);
         // Script for image Validation;
         $slider = new Slider;
-        $last_image = "";
+        $last_image = null;
 
-            if($request->hasfile('image'))
-            {
+            if($request->hasFile('image'))
+            {   
                 $request->validate([
                     'image' => 'required',
                     'image' => 'mimes:jpeg,jpg,gif,png,pdf|max:6144'
@@ -429,6 +429,8 @@ class NewsEventController extends Controller
         $update_slider->description = $request->description;
       
         $update_slider->image = $last_image;
+
+        $update_slider->update();
 
 
         return back()->with('message', 'Record Updated successfully!');
