@@ -87,12 +87,16 @@
                                                    @endif
                                                 </td>
                                                 <td>
-                                                   @if($user->user->post_count >=1)
-                                                      @if($user->user->post_count == 1)
-                                                         <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}"> once</a></span>
-                                                      @else
-                                                         <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}">{{ $user->user->post_count. ' times'}}</a></span>
-                                                      @endif
+                                                   @if($user->user == null)
+
+                                                      @elseif($user->user->post_count >=1)
+
+                                                         @if($user->user->post_count == 1)
+                                                            <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}"> once</a></span>
+                                                         @else
+                                                            <span class="badge badge-warning"><a href="{{route('times.posted', ['id' => $user->id])}}">{{ $user->user->post_count. ' times'}}</a></span>
+                                                         @endif
+
                                                    @else
                                                    <span class="badge badge-info">Not posted yet</span>
                                                    @endif

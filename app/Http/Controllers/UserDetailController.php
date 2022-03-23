@@ -148,22 +148,34 @@ class UserDetailController extends Controller
 
         //     $passport = $request->file('passport'); 
         //     // $passName = $passport->getClientOriginalName();
-        //     $path = Storage::disk('public')->putFile('images', $passport);                   
+        //     $path = Storage::disk('public')->putFile('images', $passport);                 
         // }
 
-        $old_passport = $request->old_passport;
-
-        // return $old_passport;
+        //Instantiate Database personal_detail table
+        $personal_detail = UserDetail::find($id);
 
         if($request->hasFile('passport'))
         {
             $request->validate([
-                'passport' => 'required',
-                'passport' => 'jpeg,jpg,png,gif,pdf|max:2048' 
+                'passport' => 'mimes:jpeg,jpg,png,gif,pdf|max:2048' 
             ]);
+            $file = $request->file('passport');
+            $last_img = null;
 
-            if(env('APP_ENV') == 'local'){
-                $passport = $request->file('passport');
+            if(env('APP_ENV') == 'local')
+            {                
+                if(!empty($personal_detail->passport)){
+                    if(file_exists($personal_detail->passport)){
+                        unlink($personal_detail->passport);
+                        $personal_detail->passport = null;
+                        $personal_detail->update();
+                    }else{
+                        $personal_detail->passport = null;
+                        $personal_detail->update();
+                    }
+                }
+                // Create a new passport file
+                $passport = $file;
                 $name_gen = hexdec(uniqid());
                 $img_ext = strtolower($passport->getClientOriginalExtension());
                 $img_name = $name_gen.'.'.$img_ext;
@@ -171,7 +183,8 @@ class UserDetailController extends Controller
                 $last_img = $up_location.$img_name;
                 $passport->move($up_location,$img_name);
 
-            }else{
+            }elseif(env('APP_ENV') == 'production')
+            {
                 $image_name = $file->getRealPath();
                 Cloudder::upload($image_name, null);
                 
@@ -181,75 +194,116 @@ class UserDetailController extends Controller
                 
                 $last_img = $image_url;
             }
-        }
 
-        $passport = $request->file('passport');
-        if($passport){
-            $name_gen = hexdec(uniqid());
-            $img_ext = strtolower($passport->getClientOriginalExtension());
-            $img_name = $name_gen.'.'.$img_ext;
-            $up_location = 'images/passport/';
-            $last_img = $up_location.$img_name;
-            $passport->move($up_location,$img_name);
-
-            $created_by = Auth::user()->id;
-            
-                // if($old_passport == true){
-                //     unlink($old_passport);
-                // }
-
-            $personal_detail = UserDetail::find($id);
-
-            $personal_detail->user_id = $request->user_id;
-            $personal_detail->created_by = $created_by;
-            $personal_detail->surname = $request->surname;
-            $personal_detail->firstname = $request->firstname;
-            $personal_detail->lastname = $request->lastname;
-            $personal_detail->gender = $request->gender;
-            $personal_detail->email = $request->email;
-            $personal_detail->work_phone = $request->work_phone;
-            $personal_detail->home_phone = $request->home_phone;
-            $personal_detail->dob = $request->dob;
-            $personal_detail->pob = $request->pob;
-            $personal_detail->marital_status = $request->marital_status;
-            $personal_detail->passport = $last_img;
-
-            if($personal_detail->update())
-            {
-                //This logic here helps to update user table with user name during 
-                //editing in userdetails table
-                $update_user = User::find($personal_detail->user_id);
-                $update_user->name = $request->surname.' '.$request->firstname.' '.$request->lastname;         
-                $update_user->gender = $request->gender;
-                $update_user->email = $request->email;
-
-                    $update_user->update();
-                return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
-            }
         }else{
 
-            $created_by = Auth::user()->id;
-
-            $personal_detail = UserDetail::find($id);
-
-            $personal_detail->user_id = $request->user_id;
-            $personal_detail->created_by = $created_by;
-            $personal_detail->firstname = $request->firstname;
-            $personal_detail->lastname = $request->lastname;
-            $personal_detail->gender = $request->gender;
-            $personal_detail->email = $request->email;
-            $personal_detail->work_phone = $request->work_phone;
-            $personal_detail->home_phone = $request->home_phone;
-            $personal_detail->dob = $request->dob;
-            $personal_detail->pob = $request->pob;
-            $personal_detail->marital_status = $request->marital_status;
-
-            if($personal_detail->update())
-            {
-                return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
-            } 
+            $last_img = $personal_detail->passport;
         }
+
+        // $passport = $request->file('passport');
+        // if($passport){
+        //     $name_gen = hexdec(uniqid());
+        //     $img_ext = strtolower($passport->getClientOriginalExtension());
+        //     $img_name = $name_gen.'.'.$img_ext;
+        //     $up_location = 'images/passport/';
+        //     $last_img = $up_location.$img_name;
+        //     $passport->move($up_location,$img_name);
+
+        //     $created_by = Auth::user()->id;
+            
+        //         // if($old_passport == true){
+        //         //     unlink($old_passport);
+        //         // }
+
+            
+
+        //     $personal_detail->user_id = $request->user_id;
+        //     $personal_detail->created_by = $created_by;
+        //     $personal_detail->surname = $request->surname;
+        //     $personal_detail->firstname = $request->firstname;
+        //     $personal_detail->lastname = $request->lastname;
+        //     $personal_detail->gender = $request->gender;
+        //     $personal_detail->email = $request->email;
+        //     $personal_detail->work_phone = $request->work_phone;
+        //     $personal_detail->home_phone = $request->home_phone;
+        //     $personal_detail->dob = $request->dob;
+        //     $personal_detail->pob = $request->pob;
+        //     $personal_detail->marital_status = $request->marital_status;
+        //     $personal_detail->passport = $last_img;
+
+        //     if($personal_detail->update())
+        //     {
+        //         //This logic here helps to update user table with user name during 
+        //         //editing in userdetails table
+        //         $update_user = User::find($personal_detail->user_id);
+        //         $update_user->name = $request->surname.' '.$request->firstname.' '.$request->lastname;         
+        //         $update_user->gender = $request->gender;
+        //         $update_user->email = $request->email;
+
+        //             $update_user->update();
+        //         return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
+        //     }
+        // }else{
+
+        //     $created_by = Auth::user()->id;
+
+        //     $personal_detail = UserDetail::find($id);
+
+        //     $personal_detail->user_id = $request->user_id;
+        //     $personal_detail->created_by = $created_by;
+        //     $personal_detail->firstname = $request->firstname;
+        //     $personal_detail->lastname = $request->lastname;
+        //     $personal_detail->gender = $request->gender;
+        //     $personal_detail->email = $request->email;
+        //     $personal_detail->work_phone = $request->work_phone;
+        //     $personal_detail->home_phone = $request->home_phone;
+        //     $personal_detail->dob = $request->dob;
+        //     $personal_detail->pob = $request->pob;
+        //     $personal_detail->marital_status = $request->marital_status;
+
+        //     if($personal_detail->update())
+        //     {
+        //         return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
+        //     } 
+        // }
         
+        $created_by = Auth::user()->id;
+
+        $personal_detail->user_id = $request->user_id;
+        $personal_detail->created_by = $created_by;
+        $personal_detail->firstname = $request->firstname;
+        $personal_detail->lastname = $request->lastname;
+        $personal_detail->gender = $request->gender;
+        $personal_detail->email = $request->email;
+        $personal_detail->work_phone = $request->work_phone;
+        $personal_detail->home_phone = $request->home_phone;
+        $personal_detail->dob = $request->dob;
+        $personal_detail->pob = $request->pob;
+        $personal_detail->marital_status = $request->marital_status;
+        $personal_detail->passport = $last_img;
+
+        // return $personal_detail;
+
+        if($personal_detail->update())
+        {
+                // This logic here helps to update user table with user name during 
+                //editing in userdetails table
+                $update_user = User::find($personal_detail->user_id);
+                $name = explode(" ", trim($request->firstname));
+                $username = $name[0].rand(4,10000);
+                $password = $username;
+
+                $update_user->name = $request->surname.' '.$request->firstname.' '.$request->lastname;
+                $update_user->gender = $request->gender;
+                $update_user->email = $request->email;
+                $update_user->username = $username;
+                $update_user->password = $password;
+                // return $update_user;
+
+                $update_user->update();
+
+            return back()->with('message', 'Personal Details Updated Successfully, kindly proceed in updating Next of Kin Record, if need be!');
+        } 
               
     }
         

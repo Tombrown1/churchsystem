@@ -31,7 +31,11 @@
 
                             </div>
                             <div class="float-right mb-5">
-                                <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Complete User Registeration</button> 
+                                    @if($user->status >=5)
+                                    <button type="button" class="model_bt btn btn-primary" data-toggle="modal" data-target="#myModal">Complete User Registeration</button>
+                                    @else
+
+                                    @endif
                                 <a type="button" class="model_bt btn btn-info" href="{{route('edit.personal.detail', ['id' =>$user->id])}}">Edit User</a> 
                             </div>
                         </div>
@@ -78,7 +82,7 @@
                                                     <p><strong>About: </strong>Frontend Developer</p>
                                                     <ul class="list-unstyled">
                                                     <li><i class="fa fa-envelope-o"></i> : {{ $user->details->email }}</li>
-                                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
+                                                    <li><i class="fa fa-phone"></i> : {{ $user->details->work_phone}}</li>
                                                     </ul>
                                                 </div>
                                                 <div class="user_progress_bar">
@@ -124,10 +128,10 @@
                                                         <div class="msg_list_main">
                                                             <ul class="msg_list">
                                                                 <li>
-                                                                <span><img src="images/layout_img/msg2.png" class="img-responsive" alt="#"></span>
+                                                                <!-- <span><img src="images/layout_img/msg3.png" class="img-responsive" alt="#"></span> -->
                                                                 <span>
-                                                                <span class="name_user">Taison Jack</span>
-                                                                <span class="msg_user">Sed ut perspiciatis unde omnis.</span>
+                                                                <span class="name_user">Name: {{$user->details->fname_next_of_kin .' '. $user->details->lname_next_of_kin}}</span>
+                                                                <span class="msg_user">Email: {{$user->details->phone_next_of_kin}}</span>
                                                                 <span class="time_ago">12 min ago</span>
                                                                 </span>
                                                                 </li>

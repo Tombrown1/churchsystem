@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/" class="d-flex justify-content-center mb-4">
-            <img src="{{asset('assets2/logos/main_logo2.jpg')}}" width=200 height=150 alt=""> 
+            <img src="{{asset('backend/assets/logos/main_logo2.jpg')}}" width=200 height=150 alt=""> 
             </a>
         </x-slot>
 
@@ -42,9 +42,9 @@
 
             <div class="d-flex justify-content-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="text-muted" href="{{ route('password.request') }}" style="margin-right: 15px; margin-top: 15px;">
+                    <!-- <a class="text-muted" href="{{ route('password.request') }}" style="margin-right: 15px; margin-top: 15px;">
                         {{ __('Forgot your password?') }}
-                    </a>
+                    </a> -->
                 @endif
 
                 <x-button class="ml-3">

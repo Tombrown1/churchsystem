@@ -102,7 +102,7 @@
                                                             <form method="POST" action="{{route('user.delete', ['id'=>$user->id])}}">
                                                                @csrf
                                                                <input type="hidden" name="_method" value="DELETE">
-                                                               <button type="submit" class="btn btn-danger btn-icon">
+                                                               <button type="submit" class="btn btn-danger btn-icon" onclick="return confirm('Are you sure, you want to delete?')">
                                                                   <i data-feather="delete">Delete</i>
                                                                </button>
                                                                </form>

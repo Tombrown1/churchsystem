@@ -62,7 +62,13 @@
                                              <tr>
                                                 <td>{{$loop->index +1}}</td>
                                                 <td>{{App\Models\User::find($exp_member->user_id)->name}}</td>
-                                                <td>{{$exp_member->user->name}}</td>
+                                                <td>
+                                                   @if($exp_member->user == null)
+                                                   @else
+                                                   {{$exp_member->user->name}}
+                                                   @endif
+
+                                                </td>
                                                 <td>{{App\Models\Subunit::find($exp_member->subunit_id)->name}}</td>
                                                 <td>{{$exp_member->start_date}}</td>
                                                 <td>{{$exp_member->expired_at}}</td>
