@@ -108,26 +108,44 @@ class NewsEventController extends Controller
 
         // return $request;
 
-        $old_image = $request->old_image;
-        $file = $request->file('image');
-        // return $old_image;
-
+        $update_announce = announcement::find($id);
+     
         // $announ_img = $request->file('image');
         // $name_gen = hexdec(uniqid()).'.'.$announ_img->getClientOrinalExtension();
         // Image::make($announ_img)->resize(500, 500)->save('images/announce'.$name_gen);
         // $last_image = 'images/announce'.$name_gen;
 
-        if($request->hasfile('image')){
+        if($request->hasfile('image'))
+        {
             $request->validate([
-                'image' => 'required',
                 'image' => 'mimes:png,jpg,jpeg,pdf,gif|max:2048'
             ]);
+
+            $file = $request->file('image');
+            $path = null;
             
             if(env('APP_ENV') == 'local'){
-                $file = $request->file('image');
-                $path = Storage::disk('public')->putFile('announcement', $file);
-                $announce->image = $path;
-            }else{
+
+                if(!empty($update_announce->image))
+                {
+                    if(file_exists($update_announce->image))
+                    {
+                        unlink($update_announce->image);
+                        $update_announce->image = null;
+                        $update_announce->update();
+                    }
+                }else{
+                        $update_announce->image = null;
+                        $update_announce->update();
+                }
+
+                $img_file = $file;
+                $path = Storage::disk('public')->putFile('announcement', $img_file);                
+                // $announce->image = $path;
+                // return $path;
+            }
+                elseif(env('APP_ENV') == 'production')
+            {
                 $image_name = $file->getRealPath();
                 Cloudder::upload($image_name, null);
                 
@@ -139,10 +157,12 @@ class NewsEventController extends Controller
             }
 
             // return $path;
+        }else{
+           $path = $update_announce->image; 
         }
 
         $user_id = Auth::user()->id;
-        $update_announce = announcement::find($id);
+       
         // return $update_announce;
 
         $update_announce->user_id = $user_id;
@@ -374,19 +394,21 @@ class NewsEventController extends Controller
             $file = $request->file('image');
             $last_image = null;
 
-            if(env('APP_ENV') == 'local'){
+            if(env('APP_ENV') == 'local')
+            {
                 //check if old iamge file is present and remove
-                if(!empty($update_slider->image)){
-                    if(file_exists($update_slider->image)){
-                        unlink($update_slider->image);
-                        $update_slider->image = null;
-                        $update_slider->update();
+                if(!empty($update_slider->image))
+                    {
+                        if(file_exists($update_slider->image))
+                        {
+                            unlink($update_slider->image);
+                            $update_slider->image = null;
+                            $update_slider->update();
+                        }              
                     }else{
-                        $update_slider->image = null;
-                        $update_slider->update();
-                    }
-              
-                }
+                            $update_slider->image = null;
+                            $update_slider->update();
+                        }
                 //creation of new image file
                 $slider_image = $file;
                 $name_gen = hexdec(Uniqid()).'.'.$slider_image->getClientOriginalExtension();
@@ -405,9 +427,6 @@ class NewsEventController extends Controller
 
                 //get image name
                 $image_name = $file->getRealPath();
-
-                
-
                 //upload to cloudinary
                 Cloudder::upload($image_name,null);
 

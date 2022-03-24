@@ -102,8 +102,7 @@
                   <!-- Modal body -->
                   <div class="modal-body">
                      <form action="{{route('edit.announce', ['id'=>$announce->id])}}" method="POST" enctype="multipart/form-data">
-                        @csrf 
-                        <input type="hidden" name="old_image" value="{{asset('/storage/'.$announce->image)}}">
+                        @csrf                         
                         <input type="hidden" name="user_id" value="{{$announce->user_id}}">
                         <div class="input-group mb-3">
                            <div class="input-group mb-3">

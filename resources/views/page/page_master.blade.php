@@ -15,7 +15,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-      <link rel="stylesheet" href="{{asset('assets2/css/owl_style.css')}}">
+      <link rel="stylesheet" href="{{asset('frontend/assets/owl_slider/css/owl_style.css')}}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
@@ -31,8 +31,8 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
   <!--Owl Slider CSS--> 
-  <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="{{asset('frontend/assets/css/carousel_style.css')}}">
+
 
   <!-- =======================================================
   * Template Name: eBusiness - v4.7.0

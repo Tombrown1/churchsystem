@@ -56,8 +56,8 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="well-left">
               <div class="single-well">
-                <a href="#">
-                  <img src="frontend/assets/tcu_photos/tcu_group_photo.jpg" alt="">
+                <a href="#">                  
+                  <img src="{{asset('frontend/assets/images/group_photo.jpg')}}" alt="">
                 </a>
               </div>
             </div>
@@ -131,7 +131,8 @@
                 <div class="well-left">
                   <div class="single-well">
                     <a href="#">
-                      <img src="assets2/img/subunit/1.jpg" alt="">
+                     
+                      <img src="{{asset('frontend/assets/img/subunit/1.jpg')}}" alt="">
                     </a>
                   </div>
                 </div>
@@ -148,7 +149,7 @@
                 <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="assets2/img/subunit/7.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/subunit/7.jpg')}}" alt="">
                 </a>
               </div>
             </div>                  
@@ -197,7 +198,7 @@
                 <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="assets2/img/subunit/3.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/subunit/3.jpg')}}" alt="">
                 </a>
               </div>
             </div>
@@ -214,7 +215,7 @@
                 <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="assets2/img/subunit/6.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/subunit/6.jpg')}}" alt="">
                 </a>
               </div>
             </div>
@@ -262,7 +263,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="frontend/assets/tcu_photos/bro_omotosho.jpg" alt="">
+                  <img src="{{asset('frontend/assets/images/omotosho.jpg')}}" alt="">
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -295,7 +296,8 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="frontend/assets/tcu_photos/bro_davis.jpg" alt="">
+                  <img src="{{asset('frontend/assets/images/davis.jpg')}}" alt="">
+
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -328,7 +330,8 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="frontend/assets/tcu_photos/bro_victor.jpg" alt="">
+                  <img src="{{asset('frontend/assets/images/victor2.jpg')}}" alt="">
+
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -361,7 +364,8 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-                  <img src="frontend/assets/tcu_photos/pst_david.jpg" alt="">
+                  <img src="{{asset('frontend/assets/images/pst_david.jpg')}}" alt="">
+
                 </a>
                 <div class="team-social-icon text-center">
                   <ul>
